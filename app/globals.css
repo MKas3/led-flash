@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #0B0B0B;
+    --foreground: #FFF;
+
+    --card: #0B0B0B;
+    --card-foreground: #FFF;
+
+    --popover: #0B0B0B;
+    --popover-foreground: #FFF;
+
+    --gradient-first: #DA22FF;
+    --gradient-second: #FF0099;
+
+    --muted: #1C1C1C;
+    --muted-foreground: #383838;
+
+    --border: #0B0B0B;
+    --input: #1C1C1C;
+    --ring: #FFF;
+
+    --radius: 32px;
+    --radius-md: 24px;
+    --radius-sm: 16px;
+
+    --header-height: 78px;
+    --header-top: 24px;
+    --header-top-sm: 10px;
+    --header-full-height: calc(var(--header-height) + var(--header-top));
+    --header-full-height-sm: calc(var(--header-height) + var(--header-top-sm));
+
+    --container-padding: 15vw;
+    --container-padding-lg: 10vw;
+    --container-padding-md: 7.5vw;
+    --container-padding-sm: 8.75vw;
+    --footer-padding: 17.5vw;
+    --footer-padding-lg: 12.5vw;
+    --footer-padding-md: 0vw;
+    --footer-padding-sm: 10vw;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+@layer utilities {
+  .animate-gradient {
+    @property --tw-gradient-from {
+      syntax: "<color>";
+      inherits: false;
+      initial-value: "#FFFFFF00";
+    }
+    @property --tw-gradient-via {
+      syntax: "<color>";
+      inherits: false;
+      initial-value: "#FFFFFF00";
+    }
+    @property --tw-gradient-to {
+      syntax: "<color>";
+      inherits: false;
+      initial-value: "#FFFFFF00";
+    }
+  }
+
+}

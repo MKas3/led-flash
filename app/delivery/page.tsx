@@ -1,0 +1,44 @@
+import { deliveryQuestions } from '@/config/delivery/delivery';
+import { Container } from '@/components/ui/container';
+import { GradientText } from '@/components/ui/gradient-text';
+import { Heading } from '@/components/ui/heading';
+import { Main } from '@/components/ui/main';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+export default function DeliveryPage() {
+  return (
+    <Main size='sm'>
+      <Container className='mb-36' isHero>
+        <Heading className='mt-24' as='h1' hasUnderline>
+          Какие способы <GradientText>доставки</GradientText> есть?
+        </Heading>
+        <Tabs
+          defaultValue={deliveryQuestions[0].value}
+          className='mb-24 grid gap-x-7 gap-y-16 lg:grid-cols-2'
+        >
+          <TabsList className='flex-col items-start justify-start gap-y-2 rounded-none bg-transparent md:gap-y-6'>
+            {deliveryQuestions.map((item, index) => (
+              <TabsTrigger
+                key={index}
+                className='!px-0 text-sm font-bold opacity-100 transition-opacity before:mr-[0.5em] before:block before:size-[0.5em] before:rounded-full before:bg-foreground before:transition-all data-[state=active]:bg-transparent data-[state=inactive]:opacity-80 data-[state=active]:shadow-none data-[state=inactive]:before:mr-0 data-[state=inactive]:before:size-0 sm:text-sm md:text-lg lg:text-xl'
+                value={item.value}
+              >
+                {item.question}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {deliveryQuestions.map((item, index) => (
+            <TabsContent
+              tabIndex={-1}
+              className='space-y-[1em] px-1 text-sm !leading-loose md:text-base lg:pl-0'
+              key={index}
+              value={item.value}
+            >
+              {item.answer}
+            </TabsContent>
+          ))}
+        </Tabs>
+      </Container>
+    </Main>
+  );
+}

@@ -4,12 +4,13 @@ import { GradientText } from '@/components/ui/gradient-text';
 import { Heading } from '@/components/ui/heading';
 import { Main } from '@/components/ui/main';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Contacts } from '@/components/shared/contacts';
 
 export default function DeliveryPage() {
   return (
-    <Main size='sm'>
+    <Main>
       <Container className='mb-36' isHero>
-        <Heading className='mt-24' as='h1' hasUnderline>
+        <Heading className='mb-12 mt-24' as='h1' hasUnderline>
           Какие способы <GradientText>доставки</GradientText> есть?
         </Heading>
         <Tabs
@@ -38,6 +39,12 @@ export default function DeliveryPage() {
             </TabsContent>
           ))}
         </Tabs>
+      </Container>
+      <Container>
+        <Heading className='mb-12' as='h2' hasUnderline>
+          Как с нами <GradientText>связаться?</GradientText>
+        </Heading>
+        <Contacts />
       </Container>
     </Main>
   );

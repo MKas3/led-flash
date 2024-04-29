@@ -1,15 +1,14 @@
 import React, { forwardRef } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
+import { HTMLMotionProps } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
+import { AppearingContainer } from '@/components/ui/appearing-container';
 
-type ContainerProps = React.HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof containerVariants>;
-
-export const containerVariants = cva('relative flex flex-col overflow-hidden', {
+export const containerVariants = cva('relative flex flex-col', {
   variants: {
     isHero: {
-      true: 'pt-[var(--header-full-height-sm)] md:pt-[var(--header-full-height)]',
+      true: 'py-[var(--header-full-height-sm)] md:py-[var(--header-full-height)]',
       false: '',
     },
     padding: {
@@ -24,21 +23,35 @@ export const containerVariants = cva('relative flex flex-col overflow-hidden', {
       'to-right':
         'before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-r before:from-gradient-first before:to-gradient-second before:blur-[12.5vw]',
     },
+    isAlternate: {
+      true: 'bg-foreground text-background',
+      false: '',
+    },
   },
   defaultVariants: {
     isHero: false,
     padding: 'default',
     gradient: 'none',
+    isAlternate: false,
   },
 });
 
+type ContainerProps = React.HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof containerVariants>;
+
 const Container = forwardRef<HTMLDivElement, ContainerProps>(
-  ({ isHero, padding, gradient, className, ...props }, ref) => {
+  ({ isHero, padding, gradient, isAlternate, className, ...props }, ref) => {
     return (
       <div
         ref={ref}
         className={cn(
-          containerVariants({ padding, gradient, isHero, className })
+          containerVariants({
+            padding,
+            gradient,
+            isHero,
+            isAlternate,
+            className,
+          })
         )}
         {...props}
       />

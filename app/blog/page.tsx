@@ -11,7 +11,7 @@ import { ArticleCardViews } from '@/app/blog/_components/article-card-views';
 
 export default async function BlogPage() {
   return (
-    <Main size='sm'>
+    <Main>
       <Container className='mb-36' isHero>
         <Heading className='mt-24' as='h1' hasUnderline>
           Узнайте больше о <GradientText>неоновых</GradientText> вывесках

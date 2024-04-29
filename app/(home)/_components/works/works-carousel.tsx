@@ -11,7 +11,7 @@ export const WorksCarousel = ({
 }: WorksCarouselProps) => {
   return (
     <Carousel
-      className={cn('w-4/5 py-4 md:w-3/5 lg:w-2/5', className)}
+      className={cn('w-4/5 md:w-3/5 lg:w-2/5', className)}
       opts={{
         align: 'center',
         slidesToScroll: 1,

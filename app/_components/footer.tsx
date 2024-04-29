@@ -23,13 +23,9 @@ export const Footer = ({ className, ...props }: FooterProps) => {
         для <GradientText>вашего бизнеса?</GradientText>
       </Heading>
       <FooterForm className='mt-16' />
-      <div className='mt-20 flex flex-wrap items-center justify-center gap-4 whitespace-nowrap px-10 text-xl font-bold *:underline *:underline-offset-4 md:gap-8 md:text-3xl lg:gap-12 lg:text-5xl'>
-        <Link.Link href={`tel:${siteConfig.phone}`}>
-          {siteConfig.altPhone}
-        </Link.Link>
-        <Link.Link href={`mailto:${siteConfig.email}`}>
-          {siteConfig.email}
-        </Link.Link>
+      <div className='mt-20 flex flex-wrap items-center justify-center gap-4 whitespace-nowrap px-10 text-xl font-bold md:gap-8 md:text-3xl lg:gap-12 lg:text-5xl'>
+        <Link.Phone />
+        <Link.Email />
       </div>
       <div className='mt-12 flex items-center justify-center gap-x-5 font-poppins text-xs font-semibold text-white/50 *:underline *:underline-offset-4 md:gap-x-8 md:text-xl lg:gap-x-10 lg:text-3xl'>
         {siteConfig.social.map((item, index) => (

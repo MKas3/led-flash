@@ -15,8 +15,8 @@ type AppearingTextProps = Omit<
 };
 
 export const AppearingText = ({
-  charCount = 40,
-  interval = 100,
+  charCount = 4,
+  interval = 10,
   delay = 0,
   children,
   className,

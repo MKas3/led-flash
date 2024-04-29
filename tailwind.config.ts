@@ -56,14 +56,23 @@ const config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-      },
-      fontFamily: {
-        unbounded: ['var(--font-unbounded)', ...fontFamily.sans],
-        poppins: ['var(--font-poppins)', ...fontFamily.sans],
+        'hero-overlay': {
+          from: { transform: 'translateX(-20vw) rotate(-30deg)' },
+          to: { transform: 'translateX(80vw) rotate(-30deg)' },
+        },
+        scroll: {
+          to: { transform: 'translate(calc(-50% - 0.5rem))' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'hero-overlay': 'hero-overlay 5s ease-in-out infinite alternate',
+        scroll: 'scroll 40s forwards linear infinite',
+      },
+      fontFamily: {
+        unbounded: ['var(--font-unbounded)', ...fontFamily.sans],
+        poppins: ['var(--font-poppins)', ...fontFamily.sans],
       },
       height: {
         header: 'var(--header-height)',

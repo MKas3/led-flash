@@ -3,6 +3,7 @@ import LinkPrimitive from 'next/link';
 import { cva, VariantProps } from 'class-variance-authority';
 
 import { navigationHrefs } from '@/config/navigation';
+import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { PathnameLink } from '@/components/ui/pathname-link';
 
@@ -90,4 +91,46 @@ const Calculator = TemplateLink(navigationHrefs.calculator);
 const Blog = TemplateLink(navigationHrefs.blog);
 const About = TemplateLink(navigationHrefs.about);
 
-export default { Link, Home, Cases, Delivery, Calculator, Blog, About };
+const Phone = forwardRef<
+  React.ElementRef<typeof Link>,
+  Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> &
+    Pick<Partial<React.ComponentPropsWithoutRef<typeof Link>>, 'href'>
+>(({ href, className, ...props }, ref) => (
+  <Link
+    ref={ref}
+    className={cn('underline underline-offset-4', className)}
+    href={href ?? `tel:${siteConfig.phone}`}
+    {...props}
+  >
+    {siteConfig.altPhone}
+  </Link>
+));
+Phone.displayName = 'PhoneLink';
+
+const Email = forwardRef<
+  React.ElementRef<typeof Link>,
+  Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> &
+    Pick<Partial<React.ComponentPropsWithoutRef<typeof Link>>, 'href'>
+>(({ href, className, ...props }, ref) => (
+  <Link
+    ref={ref}
+    className={cn('underline underline-offset-4', className)}
+    href={href ?? `mailto:${siteConfig.email}`}
+    {...props}
+  >
+    {siteConfig.email}
+  </Link>
+));
+Email.displayName = 'EmailLink';
+
+export default {
+  Link,
+  Home,
+  Cases,
+  Delivery,
+  Calculator,
+  Blog,
+  About,
+  Phone,
+  Email,
+};

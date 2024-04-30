@@ -70,7 +70,7 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
       {...props}
     >
       <div className='flex flex-col gap-y-6'>
-        <span className='font-poppins text-base md:text-xl lg:text-3xl'>
+        <span className='text-base md:text-xl lg:text-3xl'>
           Как удобнее с вами связаться?
         </span>
         <FormFieldItem<FormProps> name='contactWay'>
@@ -90,7 +90,7 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
         </FormFieldItem>
       </div>
       <div className='flex w-full flex-col gap-y-3 md:w-2/3 md:gap-y-4 xl:w-1/2'>
-        <span className='mb-6 font-poppins text-base md:text-xl lg:text-3xl'>
+        <span className='mb-2 text-base md:text-xl lg:text-3xl'>
           Контактная информация
         </span>
         <FormFieldItem<FormProps> name='fullName'>

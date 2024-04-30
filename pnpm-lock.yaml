@@ -62,6 +62,12 @@ importers:
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
+      embla-carousel-auto-scroll:
+        specifier: ^8.0.2
+        version: 8.0.2(embla-carousel@8.0.2)
+      embla-carousel-class-names:
+        specifier: ^8.0.2
+        version: 8.0.2(embla-carousel@8.0.2)
       embla-carousel-react:
         specifier: ^8.0.2
         version: 8.0.2(react@18.2.0)
@@ -1302,6 +1308,16 @@ packages:
 
   electron-to-chromium@1.4.736:
     resolution: {integrity: sha512-Rer6wc3ynLelKNM4lOCg7/zPQj8tPOCB2hzD32PX9wd3hgRRi9MxEbmkFCokzcEhRVMiOVLjnL9ig9cefJ+6+Q==}
+
+  embla-carousel-auto-scroll@8.0.2:
+    resolution: {integrity: sha512-cMvn/HPNUvWnB6qh76qR69ay4yFIPBdOliMu3B2QtNtqSU0Qmb36bewlknXzxtC6MLZb9DOQnWl9UnImhpQ02Q==}
+    peerDependencies:
+      embla-carousel: 8.0.2
+
+  embla-carousel-class-names@8.0.2:
+    resolution: {integrity: sha512-MjBco3YM/cBtqp2PLro/LTGiqJCkr0gszvenLzSzMRzo4I6RhPQJ3I7870+K9VoLyMF+CFrwEFxLLIFortOrkw==}
+    peerDependencies:
+      embla-carousel: 8.0.2
 
   embla-carousel-react@8.0.2:
     resolution: {integrity: sha512-RHe1GKLulOW8EDN+cJgbFbVVfRXcaLT2/89dyVw3ONGgVpZjD19wB87I1LUZ1aCzOSrTccx0PFSQanK4OOfGPA==}
@@ -4384,6 +4400,14 @@ snapshots:
   eastasianwidth@0.2.0: {}
 
   electron-to-chromium@1.4.736: {}
+
+  embla-carousel-auto-scroll@8.0.2(embla-carousel@8.0.2):
+    dependencies:
+      embla-carousel: 8.0.2
+
+  embla-carousel-class-names@8.0.2(embla-carousel@8.0.2):
+    dependencies:
+      embla-carousel: 8.0.2
 
   embla-carousel-react@8.0.2(react@18.2.0):
     dependencies:

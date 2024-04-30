@@ -60,15 +60,25 @@ const config = {
           from: { transform: 'translateX(-20vw) rotate(-30deg)' },
           to: { transform: 'translateX(80vw) rotate(-30deg)' },
         },
-        scroll: {
-          to: { transform: 'translate(calc(-50% - 0.5rem))' },
+        'mouse-scroll-rect': {
+          from: { height: '40px', transform: 'translateY(0px)' },
+          '50%': { height: '40px', transform: 'translateY(0px)' },
+          to: { height: '34px', transform: 'translateY(6px)' },
+        },
+        'mouse-scroll-wheel': {
+          from: { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(0px)' },
+          to: { transform: 'translateY(6px)' },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'hero-overlay': 'hero-overlay 5s ease-in-out infinite alternate',
-        scroll: 'scroll 40s forwards linear infinite',
+        'mouse-scroll-rect':
+          'mouse-scroll-rect 0.6s ease-in-out infinite alternate',
+        'mouse-scroll-wheel':
+          'mouse-scroll-wheel 0.6s ease-in-out infinite alternate',
       },
       fontFamily: {
         unbounded: ['var(--font-unbounded)', ...fontFamily.sans],

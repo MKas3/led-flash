@@ -175,6 +175,70 @@ export const Star = ({ ...props }: IconProps) => {
   );
 };
 
+const Leaf = ({ ...props }: IconProps) => {
+  return (
+    <svg
+      viewBox='0 0 50 50'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
+      <path
+        className='stroke-current'
+        d='M31 19L1 49M49 10C49 26.5685 35.5685 40 19 40C16.2519 40 13.5901 39.6305 11.0616 38.9385C10.3695 36.4099 10 33.7481 10 31C10 14.4315 23.4315 1 40 1C42.7481 1 45.4099 1.36951 47.9385 2.06155C48.6305 4.59008 49 7.25189 49 10Z'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+};
+
+const Check = ({ ...props }: IconProps) => {
+  return (
+    <svg
+      viewBox='0 0 50 50'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
+      <path
+        className='stroke-current'
+        d='M33.0006 19.6666L22.3337 30.3335L17.0002 25M28.3234 2.22348L31.5794 4.9982C32.3997 5.69725 33.4182 6.11987 34.4926 6.20561L38.7568 6.54545C41.2638 6.74552 43.2552 8.73563 43.4553 11.2427L43.7943 15.5076C43.8801 16.582 44.3042 17.602 45.0032 18.4223L47.7767 21.6773C49.408 23.5916 49.4083 26.4073 47.777 28.3216L45.0035 31.5772C44.3044 32.3975 43.8809 33.4178 43.7951 34.4922L43.454 38.7564C43.2539 41.2635 41.2656 43.2548 38.7586 43.4549L34.4928 43.7953C33.4185 43.881 32.399 44.3025 31.5787 45.0016L28.3234 47.7764C26.4092 49.4077 23.5917 49.408 21.6774 47.7767L18.4222 45.0018C17.6019 44.3028 16.5824 43.8805 15.508 43.7948L11.2423 43.4549C8.73522 43.2548 6.74694 41.2639 6.54688 38.7569L6.20572 34.4925C6.11999 33.4181 5.69641 32.3986 4.99736 31.5783L2.22386 28.3217C0.592557 26.4075 0.591792 23.5926 2.22309 21.6784L4.99909 18.4218C5.69814 17.6015 6.11765 16.582 6.20339 15.5076L6.54453 11.2432C6.7446 8.73614 8.73862 6.74526 11.2457 6.54519L15.5067 6.20534C16.5811 6.11961 17.601 5.69733 18.4213 4.99828L21.6777 2.22348C23.5919 0.592174 26.4092 0.592174 28.3234 2.22348Z'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+};
+
+const MouseScroll = ({ ...props }: IconProps) => {
+  return (
+    <svg
+      className=''
+      viewBox='0 0 30 42'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
+      <rect
+        className='animate-mouse-scroll-rect stroke-current'
+        x='1'
+        y='1'
+        width='28'
+        height='40'
+        rx='14'
+        strokeWidth='2'
+      />
+      <path
+        className='animate-mouse-scroll-wheel stroke-current'
+        d='M15 10V14'
+        strokeWidth='2'
+        strokeLinecap='round'
+      />
+    </svg>
+  );
+};
+
 export default {
   Logo,
   Play,
@@ -184,4 +248,7 @@ export default {
   Lightning,
   CreditCard,
   Settings,
+  Leaf,
+  Check,
+  MouseScroll,
 };

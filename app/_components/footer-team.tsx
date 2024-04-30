@@ -21,7 +21,7 @@ export const FooterTeam = ({ className, ...props }: FooterTeamProps) => {
       {...props}
     >
       <Heading as='h2'>
-        Мы <GradientText>команда</GradientText> {siteConfig.altName}
+        Мы <GradientText>команда</GradientText> {siteConfig.altNaming}
       </Heading>
       <span className='text-sm md:text-lg lg:text-xl'>
         Cоздаем невообразимые неоновые вывески для бизнеса, интерьера и
@@ -31,7 +31,7 @@ export const FooterTeam = ({ className, ...props }: FooterTeamProps) => {
         <Image
           className='object-cover saturate-0'
           src={resourcesHrefs.home.team}
-          alt={`Люди из команды ${siteConfig.name}`}
+          alt={`Люди из команды ${siteConfig.naming}`}
           width={1345}
           height={1600}
         />

@@ -13,7 +13,7 @@ export const Footer = ({ className, ...props }: FooterProps) => {
   return (
     <footer
       className={cn(
-        'w-full bg-background px-footer-sm pb-32 pt-16 text-center md:px-footer-md lg:px-footer-lg xl:px-footer',
+        'relative z-10 w-full bg-background px-footer-sm pb-32 pt-16 text-center md:px-footer-md lg:px-footer-lg xl:px-footer',
         className
       )}
       {...props}

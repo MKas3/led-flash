@@ -8,7 +8,7 @@ type BenefitTitleProps = React.ComponentPropsWithoutRef<typeof Heading>;
 export const BenefitTitle = ({ className, ...props }: BenefitTitleProps) => {
   return (
     <Heading
-      className={cn('!text-base font-normal', className)}
+      className={cn('!text-lg font-normal', className)}
       as='h3'
       {...props}
     />

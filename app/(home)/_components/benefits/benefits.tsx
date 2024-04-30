@@ -1,11 +1,20 @@
+'use client';
+
 import React from 'react';
+import AutoScroll from 'embla-carousel-auto-scroll';
+import ClassNames from 'embla-carousel-class-names';
 
-import { cn } from '@/lib/utils';
+import { Carousel } from '@/components/ui/carousel';
 
-type BenefitsProps = React.HTMLAttributes<HTMLDivElement>;
+type BenefitsProps = React.ComponentPropsWithoutRef<typeof Carousel>;
 
 export const Benefits = ({ className, ...props }: BenefitsProps) => {
   return (
-    <div className={cn('grid grid-cols-4 gap-x-9', className)} {...props} />
+    <Carousel
+      className='pointer-events-none relative z-10'
+      opts={{ dragFree: true, loop: true, startIndex: 2 }}
+      plugins={[AutoScroll({ playOnInit: true, speed: 3 }), ClassNames()]}
+      {...props}
+    />
   );
 };

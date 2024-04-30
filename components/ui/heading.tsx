@@ -17,16 +17,23 @@ const headingVariants = cva('', {
       true: 'border-b border-white pb-6 md:pb-9 lg:pb-12 [&_~_*]:mt-6 md:[&_~_*]:mt-9 lg:[&_~_*]:mt-12',
       false: '',
     },
+    padding: {
+      none: '',
+      container:
+        'px-container-sm md:px-container-md lg:px-container-lg xl:px-container',
+    },
   },
   defaultVariants: {
     as: 'h1',
     hasUnderline: false,
+    padding: 'none',
   },
 });
 
 export const Heading = ({
   as,
   hasUnderline,
+  padding,
   className,
   ...props
 }: HeadingProps) => {
@@ -34,7 +41,7 @@ export const Heading = ({
 
   return (
     <Comp
-      className={cn(headingVariants({ as, hasUnderline, className }))}
+      className={cn(headingVariants({ as, hasUnderline, padding, className }))}
       {...props}
     />
   );

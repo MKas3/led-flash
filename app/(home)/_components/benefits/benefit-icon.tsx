@@ -1,39 +1,32 @@
-'use client';
-
-import React, { useContext } from 'react';
-import { HTMLMotionProps, motion, useTransform } from 'framer-motion';
+import React from 'react';
 
 import { cn } from '@/lib/utils';
-import { BenefitContext } from '@/app/(home)/_components/benefits/benefit';
 
-type BenefitIconProps = HTMLMotionProps<'span'>;
+type BenefitIconProps = React.HTMLAttributes<HTMLSpanElement>;
 
 export const BenefitIcon = ({
   className,
   children,
   ...props
 }: BenefitIconProps) => {
-  const { realBorderOpacity } = useContext(BenefitContext);
-  const color = useTransform(realBorderOpacity, [0, 1], ['#383838', '#DF1DE9']);
-
   return (
-    <>
-      <motion.span
-        className={cn('relative size-12', className)}
-        style={{ color }}
+    <span
+      className={cn(
+        'relative size-14 text-muted-foreground transition-colors duration-1000 group-[.is-snapped]:text-gradient-first',
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <span
+        className={cn(
+          'absolute inset-0 size-16 opacity-0 blur-[10px] transition group-[.is-snapped]:opacity-100',
+          className
+        )}
         {...props}
       >
-        <>
-          {children}
-          <motion.span
-            className={cn('absolute inset-0 size-12 blur-[10px]', className)}
-            style={{ color, opacity: realBorderOpacity }}
-            {...props}
-          >
-            {children}
-          </motion.span>
-        </>
-      </motion.span>
-    </>
+        {children}
+      </span>
+    </span>
   );
 };

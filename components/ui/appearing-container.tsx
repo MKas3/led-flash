@@ -25,7 +25,14 @@ const AppearingContainer = forwardRef<
   AppearingContainerProps
 >(
   (
-    { variant = 'default', className, viewport, isAlternate, ...props },
+    {
+      variant = 'default',
+      className,
+      viewport,
+      isAlternate,
+      transition,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -46,6 +53,7 @@ const AppearingContainer = forwardRef<
               : appearingContainer.childDuration,
           ease: 'easeOut',
           staggerChildren: appearingContainer.staggerChildren,
+          ...transition,
         }}
         {...props}
       />

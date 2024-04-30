@@ -3,9 +3,8 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { HTMLMotionProps } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
-import { AppearingContainer } from '@/components/ui/appearing-container';
 
-export const containerVariants = cva('relative flex flex-col', {
+export const containerVariants = cva('relative z-10 flex flex-col', {
   variants: {
     isHero: {
       true: 'py-[var(--header-full-height-sm)] md:py-[var(--header-full-height)]',

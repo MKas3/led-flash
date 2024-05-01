@@ -19,7 +19,7 @@ export const CommentAuthorAvatar = ({
   return (
     <div
       className={cn(
-        'row-span-2 flex size-14 items-center justify-center rounded-full bg-muted-foreground text-3xl uppercase text-foreground',
+        'row-span-2 flex size-10 items-center justify-center rounded-full bg-muted-foreground uppercase text-foreground lg:size-12 lg:text-2xl xl:size-14 xl:text-3xl',
         className
       )}
       {...props}

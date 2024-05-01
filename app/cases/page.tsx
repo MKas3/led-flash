@@ -9,6 +9,8 @@ import { CaseMain } from '@/app/cases/_components/case-main';
 import { CaseMainCompany } from '@/app/cases/_components/case-main-company';
 import { CaseMainTitle } from '@/app/cases/_components/case-main-title';
 import { CasesCarousel } from '@/app/cases/_components/cases-carousel';
+import { CasesCarouselAfter } from '@/app/cases/_components/cases-carousel-after';
+import { CasesCarouselBefore } from '@/app/cases/_components/cases-carousel-before';
 import { CasesWrapper } from '@/app/cases/_components/cases-wrapper';
 
 export default function CasesPage() {
@@ -26,9 +28,7 @@ export default function CasesPage() {
                 <CaseMainCompany>{item.company}</CaseMainCompany>
               </CaseMain>
               <CasesCarousel>
-                {Array.from({ length: 1 }).map((_, index) => (
-                  <CarouselItem key={index} className='basis-1/4' />
-                ))}
+                <CasesCarouselBefore />
                 {item.cases.map((companyCase, index) => (
                   <Case
                     key={index}
@@ -38,9 +38,7 @@ export default function CasesPage() {
                     height={companyCase.imageHeight}
                   />
                 ))}
-                {Array.from({ length: 2 }).map((_, index) => (
-                  <CarouselItem key={index} className='basis-1/4' />
-                ))}
+                <CasesCarouselAfter />
               </CasesCarousel>
             </CasesWrapper>
           ))}

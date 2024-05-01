@@ -18,7 +18,7 @@ export const predefinedSmartColors = [
 
 export const neonTypesNamings = ['Colors', 'RGB', 'Smart'];
 
-export const neonTypes = ['colors', 'rgb', 'smart'];
+export const neonTypes = ['colors', 'rgb', 'smart'] as const;
 
 export const predefinedColors = [
   [0, 0, 100],

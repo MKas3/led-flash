@@ -26,14 +26,14 @@ export const Header = ({ className, ...props }: HeaderProps) => {
           {siteConfig.altNaming}
         </span>
       </Link.Link>
-      <nav className='hidden flex-1 items-center justify-end gap-x-[2.25vw] whitespace-nowrap text-sm font-bold lg:flex lg:gap-x-[2.75vw]'>
+      <nav className='hidden flex-1 items-center justify-end gap-x-[2.25vw] whitespace-nowrap font-bold lg:flex lg:gap-x-[2.75vw] lg:text-xs xl:text-sm'>
         <Link.Home isPathnameSensible hasUnderline hasUnderlineOnActive />
         <Link.Cases isPathnameSensible hasUnderline hasUnderlineOnActive />
         <Link.Delivery isPathnameSensible hasUnderline hasUnderlineOnActive />
         <Link.Calculator isPathnameSensible hasUnderline hasUnderlineOnActive />
         <Link.Blog isPathnameSensible hasUnderline hasUnderlineOnActive />
         <Link.About isPathnameSensible hasUnderline hasUnderlineOnActive />
-        <Link.Phone className='text-lg lg:text-xl' />
+        <Link.Phone className='text-lg xl:text-xl' />
       </nav>
       <HeaderBurger />
     </header>

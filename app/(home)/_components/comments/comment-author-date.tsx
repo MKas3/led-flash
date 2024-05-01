@@ -10,7 +10,7 @@ export const CommentAuthorDate = ({
 }: CommentAuthorDateProps) => {
   return (
     <span
-      className={cn('self-end text-xs text-muted-foreground', className)}
+      className={cn('w-fit self-end text-xs text-muted-foreground', className)}
       {...props}
     />
   );

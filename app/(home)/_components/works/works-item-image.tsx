@@ -11,7 +11,10 @@ export const WorksItemImage = ({
 }: WorksItemImageProps) => {
   return (
     <Image
-      className={cn('aspect-[3/4] size-full rounded-3xl', className)}
+      className={cn(
+        'aspect-[3/4] size-full rounded-xl md:rounded-2xl lg:rounded-3xl',
+        className
+      )}
       width={406}
       height={760}
       {...props}

@@ -2,9 +2,13 @@
 
 import React from 'react';
 import { toast } from 'sonner';
-import { z } from 'zod';
 
-import { contactWays, contactWaysNamings } from '@/config/footer';
+import {
+  contactWays,
+  contactWaysNamings,
+  FooterFormSchema,
+  footerFormSchema,
+} from '@/config/footer';
 import { cn } from '@/lib/utils';
 import { useZodForm } from '@/hooks/use-zod-form';
 import { Button } from '@/components/ui/button';
@@ -26,39 +30,10 @@ type FooterFormProps = Omit<
   'form' | 'onSubmit'
 >;
 
-const formSchema = z.object({
-  contactWay: z.enum(['phone', 'telegram', 'whatsapp']),
-  fullName: z
-    .string({ errorMap: () => ({ message: 'Введите ФИО' }) })
-    .min(1, { message: 'Введите ФИО' })
-    .regex(/^[\S]+ [\S]+ [\S]+$/g, 'Введите корректное ФИО'),
-  phone: z
-    .string({
-      errorMap: () => ({
-        message: 'Введите телефон',
-      }),
-    })
-    .min(1, { message: 'Введите телефон' })
-    .regex(/^\d{11}$/g, {
-      message: 'Введите корректный телефон',
-    }),
-  email: z
-    .string({
-      errorMap: () => ({
-        message: 'Введите Email',
-      }),
-    })
-    .email({
-      message: 'Введите корректный Email',
-    }),
-});
-
-type FormProps = z.infer<typeof formSchema>;
-
 export const FooterForm = ({ className, ...props }: FooterFormProps) => {
-  const form = useZodForm(formSchema);
+  const form = useZodForm(footerFormSchema);
 
-  const handleSubmit = (data: FormProps) => {
+  const handleSubmit = (data: FooterFormSchema) => {
     toast.success(`Complete: ${JSON.stringify(data)}`);
   };
 
@@ -73,7 +48,7 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
         <span className='text-base md:text-xl lg:text-3xl'>
           Как удобнее с вами связаться?
         </span>
-        <FormFieldItem<FormProps> name='contactWay'>
+        <FormFieldItem<FooterFormSchema> name='contactWay'>
           <FormTabs defaultValue='phone'>
             <FormTabsList className='w-fit'>
               {contactWays.map((item, index) => (
@@ -93,7 +68,7 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
         <span className='mb-2 text-base md:text-xl lg:text-3xl'>
           Контактная информация
         </span>
-        <FormFieldItem<FormProps> name='fullName'>
+        <FormFieldItem<FooterFormSchema> name='fullName'>
           <FormInput
             name='name'
             id='name'
@@ -102,7 +77,7 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
           />
           <FormMessage />
         </FormFieldItem>
-        <FormFieldItem<FormProps> name='phone'>
+        <FormFieldItem<FooterFormSchema> name='phone'>
           <FormNumberMaskedInput
             name='phone'
             id='phone'
@@ -113,7 +88,7 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
           />
           <FormMessage />
         </FormFieldItem>
-        <FormFieldItem<FormProps> name='email'>
+        <FormFieldItem<FooterFormSchema> name='email'>
           <FormInput
             name='email'
             id='email'

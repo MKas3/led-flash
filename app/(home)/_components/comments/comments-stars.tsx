@@ -14,14 +14,17 @@ export const CommentsStars = ({
 }: CommentsStarsProps) => {
   return (
     <div
-      className={cn('row-span-2 grid grid-cols-5 items-center', className)}
+      className={cn(
+        'row-span-2 grid grid-cols-[repeat(5,26px)] items-center',
+        className
+      )}
       {...props}
     >
       {Array.from({ length: 5 }).map((_, index) => (
         <Star
           key={index}
           className={cn(
-            'size-6',
+            'size-5 xl:size-6',
             rating >= index ? 'text-yellow-500' : 'text-muted-foreground'
           )}
         />

@@ -11,7 +11,7 @@ export const CaseMainCompany = ({
   return (
     <span
       className={cn(
-        'w-2/3 text-xl font-medium uppercase md:text-2xl lg:text-3xl xl:text-4xl',
+        'w-2/3 text-lg font-medium uppercase !leading-tight md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl',
         className
       )}
       {...props}

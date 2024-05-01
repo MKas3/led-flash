@@ -13,7 +13,7 @@ export const scrollBlurContainer = {
 
 export const slideFromDownVariants: Variants = {
   initial: {
-    y: '130%',
+    y: '200%',
   },
   animate: {
     y: '0%',

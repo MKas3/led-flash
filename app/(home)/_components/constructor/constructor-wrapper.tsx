@@ -11,7 +11,7 @@ export const ConstructorWrapper = ({
   return (
     <div
       className={cn(
-        'grid grid-cols-1 items-start justify-between lg:grid-cols-2 lg:gap-y-4 xl:gap-x-10 2xl:gap-x-56',
+        'grid grid-cols-1 grid-rows-[min-content_minmax(0,1fr)] items-start md:grid-rows-1 md:justify-between lg:grid-cols-2 lg:gap-y-4 xl:gap-x-10 2xl:gap-x-56',
         className
       )}
       {...props}

@@ -37,7 +37,6 @@ export const WorksCarouselContent = ({
       slideNode.style.scale = `${scale}`;
       slideNode.style.zIndex = `${Math.floor(scale * 100)}`;
       slideNode.style.opacity = `${Math.abs(distance) >= slidesCount / 2 ? 0 : 1}`;
-      slideNode.style.filter = `brightness(${scale}) drop-shadow(0 0 60px #000000FF)`;
     };
 
     const onScroll = (api: NonNullable<CarouselApi>) => {

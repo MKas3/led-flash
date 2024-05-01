@@ -81,16 +81,16 @@ export default function HomePage() {
             доставка по всей России
           </span>
         </div>
-        <div className='absolute inset-x-0 bottom-24 z-10 flex flex-col items-center justify-center gap-y-3'>
+        <div className='z-10 mt-10 hidden flex-col items-center justify-center gap-y-3 md:flex'>
           <Icon.MouseScroll className='h-10 w-7' />
           <span className='font-poppins text-sm font-semibold'>Scroll</span>
         </div>
-        <div className='absolute top-0 h-[200vh] w-[13vw] animate-hero-overlay bg-foreground mix-blend-overlay' />
+        <div className='absolute top-0 h-[200vh] w-[30vw] animate-hero-overlay-mobile bg-foreground mix-blend-overlay md:w-[13vw] md:animate-hero-overlay' />
       </ScrollBlurContainer>
       <ScrollBlurContainer
-        containerClassName='mb-36'
+        className='pb-36'
         padding='none'
-        scrollOptions={{ offset: ['66% start', 'end start'] }}
+        scrollOptions={{ offset: ['70% start', 'end start'] }}
       >
         <div className='space-y-16 bg-background'>
           <AppearingContainer
@@ -166,7 +166,7 @@ export default function HomePage() {
             </Benefits>
           </AppearingContainer>
           <AppearingContainer
-            className='overflow-visible py-36 before:inset-x-[40%] before:inset-y-[30%]'
+            className='overflow-visible before:inset-x-[20%] before:inset-y-1/4 md:before:inset-x-[30%] md:before:inset-y-[20%] lg:py-36 lg:before:inset-x-[40%] lg:before:inset-y-[30%]'
             padding='none'
             gradient='to-top'
           >
@@ -188,10 +188,10 @@ export default function HomePage() {
             </div>
           </AppearingContainer>
           <AppearingContainer>
-            <Heading className='mb-12' as='h2'>
-              Какие цвета <GradientText>неона</GradientText> у нас есть
+            <Heading className='mb-8' as='h2'>
+              Какие <GradientText>цвета неона</GradientText> у нас есть
             </Heading>
-            <span className='mb-16 text-base md:text-xl lg:text-3xl'>
+            <span className='mb-16 text-base md:text-xl lg:text-2xl'>
               Создайте неоновую ленту на свой вкус, опробуйте основные функции
               всех типов неона, задав необходимые параметры и выбрав свой цвет.
             </span>
@@ -203,11 +203,11 @@ export default function HomePage() {
         scrollOptions={{ offset: ['80% start', 'end start'] }}
         isAlternate
       >
-        <PricesMotionWrapper className='mt-28'>
+        <PricesMotionWrapper className='md:mt-12'>
           <Heading className='mb-12' as='h2'>
             Сколько стоит <GradientText>неоновая вывеска?</GradientText>
           </Heading>
-          <div className='grid grid-cols-[minmax(0,0.33fr)_minmax(0,0.66fr)] gap-x-20'>
+          <div className='grid grow-0 grid-rows-[minmax(0,1fr)_min-content] gap-x-20 gap-y-6 lg:grid-cols-2 2xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]'>
             <div className='relative [perspective:1000px]'>
               {prices.map((item, index) => (
                 <PriceCard key={index} index={index} maxCount={prices.length}>
@@ -217,16 +217,19 @@ export default function HomePage() {
                 </PriceCard>
               ))}
             </div>
-            <div className='flex flex-col items-center justify-center gap-y-12'>
-              <Price prices={[12600, 11600, 10600, 9600]} />
-              <Button className='w-fit' variant='gradient'>
+            <div className='flex flex-col justify-start gap-y-6 md:justify-center md:gap-y-8 lg:items-center lg:gap-y-12'>
+              <Price
+                prices={[18000, 16000, 14000, 12000]}
+                discountedPrices={[12600, 11600, 10600, 9600]}
+              />
+              <Button className='w-full lg:w-fit' variant='gradient'>
                 Рассчитать стоимость
               </Button>
             </div>
           </div>
         </PricesMotionWrapper>
         <Container
-          className='flex h-[135vh] flex-col justify-center space-y-12 pb-16'
+          className='flex h-[135vh] flex-col justify-center pb-16'
           padding='none'
           isAlternate
         >
@@ -238,11 +241,11 @@ export default function HomePage() {
               <span className='self-end'>Средний рейтинг:</span>
               <Button
                 variant='gradient'
-                className='row-span-2 w-fit justify-self-end'
+                className='order-1 row-span-2 w-full justify-self-end md:order-none md:w-fit'
               >
                 Оставить отзыв
               </Button>
-              <div className='flex items-center gap-x-6 self-start'>
+              <div className='-mt-1 flex items-center gap-x-6 self-start md:mt-0'>
                 {commentsAverageRating} из 5
                 <CommentsStars rating={5} />
               </div>
@@ -282,6 +285,7 @@ export default function HomePage() {
           <Accordion
             className='grid grid-cols-1 gap-x-20 gap-y-12'
             type='multiple'
+            defaultValue={faqQuestions.map((item) => item.value)}
           >
             {Array.from({ length: 2 }).map((_, index) => (
               <div key={index} className='flex flex-col gap-y-12'>

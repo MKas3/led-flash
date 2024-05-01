@@ -80,8 +80,15 @@ export const ConstructorCircle = ({
       fill='none'
       {...props}
     >
-      <foreignObject className='size-full' mask='url(#mask-foreign)'>
-        <motion.div className='size-full' style={{ background: gradient }} />
+      <foreignObject
+        className='size-[705px]'
+        x={0}
+        y={0}
+        width='705'
+        height='705'
+        mask='url(#mask-foreign)'
+      >
+        <motion.div className='size-[705px]' style={{ background: gradient }} />
       </foreignObject>
       <path
         d='M51.8864 352.326C51.8864 517.897 186.452 652.114 352.441 652.114C518.431 652.114 652.996 517.897 652.996 352.326C652.996 186.755 518.431 52.5375 352.441 52.5375C186.452 52.5375 51.8864 186.755 51.8864 352.326Z'

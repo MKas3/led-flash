@@ -13,7 +13,7 @@ export const ConstructorNeonType = ({
   return (
     <div className='flex flex-col gap-y-3 lg:gap-y-6'>
       <ConstructorTitle>Выберите тип неона:</ConstructorTitle>
-      <TabsList {...props}>
+      <TabsList className='w-full' {...props}>
         {neonTypes.map((item, index) => (
           <TabsTrigger className='w-full' key={index} value={item}>
             {neonTypesNamings[index]}

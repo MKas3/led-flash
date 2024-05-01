@@ -29,7 +29,9 @@ export const PricesMotionWrapper = ({
   return (
     <PricesContext.Provider value={{ scrollYProgress }}>
       <div ref={targetRef} className={cn('h-[400vh]', className)} {...props}>
-        <div className='sticky top-[25vh] pb-[10vh]'>{children}</div>
+        <div className='sticky top-0 flex h-screen flex-col items-center justify-center'>
+          {children}
+        </div>
       </div>
     </PricesContext.Provider>
   );

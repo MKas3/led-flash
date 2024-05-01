@@ -37,7 +37,7 @@ export const PriceCard = ({
   return (
     <motion.div
       className={cn(
-        'grid auto-rows-auto grid-cols-2 gap-y-12 rounded-sm bg-muted p-6 pb-12 text-foreground',
+        'grid size-full auto-rows-auto grid-cols-2 gap-y-9 rounded-sm bg-muted p-6 pb-9 text-foreground md:gap-y-12 md:pb-12',
         index !== 0 && 'absolute inset-0',
         className
       )}

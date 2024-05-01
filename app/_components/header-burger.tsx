@@ -1,8 +1,5 @@
 import React from 'react';
-import * as SheetPrimitive from '@radix-ui/react-dialog';
-import { Heading2 } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   Collapsible,
@@ -16,7 +13,6 @@ import Link from '@/components/ui/link';
 import {
   Sheet,
   SheetClose,
-  SheetContent,
   SheetInnerContent,
   SheetOverlay,
   SheetPortal,
@@ -38,12 +34,24 @@ export const HeaderBurger = ({ ...props }: HeaderBurgerProps) => {
           side='top'
           className='grid grid-flow-row grid-cols-2 grid-rows-[repeat(3,68px)] has-[div[data-state=closed]]:overflow-y-hidden'
         >
-          <Link.Home variant='button' isPathnameSensible />
-          <Link.Cases variant='button' isPathnameSensible />
-          <Link.Delivery variant='button' isPathnameSensible />
-          <Link.Calculator variant='button' isPathnameSensible />
-          <Link.Blog variant='button' isPathnameSensible />
-          <Link.About variant='button' isPathnameSensible />
+          <SheetClose variant='ghost' asChild>
+            <Link.Home variant='button' isPathnameSensible />
+          </SheetClose>
+          <SheetClose variant='ghost' asChild>
+            <Link.Cases variant='button' isPathnameSensible />
+          </SheetClose>
+          <SheetClose variant='ghost' asChild>
+            <Link.Delivery variant='button' isPathnameSensible />
+          </SheetClose>
+          <SheetClose variant='ghost' asChild>
+            <Link.Calculator variant='button' isPathnameSensible />
+          </SheetClose>
+          <SheetClose variant='ghost' asChild>
+            <Link.Blog variant='button' isPathnameSensible />
+          </SheetClose>
+          <SheetClose variant='ghost' asChild>
+            <Link.About variant='button' isPathnameSensible />
+          </SheetClose>
           <Collapsible className='group col-span-2'>
             <div className='flex flex-col items-center justify-center gap-y-6 rounded-sm bg-muted p-6 group-data-[state=open]:hidden'>
               <Heading className='text-center' as='h2'>

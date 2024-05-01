@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss';
 
+import { screens } from '@/config/adaptive';
+
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 const config = {
@@ -13,6 +15,7 @@ const config = {
   prefix: '',
   theme: {
     screens: {
+      xs: '400px',
       sm: '640px',
       md: '768px',
       lg: '1024px',
@@ -60,6 +63,10 @@ const config = {
           from: { transform: 'translateX(-20vw) rotate(-30deg)' },
           to: { transform: 'translateX(80vw) rotate(-30deg)' },
         },
+        'hero-overlay-mobile': {
+          from: { transform: 'translateX(-20vw) rotate(-30deg)' },
+          to: { transform: 'translateX(180vw) rotate(-30deg)' },
+        },
         'mouse-scroll-rect': {
           from: { height: '40px', transform: 'translateY(0px)' },
           '50%': { height: '40px', transform: 'translateY(0px)' },
@@ -75,6 +82,8 @@ const config = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'hero-overlay': 'hero-overlay 5s ease-in-out infinite alternate',
+        'hero-overlay-mobile':
+          'hero-overlay-mobile 5s ease-in-out infinite alternate',
         'mouse-scroll-rect':
           'mouse-scroll-rect 0.6s ease-in-out infinite alternate',
         'mouse-scroll-wheel':

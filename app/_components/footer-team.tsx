@@ -14,7 +14,7 @@ export const FooterTeam = ({ className, ...props }: FooterTeamProps) => {
   return (
     <Container
       className={cn(
-        'relative mt-64 gap-y-3 bg-background before:inset-x-[35%] before:top-[60%] md:gap-y-5 lg:gap-y-12',
+        'relative gap-y-3 bg-background pt-64 before:inset-x-[20%] before:top-[85%] md:gap-y-5 md:before:inset-x-[20%] md:before:top-[70%] lg:gap-y-8 lg:before:inset-x-[40%] lg:before:top-[60%] xl:before:inset-x-[20%] xl:before:top-[50%]',
         className
       )}
       gradient='to-right'

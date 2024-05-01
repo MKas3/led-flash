@@ -11,7 +11,7 @@ export const WorksItemContent = ({
   return (
     <div
       className={cn(
-        'absolute inset-0 flex flex-col justify-between p-9',
+        'absolute inset-0 flex flex-col justify-between p-5 md:p-7 lg:p-9',
         className
       )}
       {...props}

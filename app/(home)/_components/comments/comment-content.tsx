@@ -11,7 +11,7 @@ export const CommentContent = ({
   return (
     <div
       className={cn(
-        'grid grid-flow-row grid-cols-1 content-start gap-y-4 rounded-sm bg-muted p-6 text-sm text-foreground',
+        'grid grid-flow-row grid-cols-1 content-start gap-y-2 rounded-sm bg-muted p-6 text-xs text-foreground md:gap-y-3 lg:gap-y-4 lg:text-sm',
         className
       )}
       {...props}

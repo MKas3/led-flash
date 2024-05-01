@@ -6,7 +6,7 @@ import { ConstructorSpin } from '@/app/(home)/_components/constructor/view/const
 
 export const ConstructorView = () => {
   return (
-    <div className='relative flex items-center justify-center'>
+    <div className='relative flex items-center justify-center overflow-hidden'>
       <ConstructorPlayer />
       <ConstructorSpin>
         <ConstructorCircle />

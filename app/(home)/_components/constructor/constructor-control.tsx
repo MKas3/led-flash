@@ -1,12 +1,8 @@
 'use client';
 
 import React, { useContext } from 'react';
-import { motion } from 'framer-motion';
 
-import {
-  predefinedColors,
-  predefinedColorsNamings,
-} from '@/config/home/constructor';
+import { predefinedColorsNamings } from '@/config/home/constructor';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import {
@@ -36,7 +32,7 @@ export const ConstructorControl = ({
   return (
     <Tabs
       className={cn(
-        'my-8 size-fit w-full space-y-10 rounded-3xl bg-muted p-6 sm:p-9 2xl:justify-self-end',
+        'size-fit w-full space-y-5 rounded-3xl bg-muted p-6 sm:p-9 md:my-8 md:space-y-10 2xl:justify-self-end',
         className
       )}
       value={neonType}

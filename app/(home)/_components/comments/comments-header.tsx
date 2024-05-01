@@ -11,7 +11,7 @@ export const CommentsHeader = ({
   return (
     <div
       className={cn(
-        'grid grid-cols-2 grid-rows-2 gap-y-3 rounded-sm bg-muted px-9 py-6 text-2xl font-bold text-foreground',
+        'grid w-full grid-rows-2 gap-y-3 rounded-sm bg-muted px-6 py-4 text-base font-bold text-foreground md:grid-cols-2 md:px-9 md:py-6 md:text-xl lg:text-2xl',
         className
       )}
       {...props}

@@ -4,15 +4,18 @@ import React, {
   forwardRef,
   useEffect,
   useImperativeHandle,
+  useLayoutEffect,
   useRef,
+  useState,
 } from 'react';
 import { VariantProps } from 'class-variance-authority';
 import {
-  Box,
+  animate,
   HTMLMotionProps,
   motion,
+  scroll,
+  transform,
   useMotionTemplate,
-  useMotionValue,
   useScroll,
   useTransform,
 } from 'framer-motion';
@@ -26,6 +29,7 @@ type ScrollBlurContainerProps = HTMLMotionProps<'div'> &
     scrollOptions?: Parameters<typeof useScroll>[0];
     containerClassName?: string;
     stickyClassName?: string;
+    stickyPadding?: string;
   };
 
 const ScrollBlurContainer = forwardRef<
@@ -41,14 +45,16 @@ const ScrollBlurContainer = forwardRef<
       scrollOptions,
       containerClassName,
       stickyClassName,
+      stickyPadding,
       className,
       ...props
     },
     ref
   ) => {
     const targetRef = useRef<HTMLDivElement>(null);
-    const stickyRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
+
+    const [heightInitialized, setHeightInitialized] = useState(false);
 
     const { scrollYProgress } = useScroll({
       target: targetRef,
@@ -61,43 +67,52 @@ const ScrollBlurContainer = forwardRef<
       [0, 1],
       [0, scrollBlurContainer.maxBlur]
     );
-    const scale = useTransform(
-      scrollYProgress,
-      [0, 1],
-      [1, scrollBlurContainer.minScale]
-    );
-    const translateY = useTransform(scrollYProgress, [0, 1], ['0vh', '50vh']);
 
     const filter = useMotionTemplate`blur(${blur}px)`;
 
     useImperativeHandle(ref, () => targetRef.current as HTMLDivElement);
 
-    useEffect(() => {}, [stickyRef]);
+    useEffect(() => {
+      if (!contentRef.current || !targetRef.current) return;
+
+      const height = contentRef.current.offsetHeight;
+      targetRef.current.style.setProperty('--height', `${height}px`);
+      setHeightInitialized(true);
+    }, [targetRef, contentRef]);
 
     return (
-      <motion.div
+      <div
         ref={targetRef}
         className={cn(
           'relative',
+          heightInitialized && 'h-[var(--height,0px)]',
           isAlternate ? 'bg-foreground' : 'bg-background',
           containerClassName
         )}
       >
-        <motion.div
-          ref={contentRef}
+        <div
           className={cn(
-            containerVariants({
-              isHero,
-              padding,
-              gradient,
-              isAlternate,
-              className,
-            })
+            'sticky',
+            heightInitialized && `-top-[calc(var(--height)-100vh)] h-0`,
+            stickyClassName
           )}
-          style={{ filter, scale, translateY }}
-          {...props}
-        />
-      </motion.div>
+        >
+          <motion.div
+            ref={contentRef}
+            className={cn(
+              containerVariants({
+                isHero,
+                padding,
+                gradient,
+                isAlternate,
+                className,
+              })
+            )}
+            style={{ filter }}
+            {...props}
+          />
+        </div>
+      </div>
     );
   }
 );

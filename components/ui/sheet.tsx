@@ -15,18 +15,27 @@ const SheetTrigger = SheetPrimitive.Trigger;
 
 const SheetClose = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Close>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Close>
->(({ className, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Close> & {
+    variant?: 'default' | 'ghost';
+  }
+>(({ variant = 'default', className, children, ...props }, ref) => (
   <SheetPrimitive.Close
     ref={ref}
     className={cn(
-      'absolute inset-x-0 bottom-10 mx-auto size-14 rounded-full bg-muted p-3.5 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none',
+      variant !== 'ghost' &&
+        'absolute inset-x-0 bottom-10 mx-auto size-14 rounded-full bg-muted p-3.5 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none',
       className
     )}
     {...props}
   >
-    <X className='size-full' />
-    <span className='sr-only'>Close</span>
+    {children ? (
+      children
+    ) : (
+      <>
+        <X className='size-full' />
+        <span className='sr-only'>Close</span>
+      </>
+    )}
   </SheetPrimitive.Close>
 ));
 SheetClose.displayName = SheetPrimitive.Overlay.displayName;

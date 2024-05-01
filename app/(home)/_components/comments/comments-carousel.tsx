@@ -16,7 +16,7 @@ export const CommentsCarousel = ({
   ...props
 }: CommentsCarouselProps) => {
   return (
-    <Carousel className={cn('', className)} {...props}>
+    <Carousel className={cn('w-full overflow-hidden', className)} {...props}>
       <CarouselContent>{children}</CarouselContent>
       <CarouselPrevious />
       <CarouselNext />

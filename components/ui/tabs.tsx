@@ -15,6 +15,7 @@ const tabsListVariants = cva(
       variant: {
         default: 'bg-muted-foreground [&_[data-state=active]]:bg-muted',
         reverse: 'bg-muted [&_[data-state=active]]:bg-muted-foreground',
+        ghost: '',
       },
       size: {
         default:

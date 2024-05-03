@@ -13,8 +13,7 @@ export const BenefitAppearingContainer = ({
   return (
     <AppearingContainer
       variant='child'
-      variants={slideFromDownVariants}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
       {...props}
     />
   );

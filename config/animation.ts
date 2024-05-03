@@ -13,9 +13,15 @@ export const scrollBlurContainer = {
 
 export const slideFromDownVariants: Variants = {
   initial: {
-    y: '200%',
+    y: '300%',
   },
   animate: {
     y: '0%',
   },
 };
+
+export const splashAnimationOpacity = 90;
+
+export const splashAnimationRenderChildren = 190;
+
+export const splashAnimationEnd = 200;

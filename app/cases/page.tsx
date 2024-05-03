@@ -1,5 +1,6 @@
+import { Metadata } from 'next';
+
 import { cases } from '@/config/cases/cases';
-import { CarouselItem } from '@/components/ui/carousel';
 import { Container } from '@/components/ui/container';
 import { GradientText } from '@/components/ui/gradient-text';
 import { Heading } from '@/components/ui/heading';
@@ -12,6 +13,10 @@ import { CasesCarousel } from '@/app/cases/_components/cases-carousel';
 import { CasesCarouselAfter } from '@/app/cases/_components/cases-carousel-after';
 import { CasesCarouselBefore } from '@/app/cases/_components/cases-carousel-before';
 import { CasesWrapper } from '@/app/cases/_components/cases-wrapper';
+
+export const metadata: Metadata = {
+  title: 'Кейсы',
+};
 
 export default function CasesPage() {
   return (

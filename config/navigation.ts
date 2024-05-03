@@ -1,3 +1,5 @@
+export const xeraseHref = 'https://form.xerase.ru';
+
 export const navigationHrefs = {
   home: {
     naming: 'home',

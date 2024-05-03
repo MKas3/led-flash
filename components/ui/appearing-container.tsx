@@ -44,7 +44,7 @@ const AppearingContainer = forwardRef<
         )}
         initial={variant === 'default' ? 'initial' : undefined}
         whileInView={variant === 'default' ? 'animate' : undefined}
-        viewport={{ once: true, margin: '-30%', ...viewport }}
+        viewport={{ once: true, margin: '-30% 0px 0px 0px', ...viewport }}
         variants={appearingContainerVariants}
         transition={{
           duration:

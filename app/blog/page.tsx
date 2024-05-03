@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import { articlesMetadata } from '@/config/blog/articles';
 import { Container } from '@/components/ui/container';
 import { GradientText } from '@/components/ui/gradient-text';
@@ -8,6 +10,10 @@ import { ArticleCardBadge } from '@/app/blog/_components/article-card-badge';
 import { ArticleCardImage } from '@/app/blog/_components/article-card-image';
 import { ArticleCardTitle } from '@/app/blog/_components/article-card-title';
 import { ArticleCardViews } from '@/app/blog/_components/article-card-views';
+
+export const metadata: Metadata = {
+  title: 'Блог',
+};
 
 export default async function BlogPage() {
   return (

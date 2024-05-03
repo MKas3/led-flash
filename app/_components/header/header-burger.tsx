@@ -18,15 +18,16 @@ import {
   SheetPortal,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { FooterForm } from '@/app/_components/footer-form';
+import { FooterForm } from '@/app/_components/footer/footer-form';
 
 type HeaderBurgerProps = React.ComponentPropsWithoutRef<typeof Sheet>;
 
 export const HeaderBurger = ({ ...props }: HeaderBurgerProps) => {
   return (
     <Sheet {...props}>
-      <SheetTrigger className='z-50 block size-[1.875rem] lg:hidden'>
+      <SheetTrigger className='z-40 block size-[1.875rem] lg:hidden'>
         <Icon.Burger />
+        <span className='sr-only'>Header burger button</span>
       </SheetTrigger>
       <SheetPortal>
         <SheetOverlay />
@@ -67,7 +68,10 @@ export const HeaderBurger = ({ ...props }: HeaderBurgerProps) => {
                 <Heading className='text-center' as='h2'>
                   Заказать <GradientText>неоновую</GradientText> вывеску
                 </Heading>
-                <FooterForm className='text-center [&_input]:bg-muted-foreground' />
+                <FooterForm
+                  variant='muted'
+                  className='w-full grow-0 text-center'
+                />
               </div>
             </CollapsibleContent>
           </Collapsible>

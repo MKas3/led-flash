@@ -41,7 +41,10 @@ export const ConstructorColors = ({
               'relative inline aspect-square size-8 text-foreground sm:size-12 md:size-14 lg:size-10 xl:size-12'
             )}
           >
-            <span className='absolute inset-0 flex items-center justify-center text-sm sm:text-lg md:text-xl 2xl:text-2xl'>
+            <span
+              id={`smart-color-${index}`}
+              className='absolute inset-0 flex items-center justify-center text-sm sm:text-lg md:text-xl 2xl:text-2xl'
+            >
               {index + 1}
             </span>
             <RadioGroupItem
@@ -49,6 +52,7 @@ export const ConstructorColors = ({
               style={{ backgroundColor: backgroundColors[index] }}
               value={index.toString()}
               indicatorHidden
+              aria-labelledby={`smart-color-${index}`}
             />
           </Label>
         ))}

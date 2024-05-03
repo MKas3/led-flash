@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 
 import { predefinedColorsNamings } from '@/config/home/constructor';
 import { cn } from '@/lib/utils';
+import { AppearingContainer } from '@/components/ui/appearing-container';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import {
   ConstructorContext,
@@ -30,33 +31,41 @@ export const ConstructorControl = ({
   };
 
   return (
-    <Tabs
-      className={cn(
-        'size-fit w-full space-y-5 rounded-3xl bg-muted p-6 sm:p-9 md:my-8 md:space-y-10 2xl:justify-self-end',
-        className
-      )}
-      value={neonType}
-      onValueChange={handleValueChange}
-      {...props}
-    >
-      <ConstructorNeonType />
-      <TabsContent className='flex flex-col gap-y-6 lg:gap-y-3' value='colors'>
-        <ConstructorPredefinedColors />
-        <ConstructorSelectedColor colors={predefinedColorsNamings} />
-      </TabsContent>
-      <TabsContent className='flex flex-col gap-y-6 lg:gap-y-3' value='rgb'>
-        <ConstructorTitle>
-          Передвигайте ползунок для выбора цвета:
-        </ConstructorTitle>
-        <ConstructorColorSlider />
-      </TabsContent>
-      <TabsContent className='flex flex-col gap-y-10 lg:gap-y-5' value='smart'>
-        <div className='flex flex-col gap-y-5 lg:gap-y-7'>
-          <ConstructorColors />
-          <ConstructorColorSlider isSmart />
-        </div>
-        <ConstructorSpeed />
-      </TabsContent>
-    </Tabs>
+    <AppearingContainer variant='child' padding='none'>
+      <Tabs
+        className={cn(
+          'size-fit w-full space-y-5 rounded-3xl bg-muted p-6 sm:p-9 md:my-8 md:space-y-10 2xl:justify-self-end',
+          className
+        )}
+        value={neonType}
+        onValueChange={handleValueChange}
+        {...props}
+      >
+        <ConstructorNeonType />
+        <TabsContent
+          className='flex flex-col gap-y-6 lg:gap-y-3'
+          value='colors'
+        >
+          <ConstructorPredefinedColors />
+          <ConstructorSelectedColor colors={predefinedColorsNamings} />
+        </TabsContent>
+        <TabsContent className='flex flex-col gap-y-6 lg:gap-y-3' value='rgb'>
+          <ConstructorTitle>
+            Передвигайте ползунок для выбора цвета:
+          </ConstructorTitle>
+          <ConstructorColorSlider />
+        </TabsContent>
+        <TabsContent
+          className='flex flex-col gap-y-10 lg:gap-y-5'
+          value='smart'
+        >
+          <div className='flex flex-col gap-y-5 lg:gap-y-7'>
+            <ConstructorColors />
+            <ConstructorColorSlider isSmart />
+          </div>
+          <ConstructorSpeed />
+        </TabsContent>
+      </Tabs>
+    </AppearingContainer>
   );
 };

@@ -88,23 +88,29 @@ export const CalculatorPrice = ({
   return (
     <motion.div
       className={cn(
-        'sticky mx-24 !grid grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)_minmax(0,1fr)] grid-rows-1 items-center rounded-md bg-muted !p-5 font-unbounded'
+        'sticky !grid grid-cols-2 grid-rows-1 items-center rounded-md bg-muted p-5 font-unbounded md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)_minmax(0,1fr)] md:p-2 lg:p-3 xl:p-4 2xl:p-5'
       )}
       variants={calculatorVariants}
       initial='initial'
       animate={hasFilledData && 'hasData'}
       {...props}
     >
-      <span className='justify-self-center text-4xl font-bold'>Итого:</span>
-      <div className='flex flex-col gap-y-2 text-4xl font-bold'>
+      <span className='self-end text-lg font-bold md:self-center md:justify-self-center md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl'>
+        Итого:
+      </span>
+      <div className='flex flex-col items-end justify-start gap-y-1 text-lg font-bold md:items-start md:justify-center md:gap-y-2 md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl'>
         {fullPrice !== discountedPrice && (
-          <span className='text-xl font-medium text-white/50 line-through'>
+          <span className='text-xs font-medium text-white/50 line-through md:text-sm lg:text-base xl:text-lg 2xl:text-xl'>
             {fullPrice.toFixed(0)} руб
           </span>
         )}
         {discountedPrice.toFixed(0)} руб
       </div>
-      <Button variant='gradient' type='submit'>
+      <Button
+        className='col-span-2 md:col-span-1'
+        variant='gradient'
+        type='submit'
+      >
         Продолжить
       </Button>
     </motion.div>

@@ -1,7 +1,12 @@
 'use client';
 
 import React, { useContext } from 'react';
-import { HTMLMotionProps, motion, useTransform } from 'framer-motion';
+import {
+  HTMLMotionProps,
+  motion,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 import { PricesContext } from '@/app/(home)/_components/price/prices-motion-wrapper';
@@ -18,18 +23,23 @@ export const PriceCard = ({
   ...props
 }: PricesProps) => {
   const { scrollYProgress } = useContext(PricesContext);
+  const springScrollYProgress = useSpring(scrollYProgress, {
+    stiffness: 300,
+    damping: 50,
+    restDelta: 0.001,
+  });
   const scale = useTransform(
-    scrollYProgress,
+    springScrollYProgress,
     [(1 / maxCount) * index, (1 / maxCount) * (index + 1)],
     ['90%', '100%']
   );
   const x = useTransform(
-    scrollYProgress,
+    springScrollYProgress,
     [(1 / maxCount) * (index + 1), (1 / maxCount) * (index + 2)],
     ['0vw', '-100vw']
   );
   const rotateY = useTransform(
-    scrollYProgress,
+    springScrollYProgress,
     [(1 / maxCount) * (index + 1), (1 / maxCount) * (index + 2)],
     ['0deg', '-90deg']
   );

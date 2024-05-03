@@ -4,7 +4,7 @@ import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import Icon from '@/components/ui/icon';
 import Link from '@/components/ui/link';
-import { HeaderBurger } from '@/app/_components/header-burger';
+import { HeaderBurger } from '@/app/_components/header/header-burger';
 
 type HeaderProps = React.HTMLAttributes<HTMLElement>;
 
@@ -12,7 +12,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
   return (
     <header
       className={cn(
-        'pointer-events-auto fixed inset-x-0 top-header-top-sm z-50 flex h-header max-w-[100vw] items-center justify-between gap-x-10 rounded-sm px-container-sm mix-blend-difference md:top-header-top md:mx-[calc(var(--container-padding-md)-3rem)] md:px-12 lg:mx-[calc(var(--container-padding-lg)-3rem)] xl:mx-[calc(var(--container-padding)-3rem)]',
+        'pointer-events-auto fixed inset-x-0 top-header-top-sm z-40 flex h-header max-w-[100vw] items-center justify-between gap-x-10 rounded-sm px-container-sm mix-blend-difference delay-1000 duration-1000 ease-in-out animate-in slide-in-from-top-full fill-mode-both md:top-header-top md:mx-[calc(var(--container-padding-md)-3rem)] md:px-12 lg:mx-[calc(var(--container-padding-lg)-3rem)] xl:mx-[calc(var(--container-padding)-3rem)]',
         className
       )}
       {...props}
@@ -22,7 +22,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
         href='/'
       >
         <Icon.Logo className='h-8' />
-        <span className='inline text-base sm:text-xl md:hidden 2xl:inline'>
+        <span className='inline text-base sm:text-xl'>
           {siteConfig.altNaming}
         </span>
       </Link.Link>

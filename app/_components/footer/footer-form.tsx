@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useWatch } from 'react-hook-form';
 import { toast } from 'sonner';
 
 import {
@@ -28,9 +29,17 @@ import Link from '@/components/ui/link';
 type FooterFormProps = Omit<
   React.ComponentPropsWithoutRef<typeof Form>,
   'form' | 'onSubmit'
->;
+> & {
+  variant?: 'default' | 'muted';
+  size?: 'default' | 'sm';
+};
 
-export const FooterForm = ({ className, ...props }: FooterFormProps) => {
+export const FooterForm = ({
+  variant = 'default',
+  size = 'default',
+  className,
+  ...props
+}: FooterFormProps) => {
   const form = useZodForm(footerFormSchema);
 
   const handleSubmit = (data: FooterFormSchema) => {
@@ -50,12 +59,17 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
         </span>
         <FormFieldItem<FooterFormSchema> name='contactWay'>
           <FormTabs defaultValue='phone'>
-            <FormTabsList className='w-fit'>
+            <FormTabsList
+              className={cn(size === 'default' ? 'w-fit' : 'w-full')}
+              size='lg'
+            >
               {contactWays.map((item, index) => (
                 <FormTabsTrigger
+                  id={`contact-way-${item}`}
                   key={index}
-                  className='font-poppins text-base font-normal md:text-lg lg:text-xl'
+                  className='font-poppins font-normal'
                   value={item}
+                  aria-controls={undefined}
                 >
                   {contactWaysNamings.at(index)}
                 </FormTabsTrigger>
@@ -64,12 +78,18 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
           </FormTabs>
         </FormFieldItem>
       </div>
-      <div className='flex w-full flex-col gap-y-3 md:w-2/3 md:gap-y-4 xl:w-1/2'>
+      <div
+        className={cn(
+          'flex w-full flex-col gap-y-3',
+          size === 'default' ? 'md:w-2/3 md:gap-y-4 xl:w-1/2' : 'items-center'
+        )}
+      >
         <span className='mb-2 text-base md:text-xl lg:text-3xl'>
           Контактная информация
         </span>
         <FormFieldItem<FooterFormSchema> name='fullName'>
           <FormInput
+            className={cn(variant === 'muted' && 'bg-muted-foreground')}
             name='name'
             id='name'
             autoComplete='name'
@@ -79,6 +99,7 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
         </FormFieldItem>
         <FormFieldItem<FooterFormSchema> name='phone'>
           <FormNumberMaskedInput
+            className={cn(variant === 'muted' && 'bg-muted-foreground')}
             name='phone'
             id='phone'
             type='tel'
@@ -90,6 +111,7 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
         </FormFieldItem>
         <FormFieldItem<FooterFormSchema> name='email'>
           <FormInput
+            className={cn(variant === 'muted' && 'bg-muted-foreground')}
             name='email'
             id='email'
             type='email'
@@ -109,7 +131,11 @@ export const FooterForm = ({ className, ...props }: FooterFormProps) => {
           </Link.Link>
         </span>
       </div>
-      <Button variant='gradient' type='submit'>
+      <Button
+        className={cn(size === 'sm' && 'w-3/4')}
+        variant='gradient'
+        type='submit'
+      >
         Отправить заявку
       </Button>
     </Form>

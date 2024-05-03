@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { screens } from '@/config/adaptive';
 import {
   Carousel,
   CarouselContent,
@@ -15,13 +14,13 @@ export const CasesCarousel = ({ children, ...props }: CasesCarouselProps) => {
     <Carousel
       opts={{
         align: 'center',
-        breakpoints: { [`(min-width: ${screens.md}px)`]: { align: 'start' } },
+        breakpoints: { '(min-width: 768px)': { align: 'start' } },
       }}
       {...props}
     >
       <CarouselContent className='-ml-4 w-full'>{children}</CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className='hidden md:block' />
+      <CarouselNext className='hidden md:block' />
     </Carousel>
   );
 };

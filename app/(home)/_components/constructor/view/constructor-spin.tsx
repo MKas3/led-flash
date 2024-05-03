@@ -76,7 +76,7 @@ export const ConstructorSpin = ({
     <motion.div
       ref={scope}
       className={cn(
-        'pointer-events-none aspect-square w-[70vw] shrink-0 md:w-full',
+        'pointer-events-none aspect-square w-[80vw] shrink-0 md:w-full',
         className
       )}
       {...props}

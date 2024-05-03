@@ -4,6 +4,7 @@ import React, { createContext, useRef } from 'react';
 import { MotionValue, useScroll, useSpring } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
+import { AppearingContainer } from '@/components/ui/appearing-container';
 
 type PricesContext = {
   scrollYProgress: MotionValue<number>;
@@ -29,9 +30,12 @@ export const PricesMotionWrapper = ({
   return (
     <PricesContext.Provider value={{ scrollYProgress }}>
       <div ref={targetRef} className={cn('h-[400vh]', className)} {...props}>
-        <div className='sticky top-0 flex h-screen flex-col items-center justify-center'>
+        <AppearingContainer
+          className='sticky top-0 flex h-screen flex-col items-center justify-center bg-transparent'
+          padding='none'
+        >
           {children}
-        </div>
+        </AppearingContainer>
       </div>
     </PricesContext.Provider>
   );

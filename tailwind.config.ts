@@ -1,7 +1,5 @@
 import type { Config } from 'tailwindcss';
 
-import { screens } from '@/config/adaptive';
-
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 const config = {
@@ -88,6 +86,10 @@ const config = {
           'mouse-scroll-rect 0.6s ease-in-out infinite alternate',
         'mouse-scroll-wheel':
           'mouse-scroll-wheel 0.6s ease-in-out infinite alternate',
+      },
+      transitionDelay: {
+        '1500': '1500ms',
+        '2000': '2000ms',
       },
       fontFamily: {
         unbounded: ['var(--font-unbounded)', ...fontFamily.sans],

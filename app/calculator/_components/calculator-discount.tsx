@@ -45,7 +45,7 @@ export const CalculatorDiscount = ({
   return (
     <div
       className={cn(
-        'grid grid-cols-3 grid-rows-2 gap-x-2 gap-y-4 font-poppins text-3xl',
+        '!grid grid-cols-3 grid-rows-2 gap-x-2 gap-y-4 font-poppins text-lg md:text-xl lg:text-2xl xl:text-3xl',
         className
       )}
       {...props}
@@ -57,6 +57,7 @@ export const CalculatorDiscount = ({
               ? (fullPrice / (fullPrice + leftToNextDiscount)) * 100
               : 50
           }
+          aria-labelledby='discount-progressbar'
         />
         <span
           className='absolute inset-2 flex items-center justify-center transition-all'
@@ -68,12 +69,12 @@ export const CalculatorDiscount = ({
         </span>
       </div>
       <div className='relative'>
-        <Progress value={0} />
+        <Progress value={-10} aria-labelledby='discount-progressbar' />
         <span className='absolute inset-0 flex items-center justify-center'>
           {isMax ? 'MAX' : `${nextDiscount.toFixed(0)}%`}
         </span>
       </div>
-      <span className='col-span-3 text-center text-2xl'>
+      <span className='col-span-3 text-center text-[inherit]'>
         {!isMax
           ? `Еще ${leftToNextDiscount.toFixed(0)} руб до скидки в ${nextDiscount.toFixed(0)}%`
           : 'Достигнута максимальная скидка'}

@@ -5,10 +5,12 @@ import { Poppins, Unbounded } from 'next/font/google';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/sonner';
-import { Footer } from '@/app/_components/footer';
-import { Header } from '@/app/_components/header';
+import { Footer } from '@/app/_components/footer/footer';
+import { Header } from '@/app/_components/header/header';
 import { LenisProvider } from '@/app/_components/lenis-provider';
+import { MouseFollower } from '@/app/_components/mouse-follower';
 import { ScreenIndicator } from '@/app/_components/screen-indicator';
+import { SplashScreenWrapper } from '@/app/_components/splash-screen-wrapper';
 
 import './globals.css';
 
@@ -76,11 +78,14 @@ export default function RootLayout({
         )}
       >
         <LenisProvider>
-          <Header />
-          {children}
-          <Footer />
-          <ScreenIndicator />
+          <SplashScreenWrapper>
+            <Header />
+            {children}
+            <Footer />
+          </SplashScreenWrapper>
           <Toaster />
+          <MouseFollower />
+          <ScreenIndicator />
         </LenisProvider>
       </body>
     </html>

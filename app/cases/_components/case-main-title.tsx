@@ -16,7 +16,7 @@ export const CaseMainTitle = ({ className, ...props }: CaseMainTitleProps) => {
       <span className='text-xs font-medium'>Кейс</span>
       <Heading
         className='text-base font-medium uppercase md:text-sm lg:text-sm xl:text-lg 2xl:text-xl'
-        as='h3'
+        as='h2'
         {...props}
       />
     </div>

@@ -34,6 +34,7 @@ export const ConstructorSpeed = ({
               key={index}
               disabled={isSpeedModifierAnimating ? true : undefined}
               value={item.toString()}
+              aria-controls={undefined}
             >
               {item}x
             </TabsTrigger>

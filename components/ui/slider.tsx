@@ -70,6 +70,7 @@ const SliderThumb = React.forwardRef<
       'block aspect-square size-7 rounded-full border-2 border-foreground bg-background outline-4 outline-offset-4 ring-offset-background transition-colors focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 md:size-8 xl:size-9 2xl:size-11',
       className
     )}
+    aria-label='Choose a value'
     {...props}
   />
 ));

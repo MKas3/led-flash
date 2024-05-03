@@ -45,6 +45,17 @@
 }
 
 @layer base {
+  body::-webkit-scrollbar {
+    width: 12px;
+  }
+  body::-webkit-scrollbar-track {
+    background: #111111;
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 20px; 
+    border: 3px solid #111111;
+  }
   * {
     @apply border-border;
   }

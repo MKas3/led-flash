@@ -1,6 +1,5 @@
 export const resourcesHrefs = {
-  backgroundDotsPattern: '/background-dots-pattern.svg',
-  backgroundCirclesPattern: '/background-circles-pattern.svg',
+  footerBackgroundGradient: '/footer-ad-gradient.png',
   home: {
     team: '/home/team.png',
     colorsSlider: '/home/colors-slider.png',

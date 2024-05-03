@@ -2,9 +2,11 @@ import React, { forwardRef } from 'react';
 import LinkPrimitive from 'next/link';
 import { cva, VariantProps } from 'class-variance-authority';
 
-import { navigationHrefs } from '@/config/navigation';
+import { navigationHrefs, xeraseHref } from '@/config/navigation';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
+import Icon from '@/components/ui/icon';
 import { PathnameLink } from '@/components/ui/pathname-link';
 
 const linkVariants = cva('', {
@@ -123,6 +125,37 @@ const Email = forwardRef<
 ));
 Email.displayName = 'EmailLink';
 
+const Xerase = forwardRef<
+  React.ElementRef<typeof Link>,
+  Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> &
+    Pick<Partial<React.ComponentPropsWithoutRef<typeof Link>>, 'href'> &
+    VariantProps<typeof buttonVariants>
+>(({ variant = 'ghost' as const, size, href, className, ...props }, ref) => (
+  <Link
+    ref={ref}
+    className={cn(
+      'group relative overflow-hidden p-0 text-xl font-semibold',
+      className
+    )}
+    href={href ?? xeraseHref}
+    {...props}
+  >
+    <span
+      className={cn(
+        buttonVariants({ variant: 'foreground' }),
+        'absolute inset-0 flex size-full -translate-y-[150%] flex-col items-center justify-center !p-0 text-lg transition-transform group-hover:translate-y-0 md:text-xl lg:text-2xl xl:text-4xl'
+      )}
+    >
+      Перейти
+    </span>
+    <span className='flex items-center gap-x-6 transition-transform group-hover:translate-y-full'>
+      <Icon.XeraseLogo className='size-[3em]' />
+      Made in Xerase
+    </span>
+  </Link>
+));
+Xerase.displayName = 'XeraseLink';
+
 export default {
   Link,
   Home,
@@ -133,4 +166,5 @@ export default {
   About,
   Phone,
   Email,
+  Xerase,
 };

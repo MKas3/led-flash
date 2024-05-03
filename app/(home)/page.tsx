@@ -11,6 +11,10 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { AppearingContainer } from '@/components/ui/appearing-container';
+import { AppearingAnimationText } from '@/components/ui/appearing-text/appearing-animation-text';
+import { AppearingAnimationTextPart } from '@/components/ui/appearing-text/appearing-animation-text-part';
+import { AppearingContentText } from '@/components/ui/appearing-text/appearing-content-text';
+import { AppearingText } from '@/components/ui/appearing-text/appearing-text';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { GradientText } from '@/components/ui/gradient-text';
@@ -19,6 +23,7 @@ import Icon from '@/components/ui/icon';
 import { Main } from '@/components/ui/main';
 import { ScrollBlurContainer } from '@/components/ui/scroll-blur-container';
 import { Separator } from '@/components/ui/separator';
+import { OrderModalTrigger } from '@/app/_components/order-modal/order-modal-trigger';
 import { Benefit } from '@/app/(home)/_components/benefits/benefit';
 import { BenefitIcon } from '@/app/(home)/_components/benefits/benefit-icon';
 import { BenefitTitle } from '@/app/(home)/_components/benefits/benefit-title';
@@ -36,6 +41,7 @@ import { CommentsCarousel } from '@/app/(home)/_components/comments/comments-car
 import { CommentsHeader } from '@/app/(home)/_components/comments/comments-header';
 import { CommentsStars } from '@/app/(home)/_components/comments/comments-stars';
 import { Constructor } from '@/app/(home)/_components/constructor/constructor';
+import { HeroBenefitText } from '@/app/(home)/_components/hero-benefit-text';
 import { Price } from '@/app/(home)/_components/price/price';
 import { PriceCard } from '@/app/(home)/_components/price/price-card';
 import { PriceCardDots } from '@/app/(home)/_components/price/price-card-dots';
@@ -55,37 +61,56 @@ export default function HomePage() {
       <ScrollBlurContainer
         isHero
         isAlternate
-        className='flex h-screen flex-col justify-center gap-y-12 overflow-hidden'
+        className='h-screen justify-center overflow-hidden'
       >
-        <Heading className='md:mt-24' as='h1'>
-          <span className='relative z-10'>
-            Неоновые <br />
-            вывески на <br />
-            заказ
-          </span>{' '}
-          <GradientText>за 3 дня</GradientText>
-        </Heading>
-        <div className='flex flex-wrap justify-start gap-x-5 gap-y-12 md:flex-nowrap md:justify-center md:gap-x-10'>
-          <Button
-            className='order-1 w-full md:order-none md:w-auto'
-            variant='gradient'
-          >
-            Рассчитать стоимость
-          </Button>
-          <Separator
-            className='z-10 h-auto bg-background'
-            orientation='vertical'
-          />
-          <span className='z-10 my-auto font-bold lg:text-xl 2xl:text-3xl'>
-            Бесплатная <br />
-            доставка по всей России
-          </span>
-        </div>
-        <div className='z-10 mt-10 hidden flex-col items-center justify-center gap-y-3 md:flex'>
-          <Icon.MouseScroll className='h-10 w-7' />
-          <span className='font-poppins text-sm font-semibold'>Scroll</span>
-        </div>
-        <div className='absolute top-0 h-[200vh] w-[30vw] animate-hero-overlay-mobile bg-foreground mix-blend-overlay md:w-[13vw] md:animate-hero-overlay' />
+        <AppearingContainer
+          className='flex flex-col justify-center gap-y-12 bg-transparent'
+          padding='none'
+        >
+          <Heading className='md:mt-24' as='h1'>
+            <AppearingText>
+              <AppearingAnimationText>
+                <AppearingAnimationTextPart>
+                  Неоновые
+                </AppearingAnimationTextPart>
+                <br />
+                <AppearingAnimationTextPart>
+                  вывески на
+                </AppearingAnimationTextPart>
+                <br />
+                <AppearingAnimationTextPart>
+                  заказ&nbsp;<GradientText>за 3 дня</GradientText>
+                </AppearingAnimationTextPart>
+              </AppearingAnimationText>
+              <AppearingContentText>
+                <span className='relative z-10'>
+                  Неоновые <br />
+                  вывески на <br />
+                  заказ
+                </span>{' '}
+                <GradientText>за 3 дня</GradientText>
+              </AppearingContentText>
+            </AppearingText>
+          </Heading>
+          <div className='flex flex-wrap justify-start gap-x-5 gap-y-12 overflow-hidden md:flex-nowrap md:justify-center md:gap-x-10'>
+            <OrderModalTrigger
+              className='order-1 w-full delay-1500 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both md:order-none md:w-auto'
+              variant='gradient'
+            >
+              Рассчитать стоимость
+            </OrderModalTrigger>
+            <Separator
+              className='z-10 h-auto bg-background'
+              orientation='vertical'
+            />
+            <HeroBenefitText />
+          </div>
+          <div className='z-10 mt-10 hidden flex-col items-center justify-center gap-y-3 opacity-100 delay-1500 duration-1000 animate-in fade-in-0 fill-mode-both md:flex '>
+            <Icon.MouseScroll className='h-10 w-7' />
+            <span className='font-poppins text-sm font-semibold'>Scroll</span>
+          </div>
+          <div className='absolute top-0 h-[200vh] w-[30vw] animate-hero-overlay-mobile bg-foreground mix-blend-overlay md:w-[13vw] md:animate-hero-overlay' />
+        </AppearingContainer>
       </ScrollBlurContainer>
       <ScrollBlurContainer
         className='pb-36'
@@ -94,7 +119,7 @@ export default function HomePage() {
       >
         <div className='space-y-16 bg-background'>
           <AppearingContainer
-            className='gap-y-16 pt-16'
+            className='gap-y-6 pt-10'
             padding='none'
             transition={{ staggerChildren: 0.2 }}
           >
@@ -170,24 +195,34 @@ export default function HomePage() {
             padding='none'
             gradient='to-top'
           >
-            <div className='flex flex-col items-center space-y-6 overflow-hidden px-container-sm md:space-y-12 md:px-container-md lg:px-container-lg xl:px-container'>
+            <div className='flex flex-col items-center overflow-hidden px-container-sm md:space-y-12 md:px-container-md lg:px-container-lg xl:px-container'>
               <Heading className='mb-12 self-start' as='h2'>
                 Самые <GradientText>сочные</GradientText> работы
               </Heading>
-              <WorksCarousel>
-                {works.map((item, index) => (
-                  <WorksItem key={index}>
-                    <WorksItemImage src={item.imageSrc} alt={item.naming} />
-                    <WorksItemContent>
-                      <WorksItemTitle>{item.naming}</WorksItemTitle>
-                      <WorksItemCompany>{item.company}</WorksItemCompany>
-                    </WorksItemContent>
-                  </WorksItem>
-                ))}
-              </WorksCarousel>
+              <AppearingContainer
+                className='relative w-4/5 bg-transparent md:w-3/5 lg:w-2/5'
+                padding='none'
+                variant='child'
+                transition={{ delay: 0.5, duration: 1 }}
+              >
+                <WorksCarousel>
+                  {works.map((item, index) => (
+                    <WorksItem key={index}>
+                      <WorksItemImage src={item.imageSrc} alt={item.naming} />
+                      <WorksItemContent>
+                        <WorksItemTitle>{item.naming}</WorksItemTitle>
+                        <WorksItemCompany>{item.company}</WorksItemCompany>
+                      </WorksItemContent>
+                    </WorksItem>
+                  ))}
+                </WorksCarousel>
+              </AppearingContainer>
             </div>
           </AppearingContainer>
-          <AppearingContainer>
+          <AppearingContainer
+            className='pt-8'
+            transition={{ delayChildren: 0.3 }}
+          >
             <Heading className='mb-8' as='h2'>
               Какие <GradientText>цвета неона</GradientText> у нас есть
             </Heading>
@@ -203,12 +238,20 @@ export default function HomePage() {
         scrollOptions={{ offset: ['80% start', 'end start'] }}
         isAlternate
       >
-        <PricesMotionWrapper className='md:mt-12'>
+        <PricesMotionWrapper className='-mt-12 md:mt-12'>
           <Heading className='mb-12' as='h2'>
             Сколько стоит <GradientText>неоновая вывеска?</GradientText>
           </Heading>
-          <div className='grid grow-0 grid-rows-[minmax(0,1fr)_min-content] gap-x-20 gap-y-6 lg:grid-cols-2 2xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]'>
-            <div className='relative [perspective:1000px]'>
+          <AppearingContainer
+            className='grid grow-0 grid-rows-[minmax(0,1fr)_min-content] gap-x-20 gap-y-6 bg-transparent lg:grid-cols-2 2xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]'
+            padding='none'
+            transition={{ delay: 0.3, delayChildren: 0.3 }}
+          >
+            <AppearingContainer
+              className='relative bg-transparent [perspective:1000px]'
+              variant='child'
+              padding='none'
+            >
               {prices.map((item, index) => (
                 <PriceCard key={index} index={index} maxCount={prices.length}>
                   <PriceCardNumber>0{index + 1}</PriceCardNumber>
@@ -216,8 +259,12 @@ export default function HomePage() {
                   <PriceCardText>{item.text}</PriceCardText>
                 </PriceCard>
               ))}
-            </div>
-            <div className='flex flex-col justify-start gap-y-6 md:justify-center md:gap-y-8 lg:items-center lg:gap-y-12'>
+            </AppearingContainer>
+            <AppearingContainer
+              className='flex flex-col justify-start gap-y-6 bg-transparent md:justify-center md:gap-y-8 lg:items-center lg:gap-y-12'
+              variant='child'
+              padding='none'
+            >
               <Price
                 prices={[18000, 16000, 14000, 12000]}
                 discountedPrices={[12600, 11600, 10600, 9600]}
@@ -225,11 +272,11 @@ export default function HomePage() {
               <Button className='w-full lg:w-fit' variant='gradient'>
                 Рассчитать стоимость
               </Button>
-            </div>
-          </div>
+            </AppearingContainer>
+          </AppearingContainer>
         </PricesMotionWrapper>
-        <Container
-          className='flex h-[135vh] flex-col justify-center pb-16'
+        <AppearingContainer
+          className='flex flex-col justify-center pb-32 pt-0'
           padding='none'
           isAlternate
         >
@@ -275,10 +322,13 @@ export default function HomePage() {
               ))}
             </CommentsCarousel>
           </Comments>
-        </Container>
+        </AppearingContainer>
       </ScrollBlurContainer>
       <div className='relative z-10 bg-background'>
-        <AppearingContainer className='pt-36'>
+        <AppearingContainer
+          className='pt-10'
+          transition={{ delayChildren: 0.3, staggerChildren: 0.3 }}
+        >
           <Heading className='mb-12' as='h2'>
             Вопросы от <GradientText>наших клиентов</GradientText>
           </Heading>
@@ -287,22 +337,20 @@ export default function HomePage() {
             type='multiple'
             defaultValue={faqQuestions.map((item) => item.value)}
           >
-            {Array.from({ length: 2 }).map((_, index) => (
-              <div key={index} className='flex flex-col gap-y-12'>
-                {faqQuestions
-                  .slice(
-                    (faqQuestions.length / 2) * index,
-                    (faqQuestions.length / 2) * (index + 1)
-                  )
-                  .map((item, index) => (
-                    <AccordionItem key={index} value={item.value}>
-                      <AccordionTrigger className='text-start text-xl'>
-                        {item.question}
-                      </AccordionTrigger>
-                      <AccordionContent>{item.answer}</AccordionContent>
-                    </AccordionItem>
-                  ))}
-              </div>
+            {faqQuestions.map((item, index) => (
+              <AppearingContainer
+                key={index}
+                className='flex flex-col gap-y-12 bg-transparent'
+                variant='child'
+                padding='none'
+              >
+                <AccordionItem key={index} value={item.value}>
+                  <AccordionTrigger className='text-start text-xl'>
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent>{item.answer}</AccordionContent>
+                </AccordionItem>
+              </AppearingContainer>
             ))}
           </Accordion>
         </AppearingContainer>

@@ -16,7 +16,6 @@ import {
 import { neonTypes, neonTypesNamings } from '@/config/home/constructor';
 import { cn } from '@/lib/utils';
 import { useZodForm } from '@/hooks/use-zod-form';
-import { Button } from '@/components/ui/button';
 import { FormMessage } from '@/components/ui/form';
 import { Form } from '@/components/ui/form/form';
 import { FormFieldItem } from '@/components/ui/form/form-field-item';
@@ -27,7 +26,6 @@ import {
   FormTabsTrigger,
 } from '@/components/ui/form/form-tabs';
 import { Heading } from '@/components/ui/heading';
-import { Progress } from '@/components/ui/progress';
 import { CalculatorDiscount } from '@/app/calculator/_components/calculator-discount';
 import { CalculatorPrice } from '@/app/calculator/_components/calculator-price';
 
@@ -50,7 +48,7 @@ export const CalculatorForm = ({
   return (
     <Form
       className={cn(
-        'flex flex-col gap-y-9 font-poppins *:flex *:flex-col *:gap-y-4 *:px-24 *:text-2xl [&_h3]:font-normal ',
+        '-mx-4 flex flex-col gap-y-9 font-poppins *:flex *:w-full *:shrink-0 *:flex-col  *:items-center  *:gap-y-4 *:text-sm md:mx-0 md:*:items-stretch md:*:text-base lg:px-2 lg:*:text-lg xl:px-20 xl:*:text-xl 2xl:px-24 2xl:*:text-2xl [&&_>_div_>_div]:flex [&_:where(input,button)]:!text-[length:inherit] [&_>_div_>_div]:w-full [&_>_div_>_div]:flex-col [&_>_div_>_div]:items-center md:[&_>_div_>_div]:items-stretch [&_h3]:font-normal [&_input]:w-full [&_input]:placeholder:!text-[length:inherit] ',
         className
       )}
       form={form}
@@ -63,7 +61,12 @@ export const CalculatorForm = ({
           <FormTabs defaultValue={calculatorFormDefaults.substrateType}>
             <FormTabsList variant='reverse' size='lg'>
               {substrateTypes.map((item, index) => (
-                <FormTabsTrigger key={index} value={item}>
+                <FormTabsTrigger
+                  id={`substrate-type-${item}`}
+                  key={index}
+                  value={item}
+                  aria-controls={undefined}
+                >
                   {substrateTypesNamings.at(index)}
                 </FormTabsTrigger>
               ))}
@@ -71,11 +74,10 @@ export const CalculatorForm = ({
           </FormTabs>
         </FormFieldItem>
       </div>
-      <div className='*:text-2xl'>
+      <div>
         <Heading as='h3'>Выберите размеры подложки</Heading>
         <FormFieldItem<CalculatorFormSchema> name='width'>
           <FormNumberInput
-            className='!text-[length:inherit]'
             name='width'
             placeholder='Ширина в сантиметрах'
             allowNegative={false}
@@ -90,7 +92,6 @@ export const CalculatorForm = ({
         </FormFieldItem>
         <FormFieldItem<CalculatorFormSchema> name='height'>
           <FormNumberInput
-            className='!text-[length:inherit]'
             name='height'
             placeholder='Высота в сантиметрах'
             allowNegative={false}
@@ -104,11 +105,10 @@ export const CalculatorForm = ({
           <FormMessage />
         </FormFieldItem>
       </div>
-      <div className='*:text-2xl'>
+      <div>
         <Heading as='h3'>Выберите длину гибкого неона</Heading>
         <FormFieldItem<CalculatorFormSchema> name='length'>
           <FormNumberInput
-            className='!text-[length:inherit]'
             name='length'
             placeholder='Длина в метрах'
             allowNegative={false}
@@ -129,9 +129,11 @@ export const CalculatorForm = ({
             <FormTabsList variant='reverse' size='lg'>
               {neonTypes.map((item, index) => (
                 <FormTabsTrigger
+                  id={`neon-type-${item}`}
                   key={index}
                   className='font-poppins text-2xl font-normal'
                   value={item}
+                  aria-controls={undefined}
                 >
                   {neonTypesNamings.at(index)}
                 </FormTabsTrigger>
@@ -140,11 +142,10 @@ export const CalculatorForm = ({
           </FormTabs>
         </FormFieldItem>
       </div>
-      <div className='*:text-2xl'>
+      <div>
         <Heading as='h3'>Количество отдельных элементов неона</Heading>
         <FormFieldItem<CalculatorFormSchema> name='count'>
           <FormNumberInput
-            className='!text-[length:inherit]'
             name='length'
             placeholder='Элементы неона в штуках'
             allowNegative={false}
@@ -166,9 +167,11 @@ export const CalculatorForm = ({
             <FormTabsList variant='reverse' size='lg'>
               {places.map((item, index) => (
                 <FormTabsTrigger
+                  id={`place-${item}`}
                   key={index}
                   className='font-poppins text-2xl font-normal'
                   value={item}
+                  aria-controls={undefined}
                 >
                   {placesNamings.at(index)}
                 </FormTabsTrigger>
@@ -178,7 +181,9 @@ export const CalculatorForm = ({
         </FormFieldItem>
       </div>
       <div>
-        <Heading as='h3'>Размер вашей скидки</Heading>
+        <Heading id='discount-progressbar' as='h3'>
+          Размер вашей скидки
+        </Heading>
         <CalculatorDiscount />
       </div>
       <CalculatorPrice formData={formData} />

@@ -214,7 +214,6 @@ const Check = ({ ...props }: IconProps) => {
 const MouseScroll = ({ ...props }: IconProps) => {
   return (
     <svg
-      className=''
       viewBox='0 0 30 42'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
@@ -239,6 +238,23 @@ const MouseScroll = ({ ...props }: IconProps) => {
   );
 };
 
+const XeraseLogo = ({ className, ...props }: IconProps) => {
+  return (
+    <svg
+      className={cn('text-foreground', className)}
+      viewBox='0 0 132 130'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
+      <path
+        className='fill-current'
+        d='M66.1302 19.3923L132 1.57408e-06L132 30.1658L66.1302 49.7974L66.1302 19.3923ZM8.27934e-07 60.5709L1.19051e-06 30.1657L132 69.1897L132 99.5948L8.27934e-07 60.5709ZM0 130L3.62578e-07 99.5948L66.1302 80.2026L66.1302 110.608L0 130Z'
+      />
+    </svg>
+  );
+};
+
 export default {
   Logo,
   Play,
@@ -251,4 +267,5 @@ export default {
   Leaf,
   Check,
   MouseScroll,
+  XeraseLogo,
 };

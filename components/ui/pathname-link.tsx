@@ -12,7 +12,7 @@ const PathnameLink = forwardRef<
   const pathname = usePathname();
   const isActive = useMemo(
     () =>
-      href.toString() === '/'
+      pathname && href.toString() === '/'
         ? pathname === href.toString()
         : pathname.startsWith(href.toString()),
     [pathname, href]

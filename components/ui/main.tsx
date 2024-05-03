@@ -1,14 +1,13 @@
-import { VariantProps } from 'class-variance-authority';
-
 import { cn } from '@/lib/utils';
-import { FooterTeam } from '@/app/_components/footer-team';
+import { FooterTeam } from '@/app/_components/footer/footer-team';
+import { OrderModal } from '@/app/_components/order-modal/order-modal';
 
 type MainProps = React.HTMLAttributes<HTMLElement>;
 
 export const Main = ({ className, children, ...props }: MainProps) => {
   return (
     <main className={cn('relative w-full', className)} {...props}>
-      {children}
+      <OrderModal>{children}</OrderModal>
       <FooterTeam />
     </main>
   );

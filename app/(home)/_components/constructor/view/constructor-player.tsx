@@ -34,6 +34,7 @@ export const ConstructorPlayer = ({
       {...props}
     >
       {isPaused ? <Icon.Play /> : <Icon.Pause />}
+      <span className='sr-only'>Play | Pause</span>
     </Button>
   );
 };

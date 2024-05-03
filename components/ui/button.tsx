@@ -14,6 +14,7 @@ const buttonVariants = cva(
         gradient:
           'bg-gradient-to-r from-gradient-first to-gradient-second text-foreground',
         outline: 'border-2 border-foreground bg-black/30 md:border-4',
+        foreground: 'bg-foreground text-background',
         ghost: '',
         link: 'text-primary underline-offset-4 hover:underline',
       },

@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import { deliveryQuestions } from '@/config/delivery/delivery';
 import { Container } from '@/components/ui/container';
 import { GradientText } from '@/components/ui/gradient-text';
@@ -5,6 +7,10 @@ import { Heading } from '@/components/ui/heading';
 import { Main } from '@/components/ui/main';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Contacts } from '@/components/shared/contacts';
+
+export const metadata: Metadata = {
+  title: 'Доставка',
+};
 
 export default function DeliveryPage() {
   return (
@@ -17,11 +23,14 @@ export default function DeliveryPage() {
           defaultValue={deliveryQuestions[0].value}
           className='mb-24 grid gap-x-7 gap-y-16 lg:grid-cols-2'
         >
-          <TabsList className='flex-col items-start justify-start gap-y-2 rounded-none bg-transparent md:gap-y-6'>
+          <TabsList
+            className='flex-col items-start justify-start gap-y-2 rounded-none bg-transparent md:gap-y-4 xl:gap-y-6'
+            variant='ghost'
+          >
             {deliveryQuestions.map((item, index) => (
               <TabsTrigger
                 key={index}
-                className='!px-0 text-sm font-bold opacity-100 transition-opacity before:mr-[0.5em] before:block before:size-[0.5em] before:rounded-full before:bg-foreground before:transition-all data-[state=active]:bg-transparent data-[state=inactive]:opacity-80 data-[state=active]:shadow-none data-[state=inactive]:before:mr-0 data-[state=inactive]:before:size-0 sm:text-sm md:text-lg lg:text-xl'
+                className='justify-start !px-0 font-bold opacity-100 transition-opacity before:mr-[0.5em] before:block before:size-[0.5em] before:rounded-full before:bg-foreground before:transition-all data-[state=active]:bg-transparent data-[state=inactive]:opacity-80 data-[state=active]:shadow-none data-[state=inactive]:before:mr-0 data-[state=inactive]:before:size-0 sm:text-sm md:text-lg lg:text-base'
                 value={item.value}
               >
                 {item.question}

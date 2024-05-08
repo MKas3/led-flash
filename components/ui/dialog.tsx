@@ -39,7 +39,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      'fixed inset-0 z-30 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      'fixed inset-0 z-40 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
       className
     )}
     {...props}
@@ -47,24 +47,34 @@ const DialogOverlay = React.forwardRef<
 ));
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
-const DialogContent = React.forwardRef<
+const DialogInnerContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
+  <DialogPrimitive.Content
+    ref={ref}
+    className={cn(
+      'fixed left-[50%] top-[50%] z-40 grid w-fit translate-x-[-50%] translate-y-[-50%] gap-4 rounded-sm bg-muted p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] md:bg-transparent',
+      className
+    )}
+    {...props}
+  >
+    <div className='absolute inset-0 -z-10 hidden overflow-hidden rounded-[inherit] before:absolute before:inset-0 before:bg-muted before:[mask-composite:exclude] before:[mask-image:url("/dialog-close-mask.svg"),linear-gradient(white,white)] before:[mask-position:right_-1rem_top_-1rem,0_0] before:[mask-repeat:no-repeat] before:[mask-size:64px,100%] md:block' />
+    {children}
+  </DialogPrimitive.Content>
+));
+DialogInnerContent.displayName = DialogPrimitive.Content.displayName;
+
+const DialogContent = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
+>(({ children, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn(
-        'fixed left-[50%] top-[50%] z-30 grid w-fit translate-x-[-50%] translate-y-[-50%] gap-4 rounded-sm bg-muted p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] md:bg-transparent',
-        className
-      )}
-      {...props}
-    >
-      <div className='absolute inset-0 -z-10 hidden overflow-hidden rounded-[inherit] before:absolute before:inset-0 before:bg-muted before:[mask-composite:exclude] before:[mask-image:url("/dialog-close-mask.svg"),linear-gradient(white,white)] before:[mask-position:right_-1rem_top_-1rem,0_0] before:[mask-repeat:no-repeat] before:[mask-size:64px,100%] md:block' />
+    <DialogInnerContent ref={ref} {...props}>
       {children}
       <DialogClose />
-    </DialogPrimitive.Content>
+    </DialogInnerContent>
   </DialogPortal>
 ));
 DialogContent.displayName = DialogPrimitive.Content.displayName;
@@ -130,6 +140,7 @@ export {
   DialogOverlay,
   DialogClose,
   DialogTrigger,
+  DialogInnerContent,
   DialogContent,
   DialogHeader,
   DialogFooter,

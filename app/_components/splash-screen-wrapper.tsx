@@ -94,7 +94,7 @@ export const SplashScreenWrapper = ({
           </svg>
         </div>
       </div>
-      {children}
+      {loadingProgress >= splashAnimation.from.renderChildren && children}
     </>
   );
 };

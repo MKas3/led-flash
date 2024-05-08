@@ -1,17 +1,19 @@
+import React from 'react';
+
 import { cn } from '@/lib/utils';
-import { Carousel, CarouselDots } from '@/components/ui/carousel';
+import {
+  Carousel,
+  CarouselDots,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import { WorksCarouselContent } from '@/app/(home)/_components/works/works-carousel-content';
 
 type WorksCarouselProps = React.ComponentPropsWithoutRef<typeof Carousel>;
 
-export const WorksCarousel = ({
-  className,
-  children,
-  ...props
-}: WorksCarouselProps) => {
+export const WorksCarousel = ({ children, ...props }: WorksCarouselProps) => {
   return (
     <Carousel
-      className={cn('', className)}
       opts={{
         align: 'center',
         slidesToScroll: 1,
@@ -25,6 +27,8 @@ export const WorksCarousel = ({
         {children}
       </WorksCarouselContent>
       <CarouselDots />
+      <CarouselPrevious className='-left-full hidden lg:inline' />
+      <CarouselNext className='-right-full hidden lg:inline' />
     </Carousel>
   );
 };

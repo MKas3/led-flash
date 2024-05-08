@@ -27,8 +27,8 @@ export const CommentsCarousel = ({
       <CarouselContent wrapperClassName='overflow-visible md:overflow-hidden mx-container-sm md:mx-container-md lg:mx-container-lg xl:mx-container'>
         {children}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className='left-[2.5vw] hidden md:inline lg:left-[5vw] xl:left-[10vw]' />
+      <CarouselNext className='right-[2.5vw] hidden md:inline lg:right-[5vw] xl:right-[10vw]' />
     </Carousel>
   );
 };

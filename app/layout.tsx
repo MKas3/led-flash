@@ -71,7 +71,7 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen w-screen overflow-x-hidden bg-background text-foreground antialiased',
+          'min-h-screen w-screen overflow-x-hidden bg-background text-foreground antialiased [&[data-scroll-locked]]:!overflow-y-auto',
           unbounded.variable,
           poppins.variable,
           unbounded.className

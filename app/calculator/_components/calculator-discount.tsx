@@ -45,7 +45,7 @@ export const CalculatorDiscount = ({
   return (
     <div
       className={cn(
-        '!grid grid-cols-3 grid-rows-2 gap-x-2 gap-y-4 font-poppins text-lg md:text-xl lg:text-2xl xl:text-3xl',
+        '!grid grid-cols-3 grid-rows-2 gap-x-2 gap-y-4 font-poppins text-base md:text-lg lg:text-xl xl:text-2xl',
         className
       )}
       {...props}

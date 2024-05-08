@@ -241,7 +241,7 @@ export default function HomePage() {
         scrollOptions={{ offset: ['80% start', 'end start'] }}
         isAlternate
       >
-        <PricesMotionWrapper className='-mt-12 md:mt-12'>
+        <PricesMotionWrapper className='md:mt-12'>
           <Heading className='mb-12' as='h2'>
             Сколько стоит <GradientText>неоновая вывеска?</GradientText>
           </Heading>
@@ -284,7 +284,7 @@ export default function HomePage() {
           </AppearingContainer>
         </PricesMotionWrapper>
         <AppearingContainer
-          className='flex flex-col justify-center pb-32 pt-0'
+          className='flex flex-col justify-center pb-96 pt-0'
           padding='none'
           isAlternate
         >

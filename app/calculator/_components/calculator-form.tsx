@@ -138,7 +138,6 @@ export const CalculatorForm = ({
                 <FormTabsTrigger
                   id={`neon-type-${item}`}
                   key={index}
-                  className='font-poppins text-2xl font-normal'
                   value={item}
                   aria-controls={undefined}
                 >
@@ -180,7 +179,6 @@ export const CalculatorForm = ({
                 <FormTabsTrigger
                   id={`place-${item}`}
                   key={index}
-                  className='font-poppins text-2xl font-normal'
                   value={item}
                   aria-controls={undefined}
                 >
@@ -191,7 +189,7 @@ export const CalculatorForm = ({
           </FormTabs>
         </CalculatorFormFieldItem>
       </CalculatorSection>
-      <CalculatorSection>
+      <CalculatorSection className='items-stretch'>
         <CalculatorHeading id='discount-progressbar' as='h3'>
           Размер вашей скидки
         </CalculatorHeading>

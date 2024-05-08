@@ -16,21 +16,21 @@ export default function DeliveryPage() {
   return (
     <Main>
       <Container className='mb-36' isHero>
-        <Heading className='mb-12 mt-24' as='h1' hasUnderline>
+        <Heading className='mb-9 mt-24 md:mb-12' as='h1' hasUnderline>
           Какие способы <GradientText>доставки</GradientText> есть?
         </Heading>
         <Tabs
           defaultValue={deliveryQuestions[0].value}
-          className='mb-24 grid gap-x-7 gap-y-16 lg:grid-cols-2'
+          className='mb-12 grid gap-x-7 gap-y-9 md:mb-24 lg:grid-cols-2'
         >
           <TabsList
-            className='flex-col items-start justify-start gap-y-2 rounded-none bg-transparent md:gap-y-4 xl:gap-y-6'
+            className='flex-col items-start justify-start gap-y-1.5 rounded-none bg-transparent md:gap-y-4 xl:gap-y-6'
             variant='ghost'
           >
             {deliveryQuestions.map((item, index) => (
               <TabsTrigger
                 key={index}
-                className='justify-start !px-0 font-bold opacity-100 transition-opacity before:mr-[0.5em] before:block before:size-[0.5em] before:rounded-full before:bg-foreground before:transition-all data-[state=active]:bg-transparent data-[state=inactive]:opacity-80 data-[state=active]:shadow-none data-[state=inactive]:before:mr-0 data-[state=inactive]:before:size-0 sm:text-sm md:text-lg lg:text-base'
+                className='justify-start !px-0 text-sm font-bold opacity-100 transition-opacity before:mr-[0.5em] before:block before:size-[0.5em] before:rounded-full before:bg-foreground before:transition-all data-[state=active]:bg-transparent data-[state=inactive]:opacity-80 data-[state=active]:shadow-none data-[state=inactive]:before:mr-0 data-[state=inactive]:before:size-0 sm:text-sm md:text-lg lg:text-base'
                 value={item.value}
               >
                 {item.question}

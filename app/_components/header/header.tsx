@@ -12,7 +12,7 @@ export const Header = ({ className, ...props }: HeaderProps) => {
   return (
     <header
       className={cn(
-        'pointer-events-auto fixed inset-x-0 top-header-top-sm z-40 flex h-header max-w-[100vw] items-center justify-between gap-x-10 rounded-sm px-container-sm mix-blend-difference delay-1000 duration-1000 ease-in-out animate-in slide-in-from-top-full fill-mode-both md:top-header-top md:mx-[calc(var(--container-padding-md)-3rem)] md:px-12 lg:mx-[calc(var(--container-padding-lg)-3rem)] xl:mx-[calc(var(--container-padding)-3rem)]',
+        'pointer-events-auto fixed inset-x-0 top-header-top-sm z-30 flex h-header items-center justify-between gap-x-10 rounded-sm px-container-sm mix-blend-difference delay-1000 duration-1000 ease-in-out animate-in slide-in-from-top-[110%] fill-mode-both md:top-header-top md:mx-[calc(var(--container-padding-md)-3rem)] md:px-12 lg:mx-[calc(var(--container-padding-lg)-3rem)] xl:mx-[calc(var(--container-padding)-3rem)]',
         className
       )}
       {...props}

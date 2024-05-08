@@ -20,8 +20,19 @@ export const slideFromDownVariants: Variants = {
   },
 };
 
-export const splashAnimationOpacity = 90;
-
-export const splashAnimationRenderChildren = 190;
-
-export const splashAnimationEnd = 200;
+export const splashAnimation = {
+  stepInterval: 100,
+  step: {
+    default: 8,
+    first: 6,
+  },
+  wordsStagger: {
+    default: 0.25,
+    first: 0.5,
+  },
+  from: {
+    opacity: 90,
+    nonInteractive: 100,
+    end: 200,
+  },
+};

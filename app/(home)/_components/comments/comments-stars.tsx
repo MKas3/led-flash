@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { cn } from '@/lib/utils';
-import { Star } from '@/components/ui/icon';
+import Icon from '@/components/ui/icon';
 
 type CommentsStarsProps = React.HTMLAttributes<HTMLDivElement> & {
   rating: number;
@@ -21,7 +21,7 @@ export const CommentsStars = ({
       {...props}
     >
       {Array.from({ length: 5 }).map((_, index) => (
-        <Star
+        <Icon.Star
           key={index}
           className={cn(
             'size-5 xl:size-6',

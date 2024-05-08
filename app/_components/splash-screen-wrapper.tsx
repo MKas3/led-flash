@@ -3,12 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
-import {
-  splashAnimationEnd,
-  splashAnimationOpacity,
-  splashAnimationRenderChildren,
-} from '@/config/animation';
+import { splashAnimation } from '@/config/animation';
 import { cn } from '@/lib/utils';
+import { useFirstLoading } from '@/hooks/use-first-loading';
 import { WordAnimationWrapper } from '@/components/ui/word-animation-wrapper';
 
 type SplashScreenWrapperProps = React.HTMLAttributes<HTMLDivElement>;
@@ -17,43 +14,48 @@ export const SplashScreenWrapper = ({
   children,
   ...props
 }: SplashScreenWrapperProps) => {
+  const isFirstLoading = useFirstLoading();
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const loaded = useRef(false);
 
   useEffect(() => {
-    const loadedInSession = Boolean(sessionStorage.getItem('loaded'));
-    loaded.current = loadedInSession;
+    const currentStep = isFirstLoading
+      ? splashAnimation.step.first
+      : splashAnimation.step.default;
 
-    const timer = setInterval(() => {
-      setLoadingProgress((state) => {
-        if (state >= splashAnimationEnd) {
-          sessionStorage.setItem('loaded', 'true');
-          clearInterval(timer);
-        }
+    const timer = setInterval(
+      () =>
+        setLoadingProgress((prevState) => {
+          if (prevState >= splashAnimation.from.end) clearInterval(timer);
 
-        return state + (loadedInSession ? 5 : 3);
-      });
-    }, 50);
+          return prevState + currentStep;
+        }),
+      splashAnimation.stepInterval
+    );
 
     return () => {
       clearInterval(timer);
     };
-  }, [setLoadingProgress]);
+  }, [isFirstLoading, setLoadingProgress]);
 
   return (
     <>
       <div
         className={cn(
-          'fixed inset-0 z-50 flex flex-col items-center bg-background transition-opacity duration-1000 ease-in',
-          loadingProgress >= 100 && 'pointer-events-none',
-          loadingProgress >= splashAnimationOpacity && 'opacity-0'
+          'fixed inset-0 z-50 flex flex-col items-center justify-center bg-background transition-opacity duration-1000 ease-in',
+          loadingProgress >= splashAnimation.from.nonInteractive &&
+            'pointer-events-none',
+          loadingProgress >= splashAnimation.from.opacity && 'opacity-0'
         )}
         {...props}
       >
         <WordAnimationWrapper
-          key={loaded.current ? '1' : '0'}
-          className='mt-[45vh] font-unbounded text-4xl font-medium'
-          staggerChildren={loaded.current ? 0.25 : 0.5}
+          key={isFirstLoading ? '0' : '1'}
+          className='font-unbounded text-4xl font-medium'
+          staggerChildren={
+            isFirstLoading
+              ? splashAnimation.wordsStagger.first
+              : splashAnimation.wordsStagger.default
+          }
         >
           Добрый день
         </WordAnimationWrapper>
@@ -75,7 +77,7 @@ export const SplashScreenWrapper = ({
               strokeLinecap='round'
               initial={{ strokeDashoffset: 20000 }}
               animate={{ strokeDashoffset: 0 }}
-              transition={{ duration: 3, ease: 'easeInOut' }}
+              transition={{ duration: 2.5, ease: 'circIn' }}
             />
             <defs>
               <radialGradient
@@ -93,7 +95,7 @@ export const SplashScreenWrapper = ({
           </svg>
         </div>
       </div>
-      {loadingProgress >= splashAnimationRenderChildren && children}
+      {children}
     </>
   );
 };

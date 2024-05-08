@@ -15,11 +15,15 @@ export const OrderModal = ({
   return (
     <Dialog {...props}>
       {children}
-      <DialogContent className='p-6'>
-        <Heading className='text-center' as='h2'>
-          Заказать <GradientText>неоновую</GradientText> вывеску
+      <DialogContent className='p-6 md:p-9'>
+        <Heading
+          className='text-center text-base md:text-3xl lg:text-3xl 2xl:text-3xl'
+          as='h2'
+        >
+          Заказать <br />
+          <GradientText>неоновую</GradientText> вывеску
         </Heading>
-        <FooterForm size='sm' />
+        <FooterForm variant='muted' size='sm' />
       </DialogContent>
     </Dialog>
   );

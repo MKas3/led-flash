@@ -142,9 +142,35 @@ const config = {
       outlineOffset: {
         '3': '3px',
       },
+      fontSize: {
+        '2xs': '13px',
+        '3xs': '12px',
+        '4xs': '11px',
+        '5xs': '10px',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],
+  safelist: [
+    '-inset-x-2',
+    'md:left-0',
+    'md:right-auto',
+    'text-2xs',
+    'md:text-xs',
+    'md:mb-5',
+    'gap-x-1',
+    'mb-[2em]',
+    'mb-7',
+    '[&_+_h2]:mt-[2.5em]',
+    'mb-24',
+    'mb-20',
+    'md:rounded-sm',
+    'lg:rounded-sm',
+    'lg:mx-[-20%]',
+    '2xl:mx-[-50%]',
+    'md:mx-[-12.5%]',
+    '!leading-snug',
+  ],
 } satisfies Config;
 
 export default config;

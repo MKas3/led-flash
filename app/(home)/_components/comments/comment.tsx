@@ -12,6 +12,7 @@ export const Comment = ({ className, ...props }: CommentProps) => {
       className='block shrink-0 grow-0 basis-full bg-transparent pl-4 md:basis-1/2 xl:basis-1/3'
       variant='child'
       padding='none'
+      transition={{ duration: 0.2 }}
     >
       <CarouselItem
         className={cn(

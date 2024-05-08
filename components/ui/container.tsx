@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
-import { HTMLMotionProps } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 

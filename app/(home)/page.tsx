@@ -4,6 +4,7 @@ import { comments, commentsAverageRating } from '@/config/home/comments';
 import { faqQuestions } from '@/config/home/faq';
 import { prices } from '@/config/home/prices';
 import { works } from '@/config/home/works';
+import { cn } from '@/lib/utils';
 import {
   Accordion,
   AccordionContent,
@@ -15,11 +16,11 @@ import { AppearingAnimationText } from '@/components/ui/appearing-text/appearing
 import { AppearingAnimationTextPart } from '@/components/ui/appearing-text/appearing-animation-text-part';
 import { AppearingContentText } from '@/components/ui/appearing-text/appearing-content-text';
 import { AppearingText } from '@/components/ui/appearing-text/appearing-text';
-import { Button } from '@/components/ui/button';
-import { Container } from '@/components/ui/container';
+import { buttonVariants } from '@/components/ui/button';
 import { GradientText } from '@/components/ui/gradient-text';
 import { Heading } from '@/components/ui/heading';
 import Icon from '@/components/ui/icon';
+import Link from '@/components/ui/link';
 import { Main } from '@/components/ui/main';
 import { ScrollBlurContainer } from '@/components/ui/scroll-blur-container';
 import { Separator } from '@/components/ui/separator';
@@ -92,15 +93,17 @@ export default function HomePage() {
               </AppearingContentText>
             </AppearingText>
           </Heading>
-          <div className='flex flex-wrap justify-start gap-x-5 gap-y-12 overflow-hidden md:flex-nowrap md:justify-center md:gap-x-10'>
-            <OrderModalTrigger
-              className='order-1 w-full delay-1500 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both md:order-none md:w-auto'
-              variant='gradient'
+          <div className='flex flex-wrap justify-start gap-x-5 gap-y-12 overflow-hidden md:flex-nowrap md:gap-x-10 lg:ml-[10vw]'>
+            <Link.Calculator
+              className={cn(
+                buttonVariants({ variant: 'gradient' }),
+                'order-1 w-full delay-1500 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both md:order-none md:w-auto'
+              )}
             >
               Рассчитать стоимость
-            </OrderModalTrigger>
+            </Link.Calculator>
             <Separator
-              className='z-10 h-auto bg-background'
+              className='z-10 h-auto bg-background delay-2000 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both'
               orientation='vertical'
             />
             <HeroBenefitText />
@@ -269,9 +272,14 @@ export default function HomePage() {
                 prices={[18000, 16000, 14000, 12000]}
                 discountedPrices={[12600, 11600, 10600, 9600]}
               />
-              <Button className='w-full lg:w-fit' variant='gradient'>
+              <Link.Calculator
+                className={cn(
+                  buttonVariants({ variant: 'gradient' }),
+                  'w-full lg:w-fit'
+                )}
+              >
                 Рассчитать стоимость
-              </Button>
+              </Link.Calculator>
             </AppearingContainer>
           </AppearingContainer>
         </PricesMotionWrapper>
@@ -286,12 +294,12 @@ export default function HomePage() {
           <Comments>
             <CommentsHeader>
               <span className='self-end'>Средний рейтинг:</span>
-              <Button
+              <OrderModalTrigger
                 variant='gradient'
                 className='order-1 row-span-2 w-full justify-self-end md:order-none md:w-fit'
               >
                 Оставить отзыв
-              </Button>
+              </OrderModalTrigger>
               <div className='-mt-1 flex items-center gap-x-6 self-start md:mt-0'>
                 {commentsAverageRating} из 5
                 <CommentsStars rating={5} />

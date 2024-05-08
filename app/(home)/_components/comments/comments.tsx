@@ -13,7 +13,7 @@ export const Comments = ({ className, ...props }: CommentsProps) => {
         className
       )}
       padding='none'
-      transition={{ delay: 0.3, delayChildren: 0.6 }}
+      transition={{ delay: 0.3, delayChildren: 0.3 }}
       {...props}
     />
   );

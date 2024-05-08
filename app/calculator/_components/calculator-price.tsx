@@ -88,7 +88,7 @@ export const CalculatorPrice = ({
   return (
     <motion.div
       className={cn(
-        'sticky !grid grid-cols-2 grid-rows-1 items-center rounded-md bg-muted p-5 font-unbounded md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)_minmax(0,1fr)] md:p-2 lg:p-3 xl:p-4 2xl:p-5'
+        'sticky !grid grid-cols-2 grid-rows-1 items-center gap-y-4 rounded-md bg-muted p-5 font-unbounded md:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)_minmax(0,1fr)] md:p-2 lg:p-3 xl:p-4 2xl:p-5'
       )}
       variants={calculatorVariants}
       initial='initial'

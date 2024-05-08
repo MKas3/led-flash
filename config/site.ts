@@ -3,28 +3,28 @@ export const siteConfig = {
   altNaming: 'Led-Flash',
   phone: '+79910080032',
   altPhone: '+7 (991) 008-00-32',
-  email: 'ledflash@mail.ru',
+  email: 'led.flash@mail.ru',
   address: 'Санкт-Петербург, Софийская ул., 4Д',
   workTime: 'ПН - ПТ с 10:00 до 21:00',
-  url: 'http://localhost:3000',
+  url: 'https://led-flash.ru/',
   ogImage: 'https://led-flash.ru/og.jpg',
   description: 'Неоновые вывески за 3 дня.',
   social: [
     {
       naming: 'Telegram',
-      href: '',
+      href: 'https://t.me/led_flash',
     },
     {
       naming: 'VK',
-      href: '',
+      href: 'https://vk.com/ledfl',
     },
     {
       naming: 'WhatsApp',
-      href: '',
+      href: 'https://wa.me/+79910080032',
     },
     {
       naming: 'Instagram',
-      href: '',
+      href: 'https://www.instagram.com/led_flash.ru?igsh=M3dzdHh5OXM0eWwz',
     },
   ],
 };

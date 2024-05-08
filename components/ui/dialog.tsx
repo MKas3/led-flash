@@ -12,7 +12,25 @@ const DialogTrigger = DialogPrimitive.Trigger;
 
 const DialogPortal = DialogPrimitive.Portal;
 
-const DialogClose = DialogPrimitive.Close;
+const DialogClose = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Close>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close>
+>(({ className, ...props }, ref) => {
+  return (
+    <DialogPrimitive.Close
+      ref={ref}
+      className={cn(
+        'absolute inset-x-0 -bottom-20 mx-auto flex size-16 items-center justify-center rounded-full bg-transparent text-foreground ring-offset-background transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none md:-right-4 md:-top-4 md:left-auto',
+        className
+      )}
+      {...props}
+    >
+      <X className='size-16 rounded-full bg-muted p-4 md:size-12 md:p-2' />
+      <span className='sr-only'>Close</span>
+    </DialogPrimitive.Close>
+  );
+});
+DialogClose.displayName = DialogPrimitive.Close.displayName;
 
 const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
@@ -38,16 +56,14 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed left-[50%] top-[50%] z-30 grid w-fit translate-x-[-50%] translate-y-[-50%] gap-4 rounded-sm bg-muted p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',
+        'fixed left-[50%] top-[50%] z-30 grid w-fit translate-x-[-50%] translate-y-[-50%] gap-4 rounded-sm bg-muted p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] md:bg-transparent',
         className
       )}
       {...props}
     >
+      <div className='absolute inset-0 -z-10 hidden overflow-hidden rounded-[inherit] before:absolute before:inset-0 before:bg-muted before:[mask-composite:exclude] before:[mask-image:url("/dialog-close-mask.svg"),linear-gradient(white,white)] before:[mask-position:right_-1rem_top_-1rem,0_0] before:[mask-repeat:no-repeat] before:[mask-size:64px,100%] md:block' />
       {children}
-      <DialogPrimitive.Close className='data-[state=open]:bg-accent absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:text-muted-foreground'>
-        <X className='size-4' />
-        <span className='sr-only'>Close</span>
-      </DialogPrimitive.Close>
+      <DialogClose />
     </DialogPrimitive.Content>
   </DialogPortal>
 ));

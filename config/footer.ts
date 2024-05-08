@@ -8,8 +8,7 @@ export const footerFormSchema = z.object({
   contactWay: z.enum(contactWays),
   fullName: z
     .string({ errorMap: () => ({ message: 'Введите ФИО' }) })
-    .min(1, { message: 'Введите ФИО' })
-    .regex(/^[\S]+ [\S]+ [\S]+$/g, 'Введите корректное ФИО'),
+    .min(1, { message: 'Введите ФИО' }),
   phone: z
     .string({
       errorMap: () => ({

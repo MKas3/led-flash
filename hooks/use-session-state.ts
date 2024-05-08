@@ -1,17 +1,22 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-const isServer = typeof window !== 'undefined';
+const isServer = typeof window === 'undefined';
 
-export const useSessionState = <T>(key: string) => {
-  const [innerState, setInnerState] = useState<T | undefined>(undefined);
+export const useSessionState = <T>(key: string, initialState?: T) => {
+  const [innerState, setInnerState] = useState<T | undefined>(initialState);
 
   useEffect(() => {
-    if (!sessionStorage || isServer) return;
+    if (isServer) return;
 
     const state = sessionStorage.getItem(key);
     if (!state) return;
 
-    setInnerState(JSON.parse(state));
+    try {
+      const parsedState = JSON.parse(state);
+      setInnerState(parsedState);
+    } catch {
+      setInnerState(undefined);
+    }
   }, [key]);
 
   const setState = useCallback(

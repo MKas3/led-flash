@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import { splashAnimation } from '@/config/animation';
@@ -49,7 +49,6 @@ export const SplashScreenWrapper = ({
         {...props}
       >
         <WordAnimationWrapper
-          key={isFirstLoading ? '0' : '1'}
           className='font-unbounded text-4xl font-medium'
           staggerChildren={
             isFirstLoading

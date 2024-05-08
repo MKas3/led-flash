@@ -1,13 +1,24 @@
 import { useEffect, useState } from 'react';
+import { z } from 'zod';
+
+const sessionFirstLoadingSchema = z.enum(['true', 'false']);
+
+const isServer = typeof window === 'undefined';
 
 export const useFirstLoading = (key?: string) => {
-  const [firstLoading, setFirstLoading] = useState<boolean | undefined>(
-    JSON.parse(
-      typeof window !== 'undefined'
-        ? sessionStorage.getItem(`is-loaded-${key ?? 'initial'}`) ?? 'false'
-        : 'true'
-    )
-  );
+  const [firstLoading, setFirstLoading] = useState<boolean | undefined>(() => {
+    if (isServer) return true;
+
+    const sessionFirstLoading =
+      sessionStorage.getItem(`is-loaded-${key ?? 'initial'}`) ?? 'false';
+
+    const parsedFirstLoading =
+      sessionFirstLoadingSchema.safeParse(sessionFirstLoading);
+
+    if (!parsedFirstLoading.success) return true;
+
+    return !JSON.parse(parsedFirstLoading.data);
+  });
 
   useEffect(() => {
     if (!sessionStorage) return;
@@ -18,5 +29,5 @@ export const useFirstLoading = (key?: string) => {
     );
   }, [key, setFirstLoading]);
 
-  return !firstLoading ?? true;
+  return firstLoading ?? true;
 };

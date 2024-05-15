@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 
 import { Poppins, Unbounded } from 'next/font/google';
 
@@ -62,6 +62,13 @@ export const metadata: Metadata = {
   manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
+export const viewport: Viewport = {
+  themeColor: 'black',
+  minimumScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -71,7 +78,7 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen w-screen overflow-x-hidden bg-background text-foreground antialiased [&[data-scroll-locked]]:!overflow-y-auto',
+          'min-h-screen w-screen overflow-x-hidden bg-foreground text-foreground antialiased [&[data-scroll-locked]]:!overflow-y-auto',
           unbounded.variable,
           poppins.variable,
           unbounded.className

@@ -33,7 +33,7 @@ export const splashAnimation = {
   from: {
     opacity: 90,
     nonInteractive: 100,
-    renderChildren: 190,
+    renderChildren: 140,
     end: 200,
   },
 };

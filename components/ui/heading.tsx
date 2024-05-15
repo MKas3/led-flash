@@ -14,7 +14,7 @@ const headingVariants = cva('', {
       h3: 'text-base font-bold !leading-tight md:text-lg lg:text-2xl',
     },
     hasUnderline: {
-      true: 'border-b border-white pb-6 md:pb-9 lg:pb-12 [&_~_*]:mt-0 md:[&_~_*]:mt-9 lg:[&_~_*]:mt-12',
+      true: 'border-b border-white pb-6 md:pb-9 lg:pb-12 [&_~_*]:mt-6 md:[&_~_*]:mt-9 lg:[&_~_*]:mt-12',
       false: '',
     },
     padding: {

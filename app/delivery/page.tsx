@@ -16,7 +16,7 @@ export default function DeliveryPage() {
   return (
     <Main>
       <Container className='mb-36' isHero>
-        <Heading className='mb-9 mt-24 md:mb-12' as='h1' hasUnderline>
+        <Heading className='mb-6 mt-24 md:mb-12' as='h1' hasUnderline>
           Какие способы <GradientText>доставки</GradientText> есть?
         </Heading>
         <Tabs

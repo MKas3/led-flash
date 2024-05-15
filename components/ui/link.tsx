@@ -100,7 +100,7 @@ const Phone = forwardRef<
 >(({ href, className, ...props }, ref) => (
   <Link
     ref={ref}
-    className={cn('underline underline-offset-4', className)}
+    className={cn('underline decoration-2 underline-offset-4', className)}
     href={href ?? `tel:${siteConfig.phone}`}
     {...props}
   >
@@ -116,7 +116,7 @@ const Email = forwardRef<
 >(({ href, className, ...props }, ref) => (
   <Link
     ref={ref}
-    className={cn('underline underline-offset-4', className)}
+    className={cn('underline decoration-2 underline-offset-4', className)}
     href={href ?? `mailto:${siteConfig.email}`}
     {...props}
   >

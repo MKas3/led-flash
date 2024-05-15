@@ -41,7 +41,7 @@ export const SplashScreenWrapper = ({
     <>
       <div
         className={cn(
-          'fixed inset-0 z-50 flex flex-col items-center justify-center bg-background transition-opacity duration-1000 ease-in',
+          'fixed inset-0 z-50 flex flex-col items-center justify-center bg-background transition-opacity duration-1000 ease-in-out',
           loadingProgress >= splashAnimation.from.nonInteractive &&
             'pointer-events-none',
           loadingProgress >= splashAnimation.from.opacity && 'opacity-0'

@@ -6,7 +6,7 @@ type MainProps = React.HTMLAttributes<HTMLElement>;
 
 export const Main = ({ className, children, ...props }: MainProps) => {
   return (
-    <main className={cn('relative w-full', className)} {...props}>
+    <main className={cn('relative w-full bg-background', className)} {...props}>
       <OrderModal>{children}</OrderModal>
       <FooterTeam />
     </main>

@@ -22,7 +22,7 @@ export default function CasesPage() {
   return (
     <Main>
       <Container className='mb-36' isHero>
-        <Heading className='mb-12 mt-24' as='h1' hasUnderline>
+        <Heading className='mt-24 md:mb-12' as='h1' hasUnderline>
           Наши любимые <GradientText>работы</GradientText>
         </Heading>
         <div className='flex flex-col gap-y-8'>

@@ -94,18 +94,20 @@ export default function HomePage() {
             </AppearingText>
           </Heading>
           <div className='flex flex-wrap justify-start gap-x-5 gap-y-12 overflow-hidden md:flex-nowrap md:gap-x-10 lg:ml-[10vw]'>
-            <Link.Calculator
+            <OrderModalTrigger
               className={cn(
                 buttonVariants({ variant: 'gradient' }),
                 'order-1 w-full delay-1500 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both md:order-none md:w-auto'
               )}
             >
-              Рассчитать стоимость
-            </Link.Calculator>
-            <Separator
-              className='z-10 h-auto bg-background delay-2000 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both'
-              orientation='vertical'
-            />
+              Оформить заявку
+            </OrderModalTrigger>
+            <div className='overflow-hidden'>
+              <Separator
+                className='z-10 h-full w-0.5 bg-background delay-2000 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both'
+                orientation='vertical'
+              />
+            </div>
             <HeroBenefitText />
           </div>
           <div className='z-10 mt-10 hidden flex-col items-center justify-center gap-y-3 opacity-100 delay-1500 duration-1000 animate-in fade-in-0 fill-mode-both md:flex '>

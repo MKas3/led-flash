@@ -45,7 +45,7 @@ export const HeroBenefitText = ({
   return (
     <TypewriterText
       className={cn(
-        'z-10 my-auto whitespace-pre-line font-bold lg:text-xl 2xl:text-3xl',
+        'z-10 my-auto h-[3.25em] whitespace-pre-line font-bold lg:text-xl 2xl:text-3xl',
         className
       )}
       charCount={1}

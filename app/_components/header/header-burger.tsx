@@ -1,10 +1,11 @@
 import React from 'react';
 
+import { FooterForm } from '@/app/_components/footer/footer-form';
 import { Button } from '@/components/ui/button';
 import {
   Collapsible,
   CollapsibleContent,
-  CollapsibleTrigger,
+  CollapsibleTrigger
 } from '@/components/ui/collapsible';
 import { GradientText } from '@/components/ui/gradient-text';
 import { Heading } from '@/components/ui/heading';
@@ -16,9 +17,8 @@ import {
   SheetInnerContent,
   SheetOverlay,
   SheetPortal,
-  SheetTrigger,
+  SheetTrigger
 } from '@/components/ui/sheet';
-import { FooterForm } from '@/app/_components/footer/footer-form';
 
 type HeaderBurgerProps = React.ComponentPropsWithoutRef<typeof Sheet>;
 
@@ -32,8 +32,8 @@ export const HeaderBurger = ({ ...props }: HeaderBurgerProps) => {
       <SheetPortal>
         <SheetOverlay className='z-20' />
         <SheetInnerContent
-          side='top'
           className='z-20 flex max-h-screen flex-col'
+          side='top'
         >
           <div className='grid h-fit grid-flow-row grid-cols-2 grid-rows-[repeat(3,68px)_min-content] gap-4'>
             <SheetClose variant='ghost' asChild>
@@ -57,7 +57,8 @@ export const HeaderBurger = ({ ...props }: HeaderBurgerProps) => {
             <Collapsible className='group col-span-2'>
               <div className='flex flex-col items-center justify-center gap-y-6 rounded-sm bg-muted p-6 group-data-[state=open]:hidden'>
                 <Heading className='text-center' as='h2'>
-                  Готовы создать красоту для{' '}
+                  Готовы создать красоту для
+                  {' '}
                   <GradientText>вашего бизнеса?</GradientText>
                 </Heading>
                 <CollapsibleTrigger asChild>
@@ -67,11 +68,15 @@ export const HeaderBurger = ({ ...props }: HeaderBurgerProps) => {
               <CollapsibleContent asChild>
                 <div className='flex flex-col items-center justify-center gap-y-10 rounded-sm bg-muted p-6'>
                   <Heading className='text-center' as='h2'>
-                    Заказать <GradientText>неоновую</GradientText> вывеску
+                    Заказать
+                    {' '}
+                    <GradientText>неоновую</GradientText>
+                    {' '}
+                    вывеску
                   </Heading>
                   <FooterForm
-                    variant='muted'
                     className='w-full grow-0 text-center'
+                    variant='muted'
                   />
                 </div>
               </CollapsibleContent>

@@ -1,6 +1,9 @@
-import { cn } from '@/lib/utils';
+import React from 'react';
+
 import { FooterTeam } from '@/app/_components/footer/footer-team';
 import { OrderModal } from '@/app/_components/order-modal/order-modal';
+
+import { cn } from '@/lib/utils';
 
 type MainProps = React.HTMLAttributes<HTMLElement>;
 

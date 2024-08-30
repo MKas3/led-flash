@@ -4,16 +4,17 @@ import type {
   Control,
   ControllerProps,
   FieldPath,
-  FieldValues,
+  FieldValues
 } from 'react-hook-form';
 
+import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { FormField } from './form-field';
 
 const FormFieldControl = <
-  TFieldValues extends FieldValues = {},
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >({
   ...props
 }: Omit<ControllerProps<TFieldValues, TName>, 'render'> & {

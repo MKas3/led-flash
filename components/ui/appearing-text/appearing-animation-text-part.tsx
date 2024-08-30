@@ -1,17 +1,20 @@
 'use client';
 
+import type { HTMLMotionProps, Variants } from 'framer-motion';
+
 import React from 'react';
-import { HTMLMotionProps, motion, Variants } from 'framer-motion';
+
+import { motion } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 
 const textPartVariants: Variants = {
-  'initial-appearing': {
-    y: '1.25em',
-  },
   'animate-appearing': {
-    y: '0em',
+    y: '0em'
   },
+  'initial-appearing': {
+    y: '1.25em'
+  }
 };
 
 type AppearingAnimationTextPartProps = HTMLMotionProps<'span'>;
@@ -24,8 +27,8 @@ export const AppearingAnimationTextPart = ({
     <span className='inline-flex overflow-hidden'>
       <motion.span
         className={cn('inline-flex', className)}
-        variants={textPartVariants}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
+        variants={textPartVariants}
         {...props}
       />
     </span>

@@ -2,12 +2,14 @@
 
 import type { UseEmblaCarouselType } from 'embla-carousel-react';
 
+import { createContext, useContext, useMemo } from 'react';
 import * as React from 'react';
+
+import { Button } from '@/components/ui/button';
 import useEmblaCarousel from 'embla-carousel-react';
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -16,19 +18,19 @@ type CarouselPlugin = UseCarouselParameters[1];
 
 type CarouselProps = {
   opts?: CarouselOptions;
-  plugins?: CarouselPlugin;
   orientation?: 'horizontal' | 'vertical';
+  plugins?: CarouselPlugin;
   setApi?: (api: CarouselApi) => void;
 };
 
-type CarouselContextProps = {
-  carouselRef: ReturnType<typeof useEmblaCarousel>[0];
+type CarouselContextProps = CarouselProps & {
   api: ReturnType<typeof useEmblaCarousel>[1];
-  scrollPrev: () => void;
-  scrollNext: () => void;
-  canScrollPrev: boolean;
   canScrollNext: boolean;
-} & CarouselProps;
+  canScrollPrev: boolean;
+  carouselRef: ReturnType<typeof useEmblaCarousel>[0];
+  scrollNext: () => void;
+  scrollPrev: () => void;
+};
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
 
@@ -44,15 +46,15 @@ function useCarousel() {
 
 const Carousel = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & CarouselProps
+  CarouselProps & React.HTMLAttributes<HTMLDivElement>
 >(
   (
     {
-      orientation = 'horizontal',
-      opts,
-      setApi,
-      plugins,
       className,
+      opts,
+      orientation = 'horizontal',
+      plugins,
+      setApi,
       children,
       ...props
     },
@@ -61,7 +63,7 @@ const Carousel = React.forwardRef<
     const [carouselRef, api] = useEmblaCarousel(
       {
         ...opts,
-        axis: orientation === 'horizontal' ? 'x' : 'y',
+        axis: orientation === 'horizontal' ? 'x' : 'y'
       },
       plugins
     );
@@ -120,26 +122,37 @@ const Carousel = React.forwardRef<
       };
     }, [api, onSelect]);
 
+    const contextValue = useMemo(() => ({
+      api,
+      canScrollNext,
+      canScrollPrev,
+      carouselRef,
+      opts,
+      orientation:
+        orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
+      scrollNext,
+      scrollPrev
+    }), [
+      api,
+      canScrollNext,
+      canScrollPrev,
+      carouselRef,
+      opts,
+      orientation,
+      scrollNext,
+      scrollPrev
+    ]);
+
     return (
       <CarouselContext.Provider
-        value={{
-          carouselRef,
-          api: api,
-          opts,
-          orientation:
-            orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
-          scrollPrev,
-          scrollNext,
-          canScrollPrev,
-          canScrollNext,
-        }}
+        value={contextValue}
       >
         <div
           ref={ref}
-          onKeyDownCapture={handleKeyDown}
           className={cn('relative', className)}
-          role='region'
           aria-roledescription='carousel'
+          role='region'
+          onKeyDownCapture={handleKeyDown}
           {...props}
         >
           {children}
@@ -155,7 +168,7 @@ const CarouselContent = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement> & {
     wrapperClassName?: string;
   }
->(({ wrapperClassName, className, ...props }, ref) => {
+>(({ className, wrapperClassName, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel();
 
   return (
@@ -183,13 +196,13 @@ const CarouselItem = React.forwardRef<
   return (
     <div
       ref={ref}
-      role='group'
-      aria-roledescription='slide'
       className={cn(
         'min-w-0 shrink-0 grow-0 basis-full',
         orientation === 'horizontal' ? 'pl-4' : 'pt-4',
         className
       )}
+      aria-roledescription='slide'
+      role='group'
       {...props}
     />
   );
@@ -199,14 +212,12 @@ CarouselItem.displayName = 'CarouselItem';
 const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
->(({ className, variant = 'ghost', size = 'icon', ...props }, ref) => {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+>(({ className, size = 'icon', variant = 'ghost', ...props }, ref) => {
+  const { canScrollPrev, orientation, scrollPrev } = useCarousel();
 
   return (
     <Button
       ref={ref}
-      variant={variant}
-      size={size}
       className={cn(
         'absolute size-10 rounded-full',
         orientation === 'horizontal'
@@ -215,6 +226,8 @@ const CarouselPrevious = React.forwardRef<
         className
       )}
       disabled={!canScrollPrev}
+      size={size}
+      variant={variant}
       onClick={scrollPrev}
       {...props}
     >
@@ -228,14 +241,12 @@ CarouselPrevious.displayName = 'CarouselPrevious';
 const CarouselNext = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
->(({ className, variant = 'ghost', size = 'icon', ...props }, ref) => {
-  const { orientation, scrollNext, canScrollNext } = useCarousel();
+>(({ className, size = 'icon', variant = 'ghost', ...props }, ref) => {
+  const { canScrollNext, orientation, scrollNext } = useCarousel();
 
   return (
     <Button
       ref={ref}
-      variant={variant}
-      size={size}
       className={cn(
         'absolute size-10 rounded-full',
         orientation === 'horizontal'
@@ -244,6 +255,8 @@ const CarouselNext = React.forwardRef<
         className
       )}
       disabled={!canScrollNext}
+      size={size}
+      variant={variant}
       onClick={scrollNext}
       {...props}
     >
@@ -254,7 +267,7 @@ const CarouselNext = React.forwardRef<
 });
 CarouselNext.displayName = 'CarouselNext';
 
-export const useCarouselDot = (api: CarouselApi | undefined) => {
+export const useCarouselDotsRoot = (api: CarouselApi | undefined) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
 
@@ -266,29 +279,46 @@ export const useCarouselDot = (api: CarouselApi | undefined) => {
     [api]
   );
 
-  const onInit = React.useCallback((api: CarouselApi) => {
+  const onInit = React.useCallback(() => {
     if (api) setScrollSnaps(api.scrollSnapList());
-  }, []);
+  }, [api]);
 
-  const onSelect = React.useCallback((api: CarouselApi) => {
+  const onSelect = React.useCallback(() => {
     if (api) setSelectedIndex(api.selectedScrollSnap());
-  }, []);
+  }, [api]);
 
   React.useEffect(() => {
     if (!api) return;
 
-    onInit(api);
-    onSelect(api);
+    onInit();
+    onSelect();
     api.on('reInit', onInit);
     api.on('reInit', onSelect);
     api.on('select', onSelect);
+
+    return () => {
+      api.off('reInit', onInit);
+      api.off('reInit', onSelect);
+      api.off('select', onSelect);
+    };
   }, [api, onInit, onSelect]);
 
   return {
-    selectedIndex,
     scrollSnaps,
-    onDotButtonClick,
+    selectedIndex,
+    onDotButtonClick
   };
+};
+
+type CarouselDotsContext = {
+  scrollSnaps: number[];
+  selectedIndex: number;
+};
+
+const carouselDotsContext = createContext<CarouselDotsContext>({} as CarouselDotsContext);
+
+const useCarouselDots = () => {
+  return useContext(carouselDotsContext);
 };
 
 const CarouselDot = React.forwardRef<
@@ -302,7 +332,7 @@ const CarouselDot = React.forwardRef<
   return (
     <Comp
       ref={ref}
-      className='size-2 origin-center rounded-full bg-foreground opacity-50 transition duration-500 data-[active=true]:scale-125 data-[active=true]:opacity-100 md:size-3'
+      className='size-2 origin-center rounded-full bg-foreground opacity-50 transition duration-500 group-data-[active=true]:scale-125 group-data-[active=true]:opacity-100 lg:size-3'
       variant='ghost'
       {...props}
     >
@@ -312,13 +342,36 @@ const CarouselDot = React.forwardRef<
 });
 CarouselDot.displayName = 'CarouselDot';
 
+const CarouselDotButton = React.forwardRef<
+  React.ElementRef<typeof CarouselItem>,
+  React.ComponentPropsWithoutRef<typeof CarouselItem> & { index: number }
+>(({ className, index, ...props }, ref) => {
+  const { scrollSnaps, selectedIndex } = useCarouselDots();
+
+  return (
+    <CarouselItem
+      ref={ref}
+      className={cn('flex size-4 basis-1/3 group scale-0 items-center justify-center pl-0 opacity-0 transition duration-700 data-[in-view=true]:scale-100 data-[is-edge=true]:scale-50 data-[in-view=true]:opacity-100 lg:size-6', className)}
+      data-active={selectedIndex === index}
+      data-in-view={
+        (selectedIndex === 0 && index <= 2)
+        || (selectedIndex === scrollSnaps.length - 1
+        && index >= scrollSnaps.length - 3)
+        || (index >= selectedIndex - 2 && index <= selectedIndex + 2)
+      }
+      data-is-edge={Math.abs(selectedIndex - index) === 2}
+      {...props}
+    />
+  );
+});
+CarouselDotButton.displayName = 'CarouselDotButton';
+
 const CarouselDotsContent = React.forwardRef<
   React.ElementRef<typeof CarouselContent>,
-  React.ComponentPropsWithoutRef<typeof CarouselContent> & {
-    selectedIndex: number;
-  }
->(({ selectedIndex, className, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof CarouselContent>
+>(({ className, children, ...props }, ref) => {
   const { api } = useCarousel();
+  const { scrollSnaps, selectedIndex } = useCarouselDots();
 
   React.useEffect(() => {
     api?.scrollTo(selectedIndex);
@@ -327,61 +380,83 @@ const CarouselDotsContent = React.forwardRef<
   return (
     <CarouselContent
       ref={ref}
-      wrapperClassName='overflow-visible w-full'
       className={cn('ml-0 h-fit', className)}
+      wrapperClassName='overflow-visible w-full'
       {...props}
-    />
+    >
+      {(!scrollSnaps || scrollSnaps.length === 0) && <CarouselItem />}
+      {children}
+    </CarouselContent>
   );
 });
 CarouselDotsContent.displayName = 'CarouselDotsContent';
+
+const CarouselDotsSnaps = ({ className, children }: { children?: React.ReactNode; className?: string }) => {
+  const { scrollSnaps } = useCarouselDots();
+
+  return (
+    <>
+      {(scrollSnaps.length <= 2 ? [0, 0, 0] : scrollSnaps).map((_, index) => (
+        <CarouselDotButton
+          key={index}
+          className={className}
+          index={index}
+        >
+          {children}
+        </CarouselDotButton>
+      ))}
+    </>
+  );
+};
 
 const CarouselDots = React.forwardRef<
   React.ElementRef<typeof Carousel>,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
   const { api } = useCarousel();
-  const { scrollSnaps, selectedIndex } = useCarouselDot(api);
+  const { scrollSnaps, selectedIndex } = useCarouselDotsRoot(api);
+
+  const contextValue = useMemo(() => ({
+    scrollSnaps,
+    selectedIndex
+  }), [
+    scrollSnaps,
+    selectedIndex
+  ]);
 
   return (
-    <Carousel
-      ref={ref}
-      className='pointer-events-none mx-auto mt-5 flex h-fit w-16 items-center justify-center p-1.5 md:w-24'
-      opts={{
-        align: 'center',
-        containScroll: 'keepSnaps',
-      }}
-      {...props}
-    >
-      <CarouselDotsContent selectedIndex={selectedIndex} className={className}>
-        {(!scrollSnaps || scrollSnaps.length === 0) && <CarouselItem />}
-        {(scrollSnaps.length <= 2 ? [0, 0, 0] : scrollSnaps).map((_, index) => (
-          <CarouselItem
-            className='flex size-4 basis-1/3 scale-0 items-center justify-center pl-0 opacity-0 transition duration-700 data-[in-view=true]:scale-100 data-[is-edge=true]:scale-50 data-[in-view=true]:opacity-100 md:size-6'
-            key={index}
-            data-in-view={
-              (selectedIndex === 0 && index <= 2) ||
-              (selectedIndex === scrollSnaps.length - 1 &&
-                index >= scrollSnaps.length - 3) ||
-              (index >= selectedIndex - 2 && index <= selectedIndex + 2)
-            }
-            data-is-edge={Math.abs(selectedIndex - index) === 2}
-          >
-            <CarouselDot data-active={index === selectedIndex} disabled />
-          </CarouselItem>
-        ))}
-      </CarouselDotsContent>
-    </Carousel>
+    <carouselDotsContext.Provider value={contextValue}>
+      <Carousel
+        ref={ref}
+        className={cn('pointer-events-none mx-auto mt-5 flex h-fit w-16 items-center justify-center p-1.5 lg:w-24', className)}
+        opts={{
+          align: 'center',
+          containScroll: 'keepSnaps'
+        }}
+        {...props}
+      >
+        <CarouselDotsContent>
+          <CarouselDotsSnaps>
+            <CarouselDot disabled />
+          </CarouselDotsSnaps>
+        </CarouselDotsContent>
+      </Carousel>
+    </carouselDotsContext.Provider>
   );
 });
 CarouselDots.displayName = 'CarouselDots';
 
 export {
   type CarouselApi,
-  useCarousel,
   Carousel,
   CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
+  CarouselDot,
+  CarouselDotButton,
   CarouselDots,
+  CarouselDotsContent,
+  CarouselDotsSnaps,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  useCarousel
 };

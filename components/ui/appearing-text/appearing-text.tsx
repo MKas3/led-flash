@@ -1,21 +1,21 @@
 'use client';
 
-import React, { createContext, useEffect, useRef, useState } from 'react';
+import React, { createContext, useEffect, useMemo, useState } from 'react';
 
 type AppearingTextContext = {
   isAnimating: boolean;
   hasAnimationText: boolean;
-  setHasAnimationText: React.Dispatch<React.SetStateAction<boolean>>;
   hasContentText: boolean;
+  setHasAnimationText: React.Dispatch<React.SetStateAction<boolean>>;
   setHasContentText: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const AppearingTextContext = createContext<AppearingTextContext>({
-  isAnimating: false,
+export const appearingTextContext = createContext<AppearingTextContext>({
   hasAnimationText: false,
-  setHasAnimationText: () => {},
   hasContentText: false,
-  setHasContentText: () => {},
+  isAnimating: false,
+  setHasAnimationText: () => {},
+  setHasContentText: () => {}
 });
 
 type AppearingTextProps = { children?: React.ReactNode };
@@ -29,17 +29,19 @@ export const AppearingText = ({ children }: AppearingTextProps) => {
     if (hasAnimationText && hasContentText) setIsAnimating(true);
   }, [hasAnimationText, hasContentText]);
 
+  const contextValue = useMemo(() => ({
+    hasAnimationText,
+    hasContentText,
+    isAnimating,
+    setHasAnimationText,
+    setHasContentText
+  }), [hasAnimationText, hasContentText, isAnimating]);
+
   return (
-    <AppearingTextContext.Provider
-      value={{
-        isAnimating,
-        hasAnimationText,
-        setHasAnimationText,
-        hasContentText,
-        setHasContentText,
-      }}
+    <appearingTextContext.Provider
+      value={contextValue}
     >
       {children}
-    </AppearingTextContext.Provider>
+    </appearingTextContext.Provider>
   );
 };

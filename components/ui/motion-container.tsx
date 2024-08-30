@@ -1,9 +1,9 @@
 'use client';
 
 import { forwardRef } from 'react';
-import { motion } from 'framer-motion';
 
 import { Container } from '@/components/ui/container';
+import { motion } from 'framer-motion';
 
 const InnerMotionContainer = motion(Container);
 

@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+
 import * as ProgressPrimitive from '@radix-ui/react-progress';
 
 import { cn } from '@/lib/utils';
@@ -11,14 +12,14 @@ const Progress = React.forwardRef<
     React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,
     'defaultValue'
   > & {
-    defaultValue?: number;
     progressClassName?: string;
+    defaultValue?: number;
   }
->(({ progressClassName, defaultValue, className, value, ...props }, ref) => (
+>(({ className, progressClassName, defaultValue, value, ...props }, ref) => (
   <ProgressPrimitive.Root
     ref={ref}
     className={cn(
-      'relative h-14 w-full overflow-hidden rounded-sm bg-muted p-2 md:h-16 lg:rounded-md xl:h-20',
+      `relative h-14 w-full overflow-hidden rounded-sm bg-muted p-2 lg:rounded-md md:h-16 xl:h-20`,
       className
     )}
     {...props}
@@ -30,7 +31,7 @@ const Progress = React.forwardRef<
           progressClassName
         )}
         style={{
-          transform: `translateX(-${100 - (value || defaultValue || 0)}%)`,
+          transform: `translateX(-${100 - (value || defaultValue || 0)}%)`
         }}
       />
     </div>

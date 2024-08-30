@@ -1,10 +1,13 @@
 'use client';
 
+import type { HTMLMotionProps } from 'framer-motion';
+
 import React, { useContext, useEffect } from 'react';
-import { HTMLMotionProps, motion } from 'framer-motion';
+
+import { appearingTextContext } from '@/components/ui/appearing-text/appearing-text';
+import { motion } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
-import { AppearingTextContext } from '@/components/ui/appearing-text/appearing-text';
 
 type AppearingAnimationTextProps = HTMLMotionProps<'span'>;
 
@@ -13,7 +16,7 @@ export const AppearingAnimationText = ({
   children,
   ...props
 }: AppearingAnimationTextProps) => {
-  const { isAnimating, setHasAnimationText } = useContext(AppearingTextContext);
+  const { isAnimating, setHasAnimationText } = useContext(appearingTextContext);
 
   useEffect(() => {
     setHasAnimationText(true);
@@ -24,8 +27,8 @@ export const AppearingAnimationText = ({
   return (
     <motion.span
       className={cn('', className)}
-      initial='initial-appearing'
       animate='animate-appearing'
+      initial='initial-appearing'
       transition={{ staggerChildren: 0.3 }}
       {...props}
     >

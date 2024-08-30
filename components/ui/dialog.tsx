@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 
@@ -20,7 +21,7 @@ const DialogClose = React.forwardRef<
     <DialogPrimitive.Close
       ref={ref}
       className={cn(
-        'absolute inset-x-0 -bottom-20 mx-auto flex size-16 items-center justify-center rounded-full bg-transparent text-foreground ring-offset-background transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none md:-right-4 md:-top-4 md:left-auto',
+        `absolute inset-x-0 -bottom-20 mx-auto flex size-16 items-center justify-center rounded-full bg-transparent text-foreground ring-offset-background transition-opacity disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:-right-4 md:-top-4 md:left-auto`,
         className
       )}
       {...props}
@@ -39,7 +40,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      'fixed inset-0 z-40 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      `fixed inset-0 z-40 bg-black/80 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0`,
       className
     )}
     {...props}
@@ -54,12 +55,12 @@ const DialogInnerContent = React.forwardRef<
   <DialogPrimitive.Content
     ref={ref}
     className={cn(
-      'fixed left-[50%] top-[50%] z-40 grid w-fit translate-x-[-50%] translate-y-[-50%] gap-4 rounded-sm bg-muted p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] md:bg-transparent',
+      `fixed left-[50%] top-[50%] z-40 grid w-fit translate-x-[-50%] translate-y-[-50%] gap-4 rounded-sm bg-muted p-6 shadow-lg duration-200 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] md:bg-transparent`,
       className
     )}
     {...props}
   >
-    <div className='absolute inset-0 -z-10 hidden overflow-hidden rounded-[inherit] before:absolute before:inset-0 before:bg-muted before:[mask-composite:exclude] before:[mask-image:url("/dialog-close-mask.svg"),linear-gradient(white,white)] before:[mask-position:right_-1rem_top_-1rem,0_0] before:[mask-repeat:no-repeat] before:[mask-size:64px,100%] md:block' />
+    <div className={`absolute inset-0 -z-10 hidden overflow-hidden rounded-[inherit] before:absolute before:inset-0 before:bg-muted before:[mask-composite:exclude] before:[mask-image:url("/dialog-close-mask.svg"),linear-gradient(white,white)] before:[mask-position:right_-1rem_top_-1rem,0_0] before:[mask-repeat:no-repeat] before:[mask-size:64px,100%] md:block`} />
     {children}
   </DialogPrimitive.Content>
 ));
@@ -85,7 +86,7 @@ const DialogHeader = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col space-y-1.5 text-center sm:text-left',
+      `flex flex-col space-y-1.5 text-center sm:text-left`,
       className
     )}
     {...props}
@@ -99,7 +100,7 @@ const DialogFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
+      `flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2`,
       className
     )}
     {...props}
@@ -136,14 +137,14 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
   DialogClose,
-  DialogTrigger,
-  DialogInnerContent,
   DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogInnerContent,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger
 };

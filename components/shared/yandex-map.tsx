@@ -2,36 +2,33 @@
 
 import React from 'react';
 
+import { useMap } from '@/components/shared/yandex-map-provider';
+import Icon from '@/components/ui/icon';
 import { companyLocation } from '@/config/location';
 import { siteConfig } from '@/config/site';
-import { Button } from '@/components/ui/button';
-import Icon from '@/components/ui/icon';
-import { useMap } from '@/components/shared/yandex-map-provider';
 
-type YandexMapProps = React.HTMLAttributes<HTMLDivElement>;
-
-export const YandexMap = ({ className, ...props }: YandexMapProps) => {
+export const YandexMap = () => {
   const {
     reactifyApi,
-    reactifyMarkers,
     reactifyControls,
     reactifyExtraControls,
+    reactifyMarkers
   } = useMap();
 
   if (
-    !reactifyApi ||
-    !reactifyMarkers ||
-    !reactifyControls ||
-    !reactifyExtraControls
+    !reactifyApi
+    || !reactifyMarkers
+    || !reactifyControls
+    || !reactifyExtraControls
   )
     return null;
 
   const {
     YMap,
-    YMapDefaultSchemeLayer,
-    YMapDefaultFeaturesLayer,
     YMapControls,
-    YMapMarker,
+    YMapDefaultFeaturesLayer,
+    YMapDefaultSchemeLayer,
+    YMapMarker
   } = reactifyApi;
 
   const { YMapDefaultMarker } = reactifyMarkers;
@@ -43,8 +40,8 @@ export const YandexMap = ({ className, ...props }: YandexMapProps) => {
   return (
     <YMap
       className='text-background'
-      margin={[20, 20, 20, 20]}
       location={companyLocation}
+      margin={[20, 20, 20, 20]}
       showScaleInCopyrights
     >
       <YMapDefaultSchemeLayer />
@@ -57,12 +54,12 @@ export const YandexMap = ({ className, ...props }: YandexMapProps) => {
         <YMapOpenMapsButton title='Открыть в Яндекс.Картах' />
       </YMapControls>
       <YMapDefaultMarker
-        zIndex={1}
         coordinates={companyLocation.center}
-        title={siteConfig.naming}
         subtitle={siteConfig.description}
+        title={siteConfig.naming}
+        zIndex={1}
       />
-      <YMapMarker zIndex={10} coordinates={companyLocation.center}>
+      <YMapMarker coordinates={companyLocation.center} zIndex={10}>
         <Icon.Logo className='size-6 -translate-x-2.5 -translate-y-12 text-foreground' />
       </YMapMarker>
     </YMap>

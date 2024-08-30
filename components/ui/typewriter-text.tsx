@@ -9,21 +9,21 @@ type TypewriterTextProps = Omit<
   'children'
 > & {
   charCount?: number;
+  children?: string;
+  delay?: number;
   interval?: number;
   reverseCharCount?: number;
   reverseInterval?: number;
-  delay?: number;
-  children?: string;
 };
 
 export const TypewriterText = ({
+  className,
   charCount = 4,
+  delay = 0,
   interval = 10,
   reverseCharCount = 4,
   reverseInterval = 5,
-  delay = 0,
   children,
-  className,
   ...props
 }: TypewriterTextProps) => {
   const [currentText, setCurrentText] = useState('');
@@ -74,7 +74,7 @@ export const TypewriterText = ({
     interval,
     charCount,
     reverseInterval,
-    reverseCharCount,
+    reverseCharCount
   ]);
 
   return (

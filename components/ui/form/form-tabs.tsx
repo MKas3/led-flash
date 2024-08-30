@@ -1,8 +1,8 @@
 import { useController } from 'react-hook-form';
 
-import { useFormDefaultValue } from '@/hooks/use-form-default-value';
 import { FormControl, useFormField } from '@/components/ui/form';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useFormDefaultValue } from '@/hooks/use-form-default-value';
 
 const FormTabs = ({
   defaultValue,
@@ -10,7 +10,7 @@ const FormTabs = ({
 }: React.ComponentPropsWithoutRef<typeof Tabs>) => {
   const { name } = useFormField();
   const { field } = useController({
-    name,
+    name
   });
   useFormDefaultValue(defaultValue, field.value, field.onChange);
 
@@ -40,4 +40,4 @@ const FormTabsTrigger = ({
 
 const FormTabsContent = TabsContent;
 
-export { FormTabs, FormTabsList, FormTabsContent, FormTabsTrigger };
+export { FormTabs, FormTabsContent, FormTabsList, FormTabsTrigger };

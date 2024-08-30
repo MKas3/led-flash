@@ -1,6 +1,7 @@
 'use client';
 
 import React, { forwardRef, useMemo } from 'react';
+
 import { usePathname } from 'next/navigation';
 
 import Link from '@/components/ui/link';
@@ -18,7 +19,7 @@ const PathnameLink = forwardRef<
     [pathname, href]
   );
 
-  return <Link.Link ref={ref} href={href} data-active={isActive} {...props} />;
+  return <Link.Link ref={ref} data-active={isActive} href={href} {...props} />;
 });
 PathnameLink.displayName = 'PathnameLink';
 

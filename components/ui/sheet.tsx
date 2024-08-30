@@ -3,6 +3,7 @@
 import type { VariantProps } from 'class-variance-authority';
 
 import * as React from 'react';
+
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { cva } from 'class-variance-authority';
 import { X } from 'lucide-react';
@@ -18,19 +19,17 @@ const SheetClose = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Close> & {
     variant?: 'default' | 'ghost';
   }
->(({ variant = 'default', className, children, ...props }, ref) => (
+>(({ className, variant = 'default', children, ...props }, ref) => (
   <SheetPrimitive.Close
     ref={ref}
     className={cn(
-      variant !== 'ghost' &&
-        'absolute inset-x-0 bottom-10 mx-auto size-14 rounded-full bg-muted p-3.5 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none',
+      variant !== 'ghost'
+      && `absolute inset-x-0 bottom-10 mx-auto size-14 rounded-full bg-muted p-3.5 ring-offset-background transition-opacity disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 hover:opacity-100`,
       className
     )}
     {...props}
   >
-    {children ? (
-      children
-    ) : (
+    {children || (
       <>
         <X className='size-full' />
         <span className='sr-only'>Close</span>
@@ -48,7 +47,7 @@ const SheetOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
-      'fixed inset-0 z-30 bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      `fixed inset-0 z-30 bg-background data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0`,
       className
     )}
     {...props}
@@ -58,32 +57,30 @@ const SheetOverlay = React.forwardRef<
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 
 const sheetVariants = cva(
-  'fixed z-30 gap-4 overflow-y-auto bg-transparent px-6 pt-[var(--header-full-height)] shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out',
+  `fixed z-30 gap-4 overflow-y-auto bg-transparent px-6 pt-[var(--header-full-height)] shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out`,
   {
+    defaultVariants: {
+      side: 'right'
+    },
     variants: {
       side: {
-        top: 'inset-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
         bottom:
-          'inset-x-0 bottom-0 data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
-        left: 'inset-y-0 left-0 h-full w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm',
+          `inset-x-0 bottom-0 data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom`,
+        left: `inset-y-0 left-0 h-full w-3/4 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm`,
         right:
-          'inset-y-0 right-0 size-full data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm',
-      },
-    },
-    defaultVariants: {
-      side: 'right',
-    },
+          `inset-y-0 right-0 size-full data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm`,
+        top: `inset-0 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top`
+      }
+    }
   }
 );
 
-interface SheetContentProps
-  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheetVariants> {}
+type SheetContentProps = React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content> & VariantProps<typeof sheetVariants> & {};
 
 const SheetInnerContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps
->(({ side = 'right', className, ...props }, ref) => (
+>(({ className, side = 'right', ...props }, ref) => (
   <SheetPrimitive.Content
     ref={ref}
     className={cn(sheetVariants({ side }), className)}
@@ -112,7 +109,7 @@ const SheetHeader = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col space-y-2 text-center sm:text-left',
+      `flex flex-col space-y-2 text-center sm:text-left`,
       className
     )}
     {...props}
@@ -126,7 +123,7 @@ const SheetFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2',
+      `flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2`,
       className
     )}
     {...props}
@@ -160,14 +157,14 @@ SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
 export {
   Sheet,
-  SheetPortal,
-  SheetOverlay,
-  SheetTrigger,
   SheetClose,
-  SheetInnerContent,
   SheetContent,
-  SheetHeader,
-  SheetFooter,
-  SheetTitle,
   SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetInnerContent,
+  SheetOverlay,
+  SheetPortal,
+  SheetTitle,
+  SheetTrigger
 };

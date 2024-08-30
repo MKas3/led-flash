@@ -1,15 +1,18 @@
+import type { ButtonProps } from '@/components/ui/button';
+
 import * as React from 'react';
+
+import { buttonVariants } from '@/components/ui/button';
+import Link from '@/components/ui/link';
 import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { ButtonProps, buttonVariants } from '@/components/ui/button';
-import Link from '@/components/ui/link';
 
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
   <nav
-    role='navigation'
-    aria-label='pagination'
     className={cn('mx-auto flex w-full justify-center', className)}
+    aria-label='pagination'
+    role='navigation'
     {...props}
   />
 );
@@ -35,10 +38,10 @@ const PaginationItem = React.forwardRef<
 ));
 PaginationItem.displayName = 'PaginationItem';
 
-type PaginationLinkProps = {
-  isActive?: boolean;
-} & Pick<ButtonProps, 'size'> &
-  React.ComponentPropsWithoutRef<typeof Link.Link>;
+type PaginationLinkProps = Pick<ButtonProps, 'size'> & React.ComponentPropsWithoutRef<typeof Link.Link> &
+  {
+    isActive?: boolean;
+  };
 
 const PaginationLink = ({
   className,
@@ -47,14 +50,14 @@ const PaginationLink = ({
   ...props
 }: PaginationLinkProps) => (
   <Link.Link
-    aria-current={isActive ? 'page' : undefined}
     className={cn(
       buttonVariants({
-        variant: isActive ? 'outline' : 'ghost',
         size,
+        variant: isActive ? 'outline' : 'ghost'
       }),
       className
     )}
+    aria-current={isActive ? 'page' : undefined}
     {...props}
   />
 );
@@ -65,9 +68,9 @@ const PaginationPrevious = ({
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
+    className={cn('gap-1 pl-2.5', className)}
     aria-label='Go to previous page'
     size='default'
-    className={cn('gap-1 pl-2.5', className)}
     {...props}
   >
     <ChevronLeft className='size-4' />
@@ -81,9 +84,9 @@ const PaginationNext = ({
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => (
   <PaginationLink
+    className={cn('gap-1 pr-2.5', className)}
     aria-label='Go to next page'
     size='default'
-    className={cn('gap-1 pr-2.5', className)}
     {...props}
   >
     <span>Next</span>
@@ -97,8 +100,8 @@ const PaginationEllipsis = ({
   ...props
 }: React.ComponentProps<'span'>) => (
   <span
-    aria-hidden
     className={cn('flex size-9 items-center justify-center', className)}
+    aria-hidden
     {...props}
   >
     <MoreHorizontal className='size-4' />
@@ -114,5 +117,5 @@ export {
   PaginationItem,
   PaginationLink,
   PaginationNext,
-  PaginationPrevious,
+  PaginationPrevious
 };

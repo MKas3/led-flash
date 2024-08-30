@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { Circle } from 'lucide-react';
 
@@ -20,31 +21,6 @@ const RadioGroup = React.forwardRef<
 });
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
 
-const RadioGroupItem = React.forwardRef<
-  React.ElementRef<typeof RadioGroupPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & {
-    indicatorHidden?: boolean;
-  }
->(({ className, indicatorHidden, ...props }, ref) => {
-  return (
-    <RadioGroupPrimitive.Item
-      ref={ref}
-      className={cn(
-        'size-4 rounded-full border border-foreground text-foreground ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-        className
-      )}
-      {...props}
-    >
-      {!indicatorHidden && (
-        <RadioGroupIndicator>
-          <Circle className='size-2.5 fill-current text-current' />
-        </RadioGroupIndicator>
-      )}
-    </RadioGroupPrimitive.Item>
-  );
-});
-RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
-
 const RadioGroupIndicator = React.forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Indicator>,
   React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Indicator>
@@ -59,4 +35,29 @@ const RadioGroupIndicator = React.forwardRef<
 });
 RadioGroupIndicator.displayName = RadioGroupPrimitive.Indicator.displayName;
 
-export { RadioGroup, RadioGroupItem, RadioGroupIndicator };
+const RadioGroupItem = React.forwardRef<
+  React.ElementRef<typeof RadioGroupPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> & {
+    indicatorHidden?: boolean;
+  }
+>(({ className, indicatorHidden, ...props }, ref) => {
+  return (
+    <RadioGroupPrimitive.Item
+      ref={ref}
+      className={cn(
+        `size-4 rounded-full border border-foreground text-foreground ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus:outline-none`,
+        className
+      )}
+      {...props}
+    >
+      {!indicatorHidden && (
+        <RadioGroupIndicator>
+          <Circle className='size-2.5 fill-current text-current' />
+        </RadioGroupIndicator>
+      )}
+    </RadioGroupPrimitive.Item>
+  );
+});
+RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
+
+export { RadioGroup, RadioGroupIndicator, RadioGroupItem };

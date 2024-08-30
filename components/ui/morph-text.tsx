@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -9,15 +9,15 @@ type MorphTextProps = Omit<
   'children'
 > & {
   children: string;
-  steps?: number;
   delay?: number;
+  steps?: number;
 };
 
 export const MorphText = ({
-  children,
-  steps = 20,
-  delay = 45,
   className,
+  delay = 45,
+  steps = 20,
+  children,
   ...props
 }: MorphTextProps) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -29,6 +29,8 @@ export const MorphText = ({
   useEffect(() => {
     if (!children) return;
 
+    const node = ref.current;
+
     step.current = 0;
     nextChildren.current = children;
 
@@ -36,7 +38,7 @@ export const MorphText = ({
       if (step.current >= steps - 1) {
         step.current = 0;
         prevChildren.current = nextChildren.current;
-        ref.current?.replaceChildren(nextChildren.current);
+        node?.replaceChildren(nextChildren.current);
         setIsFirstAnimation(false);
         clearInterval(timer);
         return;
@@ -63,7 +65,7 @@ export const MorphText = ({
     return () => {
       step.current = 0;
       prevChildren.current = isFirstAnimation ? prevChildren.current : children;
-      ref.current?.replaceChildren(
+      node?.replaceChildren(
         isFirstAnimation ? prevChildren.current : children
       );
       clearInterval(timer);

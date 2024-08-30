@@ -1,43 +1,47 @@
-import React, { forwardRef } from 'react';
-import LinkPrimitive from 'next/link';
-import { cva, VariantProps } from 'class-variance-authority';
+import type { VariantProps } from 'class-variance-authority';
 
-import { navigationHrefs, xeraseHref } from '@/config/navigation';
-import { siteConfig } from '@/config/site';
-import { cn } from '@/lib/utils';
+import React, { forwardRef } from 'react';
+
+import LinkPrimitive from 'next/link';
+
 import { buttonVariants } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { PathnameLink } from '@/components/ui/pathname-link';
+import { navigationHrefs, xeraseHref } from '@/config/navigation';
+import { siteConfig } from '@/config/site';
+import { cva } from 'class-variance-authority';
 
-const linkVariants = cva('', {
+import { cn } from '@/lib/utils';
+
+const linkVariants = cva('transition-opacity hover:opacity-90', {
+  defaultVariants: {
+    hasUnderline: false,
+    variant: 'link'
+  },
   variants: {
-    variant: {
-      link: '',
-      button:
-        'flex items-center justify-center rounded-sm border border-transparent bg-muted text-base font-bold data-[active=true]:border-[#6B6B6B] data-[active=true]:bg-[#383838]',
-    },
     hasUnderline: {
-      true: '[--offset:0] [--width:0] [background:linear-gradient(currentColor_0_0)_var(--offset,0)_100%_/var(--width,0)_2px_no-repeat] [transition:0.3s,background-position_0s_0.3s] hover:[--offset:100%] hover:[--width:100%]',
       false: '',
+      true: `[--offset:0] [--width:0] [background:linear-gradient(currentColor_0_0)_var(--offset,0)_100%_/var(--width,0)_2px_no-repeat] [transition:0.3s,background-position_0s_0.3s] hover:[--offset:100%] hover:[--width:100%]`
     },
     hasUnderlineOnActive: {
-      true: 'data-[active=true]:[--offset:100%] data-[active=true]:[--width:100%] ',
       false: '',
+      true: 'data-[active=true]:[--offset:100%] data-[active=true]:[--width:100%]'
     },
-  },
-  defaultVariants: {
-    variant: 'link',
-    hasUnderline: false,
-  },
+    variant: {
+      button:
+        `flex items-center justify-center rounded-sm border border-transparent bg-muted text-base font-bold data-[active=true]:border-[#6B6B6B] data-[active=true]:bg-[#383838]`,
+      link: ''
+    }
+  }
 });
 
 const Link = forwardRef<
   React.ElementRef<typeof LinkPrimitive>,
   React.ComponentPropsWithoutRef<typeof LinkPrimitive> &
-    VariantProps<typeof linkVariants>
+  VariantProps<typeof linkVariants>
 >(
   (
-    { variant, hasUnderline, hasUnderlineOnActive, className, ...props },
+    { className, hasUnderline, hasUnderlineOnActive, variant, ...props },
     ref
   ) => {
     return (
@@ -45,11 +49,11 @@ const Link = forwardRef<
         ref={ref}
         className={cn(
           linkVariants({
-            variant,
             hasUnderline,
             hasUnderlineOnActive,
-            className,
-          })
+            variant
+          }),
+          className
         )}
         {...props}
       />
@@ -59,13 +63,13 @@ const Link = forwardRef<
 Link.displayName = 'Link';
 
 const TemplateLink = ({
-  naming,
   altNaming,
   href,
+  naming
 }: {
-  naming: string;
   altNaming: string;
   href: string;
+  naming: string;
 }) => {
   const link = forwardRef<
     React.ElementRef<typeof Link>,
@@ -96,8 +100,8 @@ const About = TemplateLink(navigationHrefs.about);
 const Phone = forwardRef<
   React.ElementRef<typeof Link>,
   Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> &
-    Pick<Partial<React.ComponentPropsWithoutRef<typeof Link>>, 'href'>
->(({ href, className, ...props }, ref) => (
+  Pick<Partial<React.ComponentPropsWithoutRef<typeof Link>>, 'href'>
+>(({ className, href, ...props }, ref) => (
   <Link
     ref={ref}
     className={cn('underline decoration-2 underline-offset-4', className)}
@@ -112,15 +116,15 @@ Phone.displayName = 'PhoneLink';
 const Email = forwardRef<
   React.ElementRef<typeof Link>,
   Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> &
-    Pick<Partial<React.ComponentPropsWithoutRef<typeof Link>>, 'href'>
->(({ href, className, ...props }, ref) => (
+  Pick<Partial<React.ComponentPropsWithoutRef<typeof Link>>, 'href'>
+>(({ className, href, children, ...props }, ref) => (
   <Link
     ref={ref}
     className={cn('underline decoration-2 underline-offset-4', className)}
     href={href ?? `mailto:${siteConfig.email}`}
     {...props}
   >
-    {siteConfig.email}
+    {children ?? siteConfig.email}
   </Link>
 ));
 Email.displayName = 'EmailLink';
@@ -128,9 +132,9 @@ Email.displayName = 'EmailLink';
 const Xerase = forwardRef<
   React.ElementRef<typeof Link>,
   Omit<React.ComponentPropsWithoutRef<typeof Link>, 'href'> &
-    Pick<Partial<React.ComponentPropsWithoutRef<typeof Link>>, 'href'> &
-    VariantProps<typeof buttonVariants>
->(({ variant = 'ghost' as const, size, href, className, ...props }, ref) => (
+  Pick<Partial<React.ComponentPropsWithoutRef<typeof Link>>, 'href'> &
+  VariantProps<typeof buttonVariants>
+>(({ className, href, size, variant: _variant, ...props }, ref) => (
   <Link
     ref={ref}
     className={cn(
@@ -143,7 +147,7 @@ const Xerase = forwardRef<
     <span
       className={cn(
         buttonVariants({ variant: 'foreground' }),
-        'absolute inset-0 flex size-full -translate-y-[150%] flex-col items-center justify-center !p-0 text-lg transition-transform group-hover:translate-y-0 md:text-xl lg:text-2xl xl:text-4xl'
+        `absolute inset-0 flex size-full -translate-y-[150%] flex-col items-center justify-center !p-0 text-lg transition-transform group-hover:translate-y-0 lg:text-2xl md:text-xl xl:text-2xl`
       )}
     >
       Перейти
@@ -157,14 +161,14 @@ const Xerase = forwardRef<
 Xerase.displayName = 'XeraseLink';
 
 export default {
-  Link,
-  Home,
+  About,
+  Blog,
+  Calculator,
   Cases,
   Delivery,
-  Calculator,
-  Blog,
-  About,
-  Phone,
   Email,
-  Xerase,
+  Home,
+  Link,
+  Phone,
+  Xerase
 };

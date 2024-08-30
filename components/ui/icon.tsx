@@ -4,19 +4,31 @@ import { cn } from '@/lib/utils';
 
 type IconProps = React.SVGAttributes<SVGElement>;
 
-const Logo = ({ className, ...props }: IconProps) => {
+const Logo = ({ ...props }: IconProps) => {
   return (
     <svg
-      className={cn('text-foreground', className)}
-      viewBox='0 0 30 35'
       fill='none'
+      viewBox='0 0 30 35'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
       <path
-        className='fill-current'
         d='M29.9825 8.39168H14.3868C14.3776 8.39168 14.3684 8.3963 14.3684 8.40555L11.5692 18.249H7.52895L12.7689 0H6.86247L0 23.9221H15.8393C15.8393 23.9221 12.7965 27.2325 9.10093 26.9273L6.81191 34.9723C6.80731 34.9861 6.8165 35 6.83029 35H8.32413C9.64791 35 10.9395 34.57 11.9691 33.7332C12.8792 32.9934 13.5273 32.0086 13.8536 30.8758L15.8393 23.9221H17.8755C19.1165 23.9221 20.2932 23.5244 21.2815 22.7754C22.2697 22.0264 22.9776 20.9954 23.3223 19.7979L23.7681 18.2444H17.4572L18.6477 14.074C18.6523 14.0647 18.6569 14.0601 18.6661 14.0601H22.5317C25.9928 14.0601 29.0402 11.7576 29.9963 8.41017C30.0055 8.40092 29.9963 8.39168 29.9825 8.39168Z'
+        fill='currentColor'
       />
+      <defs>
+        <linearGradient
+          gradientUnits='userSpaceOnUse'
+          id='logo-icon-gradient'
+          x1='1.25874e-07'
+          x2='52.6412'
+          y1='81.218'
+          y2='71.0335'
+        >
+          <stop stopColor='#DA22FF' />
+          <stop offset='1' stopColor='#FF005C' />
+        </linearGradient>
+      </defs>
     </svg>
   );
 };
@@ -29,17 +41,17 @@ const Burger = ({ className, ...props }: IconProps) => {
   return (
     <svg
       className={cn('text-foreground', className)}
-      viewBox='0 0 30 30'
       fill='none'
+      viewBox='0 0 30 30'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
       <path
         className='stroke-current'
         d='M3.75 21.25H26.25M3.75 15H26.25M3.75 8.75H26.25'
-        strokeWidth='1'
         strokeLinecap='round'
         strokeLinejoin='round'
+        strokeWidth='1'
       />
     </svg>
   );
@@ -48,8 +60,8 @@ const Burger = ({ className, ...props }: IconProps) => {
 const Gift = ({ className, ...props }: IconProps) => {
   return (
     <svg
-      viewBox='0 0 48 48'
       fill='none'
+      viewBox='0 0 48 48'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
@@ -88,16 +100,16 @@ const Gift = ({ className, ...props }: IconProps) => {
 const Lightning = ({ className, ...props }: IconProps) => {
   return (
     <svg
-      viewBox='0 0 42 42'
       fill='none'
+      viewBox='0 0 42 42'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
       <path
         className='stroke-current'
         d='M1 25L15 1V17H25L11 41V25H1Z'
-        strokeWidth='0.793651'
         strokeLinejoin='round'
+        strokeWidth='0.793651'
       />
     </svg>
   );
@@ -106,18 +118,18 @@ const Lightning = ({ className, ...props }: IconProps) => {
 const CreditCard = ({ className, ...props }: IconProps) => {
   return (
     <svg
-      viewBox='0 0 42 42'
       fill='none'
+      viewBox='0 0 42 42'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
       <rect
         className='stroke-current'
-        x='1'
-        y='1'
-        width='40'
         height='32'
         rx='10'
+        width='40'
+        x='1'
+        y='1'
       />
       <path
         className='stroke-current'
@@ -138,8 +150,8 @@ const CreditCard = ({ className, ...props }: IconProps) => {
 const Settings = ({ className, ...props }: IconProps) => {
   return (
     <svg
-      viewBox='0 0 42 42'
       fill='none'
+      viewBox='0 0 42 42'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
@@ -162,8 +174,8 @@ const Settings = ({ className, ...props }: IconProps) => {
 const Star = ({ ...props }: IconProps) => {
   return (
     <svg
-      viewBox='0 0 20 20'
       fill='none'
+      viewBox='0 0 20 20'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
@@ -178,8 +190,8 @@ const Star = ({ ...props }: IconProps) => {
 const Leaf = ({ ...props }: IconProps) => {
   return (
     <svg
-      viewBox='0 0 50 50'
       fill='none'
+      viewBox='0 0 50 50'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
@@ -196,8 +208,8 @@ const Leaf = ({ ...props }: IconProps) => {
 const Check = ({ ...props }: IconProps) => {
   return (
     <svg
-      viewBox='0 0 50 50'
       fill='none'
+      viewBox='0 0 50 50'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
@@ -214,25 +226,25 @@ const Check = ({ ...props }: IconProps) => {
 const MouseScroll = ({ ...props }: IconProps) => {
   return (
     <svg
-      viewBox='0 0 30 42'
       fill='none'
+      viewBox='0 0 30 42'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
       <rect
         className='animate-mouse-scroll-rect stroke-current'
-        x='1'
-        y='1'
-        width='28'
         height='40'
         rx='14'
         strokeWidth='2'
+        width='28'
+        x='1'
+        y='1'
       />
       <path
         className='animate-mouse-scroll-wheel stroke-current'
         d='M15 10V14'
-        strokeWidth='2'
         strokeLinecap='round'
+        strokeWidth='2'
       />
     </svg>
   );
@@ -242,8 +254,8 @@ const XeraseLogo = ({ className, ...props }: IconProps) => {
   return (
     <svg
       className={cn('text-foreground', className)}
-      viewBox='0 0 132 130'
       fill='none'
+      viewBox='0 0 132 130'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
@@ -258,8 +270,8 @@ const XeraseLogo = ({ className, ...props }: IconProps) => {
 const ViewsEye = ({ ...props }: IconProps) => {
   return (
     <svg
-      viewBox='0 0 19 19'
       fill='none'
+      viewBox='0 0 19 19'
       xmlns='http://www.w3.org/2000/svg'
       {...props}
     >
@@ -275,19 +287,43 @@ const ViewsEye = ({ ...props }: IconProps) => {
   );
 };
 
+const ArrowRight = ({ className, ...props }: IconProps) => {
+  return (
+    <svg {...props} className={cn('text-foreground', className)} fill='none' height='24' viewBox='0 0 24 24' width='24'>
+      <path
+        d='M14.4297 5.93018L20.4997 12.0002L14.4297 18.0702'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeMiterlimit='10'
+        strokeWidth='1.5'
+      />
+      <path
+        d='M3.5 12H20.33'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeMiterlimit='10'
+        strokeWidth='1.5'
+      />
+    </svg>
+  );
+};
+
 export default {
-  Logo,
-  Play,
-  Pause,
+  ArrowRight,
   Burger,
-  Gift,
-  Lightning,
+  Check,
   CreditCard,
+  Gift,
+  Leaf,
+  Lightning,
+  Logo,
+  MouseScroll,
+  Pause,
+  Play,
   Settings,
   Star,
-  Leaf,
-  Check,
-  MouseScroll,
-  XeraseLogo,
   ViewsEye,
+  XeraseLogo
 };

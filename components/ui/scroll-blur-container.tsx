@@ -1,34 +1,36 @@
 'use client';
 
+import type { VariantProps } from 'class-variance-authority';
+import type {
+  HTMLMotionProps
+} from 'framer-motion';
+
 import React, {
   forwardRef,
-  useEffect,
+  useCallback,
   useImperativeHandle,
   useLayoutEffect,
   useRef,
-  useState,
+  useState
 } from 'react';
-import { VariantProps } from 'class-variance-authority';
+
+import { containerVariants } from '@/components/ui/container';
+import { scrollBlurContainer } from '@/config/animation';
 import {
-  animate,
-  HTMLMotionProps,
-  motion,
-  scroll,
-  transform,
+  motion
+  ,
   useMotionTemplate,
   useScroll,
-  useTransform,
+  useTransform
 } from 'framer-motion';
 
-import { scrollBlurContainer } from '@/config/animation';
 import { cn } from '@/lib/utils';
-import { containerVariants } from '@/components/ui/container';
 
 type ScrollBlurContainerProps = HTMLMotionProps<'div'> &
   VariantProps<typeof containerVariants> & {
-    scrollOptions?: Parameters<typeof useScroll>[0];
     containerClassName?: string;
     stickyClassName?: string;
+    scrollOptions?: Parameters<typeof useScroll>[0];
     stickyPadding?: string;
   };
 
@@ -38,15 +40,15 @@ const ScrollBlurContainer = forwardRef<
 >(
   (
     {
-      isHero,
-      padding,
-      gradient,
-      isAlternate,
-      scrollOptions,
+      className,
       containerClassName,
       stickyClassName,
+      gradient,
+      isAlternate,
+      isHero,
+      padding,
+      scrollOptions,
       stickyPadding,
-      className,
       ...props
     },
     ref
@@ -57,10 +59,10 @@ const ScrollBlurContainer = forwardRef<
     const [heightInitialized, setHeightInitialized] = useState(false);
 
     const { scrollYProgress } = useScroll({
-      target: targetRef,
-      offset: ['start start', 'end start'],
       layoutEffect: true,
-      ...scrollOptions,
+      offset: ['start start', 'end start'],
+      target: targetRef,
+      ...scrollOptions
     });
     const blur = useTransform(
       scrollYProgress,
@@ -72,13 +74,26 @@ const ScrollBlurContainer = forwardRef<
 
     useImperativeHandle(ref, () => targetRef.current as HTMLDivElement);
 
-    useEffect(() => {
+    const setHeight = useCallback(() => {
       if (!contentRef.current || !targetRef.current) return;
 
-      const height = contentRef.current.offsetHeight;
+      const height = contentRef.current.clientHeight;
       targetRef.current.style.setProperty('--height', `${height}px`);
       setHeightInitialized(true);
-    }, [targetRef, contentRef]);
+    }, []);
+
+    useLayoutEffect(() => {
+      if (!contentRef.current) return;
+
+      const observeElement = contentRef.current;
+
+      const observer = new ResizeObserver(() => setHeight());
+      observer.observe(observeElement);
+
+      return () => {
+        observer.unobserve(observeElement);
+      };
+    }, [setHeight]);
 
     return (
       <div
@@ -101,11 +116,11 @@ const ScrollBlurContainer = forwardRef<
             ref={contentRef}
             className={cn(
               containerVariants({
-                isHero,
-                padding,
+                className,
                 gradient,
                 isAlternate,
-                className,
+                isHero,
+                padding
               })
             )}
             style={{ filter }}

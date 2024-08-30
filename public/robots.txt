@@ -1,0 +1,11 @@
+User-agent: Yandex
+## Custom_rules ##
+Disallow: */
+
+User-agent: Googlebot
+## Custom_rules ##
+Disallow: */
+
+User-agent: *
+## Custom_rules ##
+Disallow: */

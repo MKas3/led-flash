@@ -1,6 +1,7 @@
+import type { screens } from '@/config/adaptive';
+
 import { useMemo } from 'react';
 
-import { screens } from '@/config/adaptive';
 import { useMinWidth } from '@/hooks/use-min-width';
 
 export const useDevice = () => {
@@ -12,16 +13,14 @@ export const useDevice = () => {
   const is2Xl = useMinWidth('2xl');
 
   const screenMatches = useMemo(
-    () => ({ xs: isXs, sm: isSm, md: isMd, lg: isLg, xl: isXl, '2xl': is2Xl }),
+    () => ({ '2xl': is2Xl, 'lg': isLg, 'md': isMd, 'sm': isSm, 'xl': isXl, 'xs': isXs }),
     [isXs, isSm, isMd, isLg, isXl, is2Xl]
   );
-  const screen = useMemo(
+  return useMemo(
     () =>
       Object.entries(screenMatches)
         .findLast((item) => item[1])
         ?.at(0) as keyof typeof screens | undefined,
     [screenMatches]
   );
-
-  return screen;
 };

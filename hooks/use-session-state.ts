@@ -31,6 +31,6 @@ export const useSessionState = <T>(key: string, initialState?: T) => {
 
   return [innerState, setState] satisfies [
     T | undefined,
-    (value: T | undefined) => void,
+    (value: T | undefined) => void
   ];
 };

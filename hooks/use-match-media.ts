@@ -17,7 +17,7 @@ export const useMatchMedia = (media: string) => {
     return () => {
       matchMedia.removeEventListener('change', handleMatchMediaChange);
     };
-  });
+  }, [media]);
 
   return matchMedia;
 };

@@ -2,10 +2,11 @@
 
 import React, { useContext } from 'react';
 
-import { cn } from '@/lib/utils';
+import { constructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
-import { ConstructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
+
+import { cn } from '@/lib/utils';
 
 type ConstructorPlayerProps = React.ComponentPropsWithoutRef<typeof Button>;
 
@@ -13,8 +14,8 @@ export const ConstructorPlayer = ({
   className,
   ...props
 }: ConstructorPlayerProps) => {
-  const { neonType, isPaused, setIsPaused, isPausedAnimating, setColorIndex } =
-    useContext(ConstructorContext);
+  const { isPaused, isPausedAnimating, neonType, setColorIndex, setIsPaused }
+    = useContext(constructorContext);
 
   const handleClick = () => {
     if (isPausedAnimating) return;
@@ -26,7 +27,7 @@ export const ConstructorPlayer = ({
   return (
     <Button
       className={cn(
-        'absolute inset-0 flex items-center justify-center *:size-16 *:fill-white',
+        `absolute inset-0 flex items-center justify-center *:size-16 *:fill-white`,
         neonType !== 'smart' && 'hidden',
         className
       )}

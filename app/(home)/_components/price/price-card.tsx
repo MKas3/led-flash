@@ -1,15 +1,19 @@
 'use client';
 
+import type {
+  HTMLMotionProps
+} from 'framer-motion';
+
 import React, { useContext } from 'react';
+
+import { pricesContext } from '@/app/(home)/_components/price/prices-motion-wrapper';
 import {
-  HTMLMotionProps,
   motion,
   useSpring,
-  useTransform,
+  useTransform
 } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
-import { PricesContext } from '@/app/(home)/_components/price/prices-motion-wrapper';
 
 type PricesProps = HTMLMotionProps<'div'> & {
   index: number;
@@ -17,16 +21,16 @@ type PricesProps = HTMLMotionProps<'div'> & {
 };
 
 export const PriceCard = ({
+  className,
   index,
   maxCount,
-  className,
   ...props
 }: PricesProps) => {
-  const { scrollYProgress } = useContext(PricesContext);
+  const { scrollYProgress } = useContext(pricesContext);
   const springScrollYProgress = useSpring(scrollYProgress, {
-    stiffness: 300,
     damping: 50,
     restDelta: 0.001,
+    stiffness: 300
   });
   const scale = useTransform(
     springScrollYProgress,
@@ -47,11 +51,11 @@ export const PriceCard = ({
   return (
     <motion.div
       className={cn(
-        'grid size-full auto-rows-auto grid-cols-2 gap-y-9 rounded-sm bg-muted p-6 pb-9 text-foreground md:gap-y-12 md:pb-12',
+        `grid size-full auto-rows-auto grid-cols-2 h-full gap-y-9 rounded-sm bg-muted p-6 pb-9 text-foreground md:gap-y-12 md:pb-12`,
         index !== 0 && 'absolute inset-0',
         className
       )}
-      style={{ zIndex: -index, x, scale, rotateY }}
+      style={{ rotateY, scale, x, zIndex: -index }}
       {...props}
     />
   );

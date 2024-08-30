@@ -2,19 +2,20 @@
 
 import React, { useContext, useMemo } from 'react';
 
-import {
-  defaultColorLightness,
-  defaultColorSaturation,
-} from '@/config/home/constructor';
-import { resourcesHrefs } from '@/config/resources';
-import { cn } from '@/lib/utils';
+import { constructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
 import {
   SliderRange,
   SliderRoot,
   SliderThumb,
-  SliderTrack,
+  SliderTrack
 } from '@/components/ui/slider';
-import { ConstructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
+import {
+  defaultColorLightness,
+  defaultColorSaturation
+} from '@/config/home/constructor';
+import { resourcesHrefs } from '@/config/resources';
+
+import { cn } from '@/lib/utils';
 
 type ConstructorColorSliderProps = React.ComponentPropsWithoutRef<
   typeof SliderRoot
@@ -23,17 +24,17 @@ type ConstructorColorSliderProps = React.ComponentPropsWithoutRef<
 };
 
 export const ConstructorColorSlider = ({
-  isSmart,
   className,
+  isSmart,
   ...props
 }: ConstructorColorSliderProps) => {
   const {
     colorIndex,
     constructorColors,
-    setConstructorColors,
     constructorSmartColors,
-    setConstructorSmartColors,
-  } = useContext(ConstructorContext);
+    setConstructorColors,
+    setConstructorSmartColors
+  } = useContext(constructorContext);
 
   const handleValueChange = (value: number[]) => {
     if (colorIndex === undefined) return;
@@ -46,7 +47,7 @@ export const ConstructorColorSlider = ({
       prevState.with(colorIndex, [
         value[0],
         defaultColorSaturation,
-        defaultColorLightness,
+        defaultColorLightness
       ])
     );
   };
@@ -58,20 +59,20 @@ export const ConstructorColorSlider = ({
 
   return (
     <SliderRoot
-      min={0}
+      className={cn('aria-disabled:opacity-50', className)}
+      disabled={isSmart && colorIndex === undefined ? true : undefined}
       max={360}
+      min={0}
       step={1}
       value={[colors[colorIndex ?? 0][0]]}
       onValueChange={handleValueChange}
-      className={cn('aria-disabled:opacity-50', className)}
-      disabled={isSmart && colorIndex === undefined ? true : undefined}
       {...props}
     >
       <SliderTrack>
         <SliderRange
           className='bg-[length:100%_100%] bg-center'
           style={{
-            backgroundImage: `url(${resourcesHrefs.home.colorsSlider})`,
+            backgroundImage: `url(${resourcesHrefs.home.colorsSlider})`
           }}
         />
       </SliderTrack>

@@ -8,7 +8,7 @@ export const PriceCardText = ({ className, ...props }: PriceCardTextProps) => {
   return (
     <span
       className={cn(
-        'col-span-2 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl',
+        `col-span-2 text-xs lg:text-lg md:text-base sm:text-sm xl:text-xl`,
         className
       )}
       {...props}

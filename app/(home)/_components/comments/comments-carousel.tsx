@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { cn } from '@/lib/utils';
 import {
   Carousel,
   CarouselContent,
   CarouselNext,
-  CarouselPrevious,
+  CarouselPrevious
 } from '@/components/ui/carousel';
+
+import { cn } from '@/lib/utils';
 
 type CommentsCarouselProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -18,7 +19,7 @@ export const CommentsCarousel = ({
   return (
     <Carousel
       className={cn(
-        '-mx-container-sm overflow-hidden md:-mx-container-md lg:-mx-container-lg xl:-mx-container',
+        `-mx-container-sm overflow-hidden lg:-mx-container-lg md:-mx-container-md xl:-mx-container`,
         className
       )}
       opts={{ align: 'start' }}

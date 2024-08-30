@@ -1,14 +1,14 @@
 'use client';
 
 import React from 'react';
-import AutoScroll from 'embla-carousel-auto-scroll';
-import ClassNames from 'embla-carousel-class-names';
 
+import { Carousel } from '@/components/ui/carousel';
 import {
   benefitAnimationMobileSpeed,
-  benefitAnimationSpeed,
+  benefitAnimationSpeed
 } from '@/config/home/benefits';
-import { Carousel } from '@/components/ui/carousel';
+import AutoScroll from 'embla-carousel-auto-scroll';
+import ClassNames from 'embla-carousel-class-names';
 
 type BenefitsProps = React.ComponentPropsWithoutRef<typeof Carousel>;
 
@@ -17,26 +17,27 @@ export const Benefits = ({ className, ...props }: BenefitsProps) => {
     <Carousel
       className='relative z-10'
       opts={{
-        loop: true,
-        startIndex: 1,
         breakpoints: {
           '(min-width: 768px)': {
-            startIndex: 2,
-          },
+            startIndex: 2
+          }
         },
+        loop: true,
+        skipSnaps: true,
+        startIndex: 1
       }}
       plugins={[
         AutoScroll({
-          playOnInit: true,
-          stopOnInteraction: false,
-          speed: benefitAnimationMobileSpeed,
           breakpoints: {
             '(min-width: 768px)': {
-              speed: benefitAnimationSpeed,
-            },
+              speed: benefitAnimationSpeed
+            }
           },
+          playOnInit: true,
+          speed: benefitAnimationMobileSpeed,
+          stopOnInteraction: false
         }),
-        ClassNames(),
+        ClassNames()
       ]}
       {...props}
     />

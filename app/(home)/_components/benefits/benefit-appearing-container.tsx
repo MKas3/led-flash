@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { slideFromDownVariants } from '@/config/animation';
 import { AppearingContainer } from '@/components/ui/appearing-container';
 
 type BenefitAppearingContainerProps = React.ComponentPropsWithoutRef<
@@ -12,8 +11,8 @@ export const BenefitAppearingContainer = ({
 }: BenefitAppearingContainerProps) => {
   return (
     <AppearingContainer
-      variant='child'
       transition={{ duration: 0.5, ease: 'easeInOut' }}
+      variant='child'
       {...props}
     />
   );

@@ -1,64 +1,64 @@
 'use client';
 
-import React, { createContext, useCallback, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 
 import {
   defaultColorLightness,
   defaultColorSaturation,
   predefinedColors,
-  predefinedSmartColors,
+  predefinedSmartColors
 } from '@/config/home/constructor';
 
 export type NeonType = 'colors' | 'rgb' | 'smart';
 
 type ConstructorContext = {
-  neonType: NeonType;
-  setNeonType: React.Dispatch<React.SetStateAction<NeonType>>;
-  speedModifier: number;
-  setSpeedModifier: React.Dispatch<React.SetStateAction<number>>;
-  colorIndex?: number;
-  setColorIndex: React.Dispatch<React.SetStateAction<number | undefined>>;
-  lastColorIndex: number;
-  resetColorIndex: () => void;
   isPaused: boolean;
-  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
   isPausedAnimating: boolean;
-  setIsPausedAnimating: React.Dispatch<React.SetStateAction<boolean>>;
   isSpeedModifierAnimating: boolean;
-  setIsSpeedModifierAnimating: React.Dispatch<React.SetStateAction<boolean>>;
   constructorColors: [number, number, number][];
+  constructorSmartColors: [number, number, number][];
+  lastColorIndex: number;
+  neonType: NeonType;
+  resetColorIndex: () => void;
+  setColorIndex: React.Dispatch<React.SetStateAction<number | undefined>>;
   setConstructorColors: React.Dispatch<
     React.SetStateAction<[number, number, number][]>
   >;
-  constructorSmartColors: [number, number, number][];
   setConstructorSmartColors: React.Dispatch<
     React.SetStateAction<[number, number, number][]>
   >;
+  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsPausedAnimating: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSpeedModifierAnimating: React.Dispatch<React.SetStateAction<boolean>>;
+  setNeonType: React.Dispatch<React.SetStateAction<NeonType>>;
+  setSpeedModifier: React.Dispatch<React.SetStateAction<number>>;
+  speedModifier: number;
+  colorIndex?: number;
 };
 
-export const ConstructorContext = createContext<ConstructorContext>({
-  neonType: 'smart',
-  setNeonType: () => {},
-  speedModifier: 1,
-  setSpeedModifier: () => {},
+export const constructorContext = createContext<ConstructorContext>({
   colorIndex: undefined,
-  setColorIndex: () => {},
-  lastColorIndex: 0,
-  resetColorIndex: () => {},
-  isPaused: false,
-  setIsPaused: () => {},
-  isPausedAnimating: false,
-  setIsPausedAnimating: () => {},
-  isSpeedModifierAnimating: false,
-  setIsSpeedModifierAnimating: () => {},
   constructorColors: predefinedColors,
-  setConstructorColors: () => {},
   constructorSmartColors: predefinedSmartColors,
+  isPaused: false,
+  isPausedAnimating: false,
+  isSpeedModifierAnimating: false,
+  lastColorIndex: 0,
+  neonType: 'smart',
+  resetColorIndex: () => {},
+  setColorIndex: () => {},
+  setConstructorColors: () => {},
   setConstructorSmartColors: () => {},
+  setIsPaused: () => {},
+  setIsPausedAnimating: () => {},
+  setIsSpeedModifierAnimating: () => {},
+  setNeonType: () => {},
+  setSpeedModifier: () => {},
+  speedModifier: 1
 });
 
 export const ConstructorProvider = ({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) => {
@@ -71,8 +71,8 @@ export const ConstructorProvider = ({
   const [colorIndex, setColorIndex] = useState<number | undefined>();
   const [isPaused, setIsPaused] = useState(false);
   const [isPausedAnimating, setIsPausedAnimating] = useState(false);
-  const [isSpeedModifierAnimating, setIsSpeedModifierAnimating] =
-    useState(false);
+  const [isSpeedModifierAnimating, setIsSpeedModifierAnimating]
+    = useState(false);
 
   const [lastColorIndex, setLastColorIndex] = useState<number>(0);
 
@@ -100,10 +100,10 @@ export const ConstructorProvider = ({
       neonType === 'colors'
         ? predefinedColors
         : predefinedColors.with(0, [
-            0,
-            defaultColorSaturation,
-            defaultColorLightness,
-          ])
+          0,
+          defaultColorSaturation,
+          defaultColorLightness
+        ])
     );
     setIsPausedAnimating(false);
     setIsSpeedModifierAnimating(false);
@@ -111,30 +111,43 @@ export const ConstructorProvider = ({
     setLastColorIndex(0);
   }, [neonType]);
 
+  const contextValue = useMemo(() => ({
+    colorIndex,
+    constructorColors,
+    constructorSmartColors,
+    isPaused,
+    isPausedAnimating,
+    isSpeedModifierAnimating,
+    lastColorIndex,
+    neonType,
+    resetColorIndex,
+    setColorIndex,
+    setConstructorColors,
+    setConstructorSmartColors,
+    setIsPaused,
+    setIsPausedAnimating,
+    setIsSpeedModifierAnimating,
+    setNeonType,
+    setSpeedModifier,
+    speedModifier
+  }), [
+    colorIndex,
+    constructorColors,
+    constructorSmartColors,
+    isPaused,
+    isPausedAnimating,
+    isSpeedModifierAnimating,
+    lastColorIndex,
+    neonType,
+    resetColorIndex,
+    speedModifier
+  ]);
+
   return (
-    <ConstructorContext.Provider
-      value={{
-        neonType,
-        setNeonType,
-        speedModifier,
-        setSpeedModifier,
-        colorIndex,
-        setColorIndex,
-        lastColorIndex,
-        resetColorIndex,
-        isPaused,
-        setIsPaused,
-        isPausedAnimating,
-        setIsPausedAnimating,
-        isSpeedModifierAnimating,
-        setIsSpeedModifierAnimating,
-        constructorColors,
-        setConstructorColors,
-        constructorSmartColors,
-        setConstructorSmartColors,
-      }}
+    <constructorContext.Provider
+      value={contextValue}
     >
       {children}
-    </ConstructorContext.Provider>
+    </constructorContext.Provider>
   );
 };

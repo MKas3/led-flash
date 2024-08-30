@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useContext } from 'react';
-import { motion, useMotionTemplate, useTransform } from 'framer-motion';
+
+import { pricesContext } from '@/app/(home)/_components/price/prices-motion-wrapper';
+import { motion, useTransform } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
-import { PricesContext } from '@/app/(home)/_components/price/prices-motion-wrapper';
 
 type PriceCardDotsProps = React.HTMLAttributes<HTMLDivElement> & {
   index: number;
@@ -12,12 +13,12 @@ type PriceCardDotsProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 export const PriceCardDots = ({
+  className,
   index,
   maxCount,
-  className,
   ...props
 }: PriceCardDotsProps) => {
-  const { scrollYProgress } = useContext(PricesContext);
+  const { scrollYProgress } = useContext(pricesContext);
   const scale = useTransform(
     scrollYProgress,
     [(1 / maxCount) * index, (1 / maxCount) * (index + 1)],

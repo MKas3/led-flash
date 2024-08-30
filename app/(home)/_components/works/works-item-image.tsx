@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
@@ -12,11 +13,11 @@ export const WorksItemImage = ({
   return (
     <Image
       className={cn(
-        'aspect-[3/4] size-full rounded-xl md:rounded-2xl lg:rounded-3xl',
+        `aspect-[3/4] size-full rounded-xl lg:rounded-3xl md:rounded-2xl`,
         className
       )}
-      width={406}
       height={760}
+      width={406}
       {...props}
     />
   );

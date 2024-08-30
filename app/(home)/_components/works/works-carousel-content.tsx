@@ -1,14 +1,18 @@
 'use client';
 
+import type {
+  CarouselApi
+} from '@/components/ui/carousel';
+
 import React, { useEffect } from 'react';
 
-import { visibleSlidesCount } from '@/config/home/works';
-import { cn } from '@/lib/utils';
 import {
-  CarouselApi,
   CarouselContent,
-  useCarousel,
+  useCarousel
 } from '@/components/ui/carousel';
+import { visibleSlidesCount } from '@/config/home/works';
+
+import { cn } from '@/lib/utils';
 
 type WorksCarouselContentProps = React.ComponentPropsWithoutRef<
   typeof CarouselContent
@@ -58,11 +62,11 @@ export const WorksCarouselContent = ({
 
   return (
     <CarouselContent
+      className='ml-0'
       wrapperClassName={cn(
-        'overflow-visible [perspective:1000px]',
+        `overflow-visible [perspective:1000px]`,
         wrapperClassName
       )}
-      className='ml-0'
       {...props}
     />
   );

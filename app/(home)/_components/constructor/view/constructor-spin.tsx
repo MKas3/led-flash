@@ -1,20 +1,24 @@
 'use client';
 
-import React, { useContext, useEffect, useState } from 'react';
-import {
+import type {
   AnimationPlaybackControls,
-  HTMLMotionProps,
-  motion,
-  useAnimate,
-  useSpring,
+  HTMLMotionProps
 } from 'framer-motion';
 
+import React, { useContext, useEffect, useState } from 'react';
+
+import { constructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
 import {
   defaultSpinDuration,
-  defaultSpinToStartDuration,
+  defaultSpinToStartDuration
 } from '@/config/home/constructor';
+import {
+  motion,
+  useAnimate,
+  useSpring
+} from 'framer-motion';
+
 import { cn } from '@/lib/utils';
-import { ConstructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
 
 type ConstructorSpinProps = HTMLMotionProps<'div'>;
 
@@ -22,16 +26,16 @@ export const ConstructorSpin = ({
   className,
   ...props
 }: ConstructorSpinProps) => {
-  const { isPaused, setIsPausedAnimating, speedModifier } =
-    useContext(ConstructorContext);
+  const { isPaused, setIsPausedAnimating, speedModifier }
+    = useContext(constructorContext);
   const [scope, animate] = useAnimate();
   const [spinAnimation, setSpinAnimation] = useState<
     AnimationPlaybackControls | undefined
   >();
 
   const springSpeedModifier = useSpring(speedModifier, {
-    stiffness: 300,
     damping: 80,
+    stiffness: 300
   });
 
   useEffect(() => {
@@ -42,8 +46,8 @@ export const ConstructorSpin = ({
           { rotate: [0, 360] },
           {
             duration: defaultSpinDuration,
-            repeat: Infinity,
             ease: 'linear',
+            repeat: Infinity
           }
         )
       );
@@ -76,7 +80,7 @@ export const ConstructorSpin = ({
     <motion.div
       ref={scope}
       className={cn(
-        'pointer-events-none aspect-square w-[80vw] shrink-0 md:w-full',
+        `pointer-events-none aspect-square w-[80vw] shrink-0 md:w-full`,
         className
       )}
       {...props}

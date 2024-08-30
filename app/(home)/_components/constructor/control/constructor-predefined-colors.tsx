@@ -1,21 +1,19 @@
 'use client';
 
 import React, { useContext, useEffect } from 'react';
-import { Check } from 'lucide-react';
 
-import {
-  predefinedColors,
-  predefinedSmartColors,
-} from '@/config/home/constructor';
-import { cn, toHSLString } from '@/lib/utils';
+import { constructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
+import { ConstructorTitle } from '@/app/(home)/_components/constructor/control/constructor-title';
 import { Label } from '@/components/ui/label';
 import {
   RadioGroup,
-  RadioGroupIndicator,
-  RadioGroupItem,
+  RadioGroupItem
 } from '@/components/ui/radio-group';
-import { ConstructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
-import { ConstructorTitle } from '@/app/(home)/_components/constructor/control/constructor-title';
+import {
+  predefinedColors
+} from '@/config/home/constructor';
+
+import { cn, toHSLString } from '@/lib/utils';
 
 type ConstructorPredefinedColorsProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -23,7 +21,7 @@ export const ConstructorPredefinedColors = ({
   className,
   ...props
 }: ConstructorPredefinedColorsProps) => {
-  const { colorIndex, setColorIndex } = useContext(ConstructorContext);
+  const { colorIndex, setColorIndex } = useContext(constructorContext);
 
   const handleValueChange = (value: string) => {
     setColorIndex(+value);
@@ -35,7 +33,7 @@ export const ConstructorPredefinedColors = ({
 
   return (
     <div
-      className={cn('flex w-full flex-col gap-y-3 lg:gap-y-6', className)}
+      className={cn(`flex w-full flex-col gap-y-3 lg:gap-y-6`, className)}
       {...props}
     >
       <ConstructorTitle>Выберите необходимый цвет для неона:</ConstructorTitle>

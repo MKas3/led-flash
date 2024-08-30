@@ -1,25 +1,28 @@
 'use client';
 
+import type { HTMLMotionProps } from 'framer-motion';
+
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { animate, HTMLMotionProps, motion } from 'framer-motion';
+
+import { pricesContext } from '@/app/(home)/_components/price/prices-motion-wrapper';
+import { animate, motion } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
-import { PricesContext } from '@/app/(home)/_components/price/prices-motion-wrapper';
 
 type PriceProps = HTMLMotionProps<'span'> & {
-  prices: number[];
   discountedPrices: number[];
+  prices: number[];
 };
 
 export const Price = ({
-  prices,
-  discountedPrices,
   className,
+  discountedPrices,
+  prices,
   ...props
 }: PriceProps) => {
   const priceRef = useRef<HTMLSpanElement>(null);
   const discountedPriceRef = useRef<HTMLSpanElement>(null);
-  const { scrollYProgress } = useContext(PricesContext);
+  const { scrollYProgress } = useContext(pricesContext);
   const [currentPrice, setCurrentPrice] = useState(prices[0]);
   const [currentDiscountedPrice, setCurrentDiscountedPrice] = useState(
     discountedPrices[0]
@@ -33,7 +36,7 @@ export const Price = ({
     const processedPrices = [prices[0], ...prices];
     const processedDiscountedPrices = [
       discountedPrices[0],
-      ...discountedPrices,
+      ...discountedPrices
     ];
     const step = prices.length;
 
@@ -49,17 +52,17 @@ export const Price = ({
     const animation = animate(currentPrice, finalPrice, {
       duration: 0.5,
       ease: 'easeInOut',
-      onUpdate: (latest) => {
-        if (!priceRef.current) return;
-
-        priceRef.current.textContent = `${latest.toFixed(0)} руб`;
-      },
       onComplete: () => {
         setCurrentPrice(finalPrice);
       },
       onStop: () => {
         setCurrentPrice(finalPrice);
       },
+      onUpdate: (latest) => {
+        if (!priceRef.current) return;
+
+        priceRef.current.textContent = `${latest.toFixed(0)} руб`;
+      }
     });
 
     const discountedAnimation = animate(
@@ -68,17 +71,17 @@ export const Price = ({
       {
         duration: 0.5,
         ease: 'easeInOut',
-        onUpdate: (latest) => {
-          if (!discountedPriceRef.current) return;
-
-          discountedPriceRef.current.textContent = `${latest.toFixed(0)} руб`;
-        },
         onComplete: () => {
           setCurrentDiscountedPrice(finalDiscountedPrice);
         },
         onStop: () => {
           setCurrentDiscountedPrice(finalDiscountedPrice);
         },
+        onUpdate: (latest) => {
+          if (!discountedPriceRef.current) return;
+
+          discountedPriceRef.current.textContent = `${latest.toFixed(0)} руб`;
+        }
       }
     );
 
@@ -91,7 +94,7 @@ export const Price = ({
     currentPrice,
     currentDiscountedPrice,
     finalPrice,
-    finalDiscountedPrice,
+    finalDiscountedPrice
   ]);
 
   return (
@@ -103,7 +106,7 @@ export const Price = ({
       <motion.span
         ref={discountedPriceRef}
         className={cn(
-          'whitespace-nowrap text-[36px] font-bold md:text-[64px] xl:text-[80px] 2xl:text-[128px]',
+          `whitespace-nowrap text-[36px] font-bold 2xl:text-[128px] md:text-[64px] xl:text-[80px]`,
           className
         )}
         {...props}

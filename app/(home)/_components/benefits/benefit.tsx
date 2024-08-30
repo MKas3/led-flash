@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { cn } from '@/lib/utils';
-import { CarouselItem } from '@/components/ui/carousel';
 import { BenefitAppearingContainer } from '@/app/(home)/_components/benefits/benefit-appearing-container';
+import { CarouselItem } from '@/components/ui/carousel';
+
+import { cn } from '@/lib/utils';
 
 type BenefitProps = React.HTMLAttributes<HTMLSpanElement>;
 
@@ -10,7 +11,7 @@ export const Benefit = ({ className, children, ...props }: BenefitProps) => {
   return (
     <BenefitAppearingContainer
       className={cn(
-        'group h-full shrink-0 grow-0 basis-[65%] bg-transparent pl-8 md:basis-1/2 md:pl-12 lg:basis-1/2 lg:pl-20 xl:basis-1/3 2xl:basis-1/4 [&.is-snapped]:z-10',
+        `group h-full shrink-0 grow-0 basis-[65%] bg-transparent pl-8 [&.is-snapped]:z-10 2xl:basis-1/4 lg:basis-1/2 lg:pl-20 md:basis-1/2 md:pl-12 xl:basis-1/3`,
         className
       )}
       padding='none'

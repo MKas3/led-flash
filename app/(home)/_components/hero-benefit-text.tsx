@@ -1,15 +1,17 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Timeout } from 'react-number-format/types/types';
+import type { Timeout } from 'react-number-format/types/types';
 
+import React, { useEffect, useState } from 'react';
+
+import { TypewriterText } from '@/components/ui/typewriter-text';
 import {
   heroBenefits,
   heroBenefitsDelay,
-  heroBenefitsInterval,
+  heroBenefitsInterval
 } from '@/config/home/benefits';
+
 import { cn } from '@/lib/utils';
-import { TypewriterText } from '@/components/ui/typewriter-text';
 
 type HeroBenefitTextProps = React.ComponentPropsWithoutRef<
   typeof TypewriterText
@@ -24,7 +26,7 @@ export const HeroBenefitText = ({
   >();
 
   useEffect(() => {
-    let timer: Timeout | undefined = undefined;
+    let timer: Timeout | undefined;
 
     const timeout = setTimeout(() => {
       setCurrentBenefitIndex(0);
@@ -45,7 +47,7 @@ export const HeroBenefitText = ({
   return (
     <TypewriterText
       className={cn(
-        'z-10 my-auto h-[3.25em] whitespace-pre-line font-bold lg:text-xl 2xl:text-3xl',
+        `z-10 my-auto h-[3.25em] whitespace-pre-line font-bold 2xl:text-3xl lg:text-xl`,
         className
       )}
       charCount={1}

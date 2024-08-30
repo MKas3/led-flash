@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { neonTypes, neonTypesNamings } from '@/config/home/constructor';
-import { TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ConstructorTitle } from '@/app/(home)/_components/constructor/control/constructor-title';
+import { TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { neonTypes, neonTypesNamings } from '@/config/home/constructor';
 
 type ConstructorNeonTypeProps = React.ComponentPropsWithoutRef<typeof TabsList>;
 
@@ -15,7 +15,7 @@ export const ConstructorNeonType = ({
       <ConstructorTitle>Выберите тип неона:</ConstructorTitle>
       <TabsList className='w-full' {...props}>
         {neonTypes.map((item, index) => (
-          <TabsTrigger className='w-full' key={index} value={item}>
+          <TabsTrigger key={index} className='w-full' value={item}>
             {neonTypesNamings[index]}
           </TabsTrigger>
         ))}

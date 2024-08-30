@@ -2,19 +2,20 @@
 
 import React, { useContext } from 'react';
 
+import { constructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
+
 import { cn } from '@/lib/utils';
-import { ConstructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
 
 type ConstructorSelectedColorProps = React.HTMLAttributes<HTMLDivElement> & {
   colors: string[];
 };
 
 export const ConstructorSelectedColor = ({
-  colors,
   className,
+  colors,
   ...props
 }: ConstructorSelectedColorProps) => {
-  const { colorIndex } = useContext(ConstructorContext);
+  const { colorIndex } = useContext(constructorContext);
 
   return (
     <div

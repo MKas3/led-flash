@@ -2,11 +2,12 @@
 
 import React, { useContext } from 'react';
 
-import { defaultSpeedModifiers } from '@/config/home/constructor';
-import { cn } from '@/lib/utils';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ConstructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
+import { constructorContext } from '@/app/(home)/_components/constructor/constructor-provider';
 import { ConstructorTitle } from '@/app/(home)/_components/constructor/control/constructor-title';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { defaultSpeedModifiers } from '@/config/home/constructor';
+
+import { cn } from '@/lib/utils';
 
 type ConstructorSpeedProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -14,8 +15,8 @@ export const ConstructorSpeed = ({
   className,
   ...props
 }: ConstructorSpeedProps) => {
-  const { speedModifier, setSpeedModifier, isSpeedModifierAnimating } =
-    useContext(ConstructorContext);
+  const { isSpeedModifierAnimating, setSpeedModifier, speedModifier }
+    = useContext(constructorContext);
 
   const handleValueChange = (value: string) => {
     setSpeedModifier(+value);
@@ -23,7 +24,7 @@ export const ConstructorSpeed = ({
 
   return (
     <div
-      className={cn('flex flex-col gap-y-3 lg:gap-y-6', className)}
+      className={cn(`flex flex-col gap-y-3 lg:gap-y-6`, className)}
       {...props}
     >
       <ConstructorTitle>Скорость ленты:</ConstructorTitle>
@@ -32,11 +33,12 @@ export const ConstructorSpeed = ({
           {defaultSpeedModifiers.map((item, index) => (
             <TabsTrigger
               key={index}
+              aria-controls={undefined}
               disabled={isSpeedModifierAnimating ? true : undefined}
               value={item.toString()}
-              aria-controls={undefined}
             >
-              {item}x
+              {item}
+              x
             </TabsTrigger>
           ))}
         </TabsList>

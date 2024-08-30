@@ -11,7 +11,7 @@ export const WorksItemCompany = ({
   return (
     <span
       className={cn(
-        'w-2/3 text-xl font-bold uppercase md:text-2xl lg:text-3xl xl:text-4xl',
+        `w-2/3 text-xl font-bold uppercase lg:text-3xl md:text-2xl xl:text-4xl`,
         className
       )}
       {...props}

@@ -10,7 +10,7 @@ export const ConstructorTitle = ({
 }: ConstructorTitleProps) => {
   return (
     <span
-      className={cn('text-xs md:text-base lg:text-xl xl:text-2xl', className)}
+      className={cn(`text-xs lg:text-xl md:text-base xl:text-2xl`, className)}
       {...props}
     />
   );

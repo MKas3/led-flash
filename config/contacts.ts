@@ -4,21 +4,21 @@ export const contacts = [
   {
     altNaming: 'phone',
     naming: 'Телефон',
-    value: siteConfig.altPhone,
+    value: siteConfig.altPhone
   },
   {
     altNaming: 'email',
     naming: 'E-mail',
-    value: siteConfig.email,
+    value: siteConfig.email
   },
   {
     altNaming: 'address',
     naming: 'Адрес для самовывоза',
-    value: siteConfig.address,
+    value: siteConfig.address
   },
   {
     altNaming: 'work-time',
     naming: 'Режим работы',
-    value: siteConfig.workTime,
-  },
+    value: siteConfig.workTime
+  }
 ] as const;

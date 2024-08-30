@@ -1,39 +1,39 @@
-import { Variants } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 
 export const appearingContainer = {
-  defaultDuration: 1,
   childDuration: 0.5,
-  staggerChildren: 0.5,
+  defaultDuration: 1,
+  staggerChildren: 0.5
 };
 
 export const scrollBlurContainer = {
   maxBlur: 15,
-  minScale: 0.85,
+  minScale: 0.85
 };
 
 export const slideFromDownVariants: Variants = {
-  initial: {
-    y: '300%',
-  },
   animate: {
-    y: '0%',
+    y: '0%'
   },
+  initial: {
+    y: '300%'
+  }
 };
 
 export const splashAnimation = {
-  stepInterval: 100,
+  from: {
+    end: 160,
+    nonInteractive: 100,
+    opacity: 90,
+    renderChildren: 140
+  },
   step: {
     default: 8,
-    first: 6,
+    first: 6
   },
+  stepInterval: 100,
   wordsStagger: {
     default: 0.25,
-    first: 0.5,
-  },
-  from: {
-    opacity: 90,
-    nonInteractive: 100,
-    renderChildren: 140,
-    end: 200,
-  },
+    first: 0.5
+  }
 };

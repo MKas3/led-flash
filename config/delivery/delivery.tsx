@@ -2,8 +2,6 @@ import { TypewriterText } from '@/components/ui/typewriter-text';
 
 export const deliveryQuestions = [
   {
-    value: 'delivery-methods',
-    question: 'Какие способы доставки есть?',
     answer: (
       <>
         <p>
@@ -23,41 +21,37 @@ export const deliveryQuestions = [
         </p>
       </>
     ),
+    question: 'Какие способы доставки есть?',
+    value: 'delivery-methods'
   },
   {
-    value: 'how-much-cost',
+    answer: (
+      <p>
+        <TypewriterText>
+          Вывески мы отправляем курьерской службой Яндекс и СДЭК. Курьерская
+          служба доступна по Санкт-Петербургу и Ленинградской области. СДЭК
+          доставляет в любой уголок России. Благодаря ей любой житель
+          Российской Федерации сможет получить вывески от Neon Bar.
+        </TypewriterText>
+      </p>
+    ),
     question: 'Сколько стоит доставка?',
-    answer: (
-      <>
-        <p>
-          <TypewriterText>
-            Вывески мы отправляем курьерской службой Яндекс и СДЭК. Курьерская
-            служба доступна по Санкт-Петербургу и Ленинградской области. СДЭК
-            доставляет в любой уголок России. Благодаря ей любой житель
-            Российской Федерации сможет получить вывески от Neon Bar.
-          </TypewriterText>
-        </p>
-      </>
-    ),
+    value: 'how-much-cost'
   },
   {
-    value: 'production-time',
+    answer: (
+      <p>
+        <TypewriterText>
+          Каждый заказ доставляется с разным промежутком времени в зависимости
+          от удаленности вашего города от Санкт-Петербурга. Сроки доставки вы
+          можете увидеть при оформлении заказа, указав Ваш населенный пункт.
+        </TypewriterText>
+      </p>
+    ),
     question: 'Какие сроки изготовления заказа?',
-    answer: (
-      <>
-        <p>
-          <TypewriterText>
-            Каждый заказ доставляется с разным промежутком времени в зависимости
-            от удаленности вашего города от Санкт-Петербурга. Сроки доставки вы
-            можете увидеть при оформлении заказа, указав Ваш населенный пункт.
-          </TypewriterText>
-        </p>
-      </>
-    ),
+    value: 'production-time'
   },
   {
-    value: 'is-there-pickup',
-    question: 'Есть ли самовывоз?',
     answer: (
       <>
         <p>
@@ -85,10 +79,10 @@ export const deliveryQuestions = [
         </p>
       </>
     ),
+    question: 'Есть ли самовывоз?',
+    value: 'is-there-pickup'
   },
   {
-    value: 'how-track-order',
-    question: 'Как отследить заказ?',
     answer: (
       <>
         <p>
@@ -108,19 +102,19 @@ export const deliveryQuestions = [
         </p>
       </>
     ),
+    question: 'Как отследить заказ?',
+    value: 'how-track-order'
   },
   {
-    value: 'warranties',
-    question: 'Какие гарантии на наши услуги?',
     answer: (
-      <>
-        <p>
-          <TypewriterText>
-            Вывески мы отправляем курьерской службой Яндекс и СДЭК. Курьерская
-            служба доступна по Санкт-Петербургу и Ленинградской области.
-          </TypewriterText>
-        </p>
-      </>
+      <p>
+        <TypewriterText>
+          Вывески мы отправляем курьерской службой Яндекс и СДЭК. Курьерская
+          служба доступна по Санкт-Петербургу и Ленинградской области.
+        </TypewriterText>
+      </p>
     ),
-  },
+    question: 'Какие гарантии на наши услуги?',
+    value: 'warranties'
+  }
 ];

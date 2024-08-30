@@ -13,7 +13,7 @@ export const predefinedSmartColors = [
   [150, defaultColorSaturation, defaultColorLightness],
   [200, defaultColorSaturation, defaultColorLightness],
   [250, defaultColorSaturation, defaultColorLightness],
-  [300, defaultColorSaturation, defaultColorLightness],
+  [300, defaultColorSaturation, defaultColorLightness]
 ] satisfies [number, number, number][];
 
 export const neonTypesNamings = ['Colors', 'RGB', 'Smart'];
@@ -32,7 +32,7 @@ export const predefinedColors = [
   [205, 100, 31],
   [197, 73, 48],
   [183, 100, 37],
-  [98, 51, 45],
+  [98, 51, 45]
 ] satisfies [number, number, number][];
 
 export const predefinedColorsNamings = [
@@ -47,7 +47,7 @@ export const predefinedColorsNamings = [
   'синий',
   'голубой',
   'бирюзовый',
-  'зеленый',
+  'зеленый'
 ];
 
 export const defaultSpeedModifiers = [0.5, 0.75, 1, 2, 3, 5];

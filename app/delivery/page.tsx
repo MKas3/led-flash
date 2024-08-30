@@ -1,36 +1,44 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
-import { deliveryQuestions } from '@/config/delivery/delivery';
+import { Contacts } from '@/components/shared/contacts';
 import { Container } from '@/components/ui/container';
 import { GradientText } from '@/components/ui/gradient-text';
 import { Heading } from '@/components/ui/heading';
 import { Main } from '@/components/ui/main';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Contacts } from '@/components/shared/contacts';
+import { deliveryQuestions } from '@/config/delivery/delivery';
 
 export const metadata: Metadata = {
-  title: 'Доставка',
+  title: 'Доставка'
 };
 
 export default function DeliveryPage() {
   return (
     <Main>
       <Container className='mb-36' isHero>
-        <Heading className='mb-6 mt-24 md:mb-12' as='h1' hasUnderline>
-          Какие способы <GradientText>доставки</GradientText> есть?
+        <Heading
+          className='mb-6 mt-24 md:mb-12'
+          as='h1'
+          hasUnderline
+        >
+          Какие способы
+          {' '}
+          <GradientText>доставки</GradientText>
+          {' '}
+          есть?
         </Heading>
         <Tabs
+          className='mb-12 grid gap-x-24 gap-y-9 md:mb-24 lg:grid-cols-[min-content_auto]'
           defaultValue={deliveryQuestions[0].value}
-          className='mb-12 grid gap-x-7 gap-y-9 md:mb-24 lg:grid-cols-2'
         >
           <TabsList
-            className='flex-col items-start justify-start gap-y-1.5 rounded-none bg-transparent md:gap-y-4 xl:gap-y-6'
+            className='flex-col items-start justify-start rounded-none bg-transparent'
             variant='ghost'
           >
             {deliveryQuestions.map((item, index) => (
               <TabsTrigger
                 key={index}
-                className='justify-start !px-0 text-sm font-bold opacity-100 transition-opacity before:mr-[0.5em] before:block before:size-[0.5em] before:rounded-full before:bg-foreground before:transition-all data-[state=active]:bg-transparent data-[state=inactive]:opacity-80 data-[state=active]:shadow-none data-[state=inactive]:before:mr-0 data-[state=inactive]:before:size-0 sm:text-sm md:text-lg lg:text-base'
+                className='justify-start p-1 !px-0 text-sm font-bold opacity-100 transition-opacity before:mr-[0.5em] before:block before:size-[0.5em] before:rounded-full before:bg-foreground before:transition-all data-[state=active]:bg-transparent data-[state=inactive]:opacity-80 data-[state=active]:shadow-none data-[state=inactive]:before:mr-0 data-[state=inactive]:before:size-0 sm:text-sm md:p-2 md:text-lg lg:p-3 lg:text-base xl:text-lg 2xl:text-xl'
                 value={item.value}
               >
                 {item.question}
@@ -39,9 +47,9 @@ export default function DeliveryPage() {
           </TabsList>
           {deliveryQuestions.map((item, index) => (
             <TabsContent
-              tabIndex={-1}
-              className='space-y-[1em] px-1 text-sm !leading-loose md:text-base lg:pl-0'
               key={index}
+              className='space-y-[1em] px-1 text-sm !leading-loose md:text-base lg:pl-0 lg:text-lg'
+              tabIndex={-1}
               value={item.value}
             >
               {item.answer}
@@ -51,7 +59,9 @@ export default function DeliveryPage() {
       </Container>
       <Container>
         <Heading className='mb-12' as='h2' hasUnderline>
-          Как с нами <GradientText>связаться?</GradientText>
+          Как с нами
+          {' '}
+          <GradientText>связаться?</GradientText>
         </Heading>
         <Contacts />
       </Container>

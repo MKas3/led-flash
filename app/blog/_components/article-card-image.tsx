@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
@@ -12,8 +13,8 @@ export const ArticleCardImage = ({
   return (
     <Image
       className={cn('size-full object-cover', className)}
-      width={392}
       height={220}
+      width={392}
       {...props}
     />
   );

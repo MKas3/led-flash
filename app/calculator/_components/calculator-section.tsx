@@ -11,7 +11,7 @@ export const CalculatorSection = ({
   return (
     <div
       className={cn(
-        'flex w-full shrink-0 flex-col items-center gap-y-4 text-sm md:items-stretch md:text-base lg:text-lg xl:text-xl',
+        `flex w-full shrink-0 flex-col items-center gap-y-4 text-sm lg:text-lg md:items-stretch md:text-base xl:text-xl`,
         className
       )}
       {...props}

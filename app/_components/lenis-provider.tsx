@@ -1,19 +1,38 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import Lenis from '@studio-freight/lenis';
+import React, { useLayoutEffect } from 'react';
 
-export const LenisProvider = ({ children }: { children?: React.ReactNode }) => {
-  useEffect(() => {
-    const lenis = new Lenis();
+import { usePathname } from 'next/navigation';
 
-    const raf = (time: number) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
+import { ReactLenis, useLenis } from 'lenis/react';
 
-    requestAnimationFrame(raf);
-  }, []);
+type LenisProviderProps = React.ComponentPropsWithoutRef<typeof ReactLenis>;
 
-  return <>{children}</>;
+const InternalLenisProvider = ({ children }: { children?: React.ReactNode }) => {
+  const lenis = useLenis();
+  const pathname = usePathname();
+
+  useLayoutEffect(() => {
+    if (!lenis) return;
+
+    lenis.scrollTo(0, { immediate: true });
+  }, [lenis, pathname]);
+
+  return (
+    <>{children}</>
+  );
+};
+
+const InternalLenisProviderWrapper = ({ ...props }: LenisProviderProps) => {
+  return (
+    <ReactLenis {...props} />
+  );
+};
+
+export const LenisProvider = ({ children, ...props }: LenisProviderProps) => {
+  return (
+    <InternalLenisProviderWrapper {...props}>
+      <InternalLenisProvider>{children}</InternalLenisProvider>
+    </InternalLenisProviderWrapper>
+  );
 };

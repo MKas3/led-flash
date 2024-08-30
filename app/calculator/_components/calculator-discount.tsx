@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 
-import { discounts, discountsFromPrice } from '@/config/calculator/price';
-import { cn } from '@/lib/utils';
+import { calculatorContext } from '@/app/calculator/_components/calculator-provider';
 import { Progress } from '@/components/ui/progress';
-import { CalculatorContext } from '@/app/calculator/_components/calculator-provider';
+import { discounts, discountsFromPrice } from '@/config/calculator/price';
+
+import { cn } from '@/lib/utils';
 
 type CalculatorDiscountProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -13,8 +14,8 @@ export const CalculatorDiscount = ({
   className,
   ...props
 }: CalculatorDiscountProps) => {
-  const { initialized, discount, setDiscount, fullPrice } =
-    useContext(CalculatorContext);
+  const { discount, fullPrice, initialized, setDiscount }
+    = useContext(calculatorContext);
   const nextDiscountIndex = useMemo(
     () => discounts.findIndex((item) => item === discount) + 1,
     [discount]
@@ -45,31 +46,32 @@ export const CalculatorDiscount = ({
   return (
     <div
       className={cn(
-        '!grid grid-cols-3 grid-rows-2 gap-x-2 gap-y-4 font-poppins text-base md:text-lg lg:text-xl xl:text-2xl',
+        `!grid grid-cols-3 grid-rows-2 gap-x-2 gap-y-4 font-poppins text-base lg:text-xl md:text-lg xl:text-2xl`,
         className
       )}
       {...props}
     >
       <div className='relative col-span-2'>
         <Progress
+          aria-labelledby='discount-progressbar'
           value={
             initialized
               ? (fullPrice / (fullPrice + leftToNextDiscount)) * 100
               : 50
           }
-          aria-labelledby='discount-progressbar'
         />
         <span
           className='absolute inset-2 flex items-center justify-center transition-all'
           style={{
-            transform: `translateX(-${initialized ? 50 - (fullPrice / (fullPrice + leftToNextDiscount)) * 50 : 25}%)`,
+            transform: `translateX(-${initialized ? 50 - (fullPrice / (fullPrice + leftToNextDiscount)) * 50 : 25}%)`
           }}
         >
-          {(discount * 100).toFixed(0)}%
+          {(discount * 100).toFixed(0)}
+          %
         </span>
       </div>
       <div className='relative'>
-        <Progress value={-10} aria-labelledby='discount-progressbar' />
+        <Progress aria-labelledby='discount-progressbar' value={-10} />
         <span className='absolute inset-0 flex items-center justify-center'>
           {isMax ? 'MAX' : `${nextDiscount.toFixed(0)}%`}
         </span>

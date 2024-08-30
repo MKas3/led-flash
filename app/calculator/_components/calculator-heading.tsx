@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { cn } from '@/lib/utils';
 import { Heading } from '@/components/ui/heading';
+
+import { cn } from '@/lib/utils';
 
 type CalculatorHeadingProps = React.ComponentPropsWithoutRef<typeof Heading>;
 

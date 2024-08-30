@@ -1,25 +1,25 @@
 'use client';
 
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useMemo, useState } from 'react';
 
 type CalculatorContext = {
-  initialized: boolean;
   discount: number;
-  setDiscount: React.Dispatch<React.SetStateAction<number>>;
   fullPrice: number;
+  initialized: boolean;
+  setDiscount: React.Dispatch<React.SetStateAction<number>>;
   setFullPrice: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export const CalculatorContext = createContext<CalculatorContext>({
-  initialized: false,
+export const calculatorContext = createContext<CalculatorContext>({
   discount: 0,
-  setDiscount: () => {},
   fullPrice: 0,
-  setFullPrice: () => {},
+  initialized: false,
+  setDiscount: () => {},
+  setFullPrice: () => {}
 });
 
 export const CalculatorProvider = ({
-  children,
+  children
 }: {
   children?: React.ReactNode;
 }) => {
@@ -31,11 +31,23 @@ export const CalculatorProvider = ({
     setInitialized(true);
   }, [setInitialized]);
 
+  const contextValue = useMemo(() => ({
+    discount,
+    fullPrice,
+    initialized,
+    setDiscount,
+    setFullPrice
+  }), [
+    discount,
+    fullPrice,
+    initialized
+  ]);
+
   return (
-    <CalculatorContext.Provider
-      value={{ initialized, discount, setDiscount, fullPrice, setFullPrice }}
+    <calculatorContext.Provider
+      value={contextValue}
     >
       {children}
-    </CalculatorContext.Provider>
+    </calculatorContext.Provider>
   );
 };

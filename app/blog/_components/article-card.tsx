@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { navigationHrefs } from '@/config/navigation';
-import { cn } from '@/lib/utils';
 import Link from '@/components/ui/link';
+import { navigationHrefs } from '@/config/navigation';
+
+import { cn } from '@/lib/utils';
 
 type ArticleCardProps = React.ComponentPropsWithoutRef<typeof Link.Link>;
 

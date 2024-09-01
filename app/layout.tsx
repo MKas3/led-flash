@@ -5,6 +5,7 @@ import React from 'react';
 import { Footer } from '@/app/_components/footer/footer';
 import { MotionHeader } from '@/app/_components/header/motion-header';
 import { LenisProvider } from '@/app/_components/lenis-provider';
+import { PathnameBody } from '@/app/_components/pathname-body';
 import { ScreenIndicator } from '@/app/_components/screen-indicator';
 import { SplashScreenWrapper } from '@/app/_components/splash-screen-wrapper';
 import { YandexMapProvider } from '@/components/shared/yandex-map-provider';
@@ -79,9 +80,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body
+      <PathnameBody
         className={cn(
-          'min-h-screen group/loading w-screen overflow-x-hidden bg-foreground text-foreground antialiased [&[data-scroll-locked]]:!overflow-y-auto',
+          'min-h-screen group/loading w-screen overflow-x-hidden text-foreground antialiased [&[data-scroll-locked]]:!overflow-y-auto',
           unbounded.variable,
           poppins.variable,
           unbounded.className
@@ -99,7 +100,7 @@ export default function RootLayout({
           {/* <MouseFollower /> */}
           <ScreenIndicator />
         </LenisProvider>
-      </body>
+      </PathnameBody>
     </html>
   );
 }

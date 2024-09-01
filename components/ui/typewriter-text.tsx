@@ -8,6 +8,7 @@ type TypewriterTextProps = Omit<
   React.HTMLAttributes<HTMLSpanElement>,
   'children'
 > & {
+  as?: 'p' | 'span';
   charCount?: number;
   children?: string;
   delay?: number;
@@ -18,6 +19,7 @@ type TypewriterTextProps = Omit<
 
 export const TypewriterText = ({
   className,
+  as,
   charCount = 4,
   delay = 0,
   interval = 10,
@@ -26,6 +28,8 @@ export const TypewriterText = ({
   children,
   ...props
 }: TypewriterTextProps) => {
+  const Comp = as ?? 'span';
+
   const [currentText, setCurrentText] = useState('');
   const timer = useRef<NodeJS.Timeout>();
   const currentIndex = useRef(0);
@@ -78,8 +82,8 @@ export const TypewriterText = ({
   ]);
 
   return (
-    <span className={cn('break-words', className)} {...props}>
+    <Comp className={cn('break-words', className)} {...props}>
       {currentText}
-    </span>
+    </Comp>
   );
 };

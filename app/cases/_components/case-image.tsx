@@ -20,8 +20,8 @@ import { cn } from '@/lib/utils';
 const caseImageVariants = cva('', {
   variants: {
     variant: {
-      lg: 'aspect-[9/7]',
-      sm: 'aspect-[7/4]'
+      lg: 'aspect-[4/3]',
+      sm: 'aspect-[16/9]'
     }
   }
 });
@@ -37,7 +37,7 @@ export const CaseImage = ({ className, variant, ...props }: CaseImageProps) => {
         </CaseImageTrigger>
         <DialogPortal>
           <DialogOverlay />
-          <DialogInnerContent className='aspect-[3/4] size-fit h-[60vh] p-0'>
+          <DialogInnerContent className={cn(caseImageVariants({ variant }), 'size-fit max-md:w-full md:h-[60vh] p-0')}>
             <Image className='size-full rounded-sm object-cover' {...props} />
             <DialogClose className='md:inset-x-0 md:top-auto md:mx-auto' />
           </DialogInnerContent>

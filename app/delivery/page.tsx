@@ -1,7 +1,13 @@
 import type { Metadata } from 'next';
 
+import React from 'react';
+
 import { Contacts } from '@/components/shared/contacts';
-import { Container } from '@/components/ui/container';
+import { AppearingContainer } from '@/components/ui/appearing-container';
+import { AppearingAnimationText } from '@/components/ui/appearing-text/appearing-animation-text';
+import { AppearingAnimationTextPart } from '@/components/ui/appearing-text/appearing-animation-text-part';
+import { AppearingContentText } from '@/components/ui/appearing-text/appearing-content-text';
+import { AppearingText } from '@/components/ui/appearing-text/appearing-text';
 import { GradientText } from '@/components/ui/gradient-text';
 import { Heading } from '@/components/ui/heading';
 import { Main } from '@/components/ui/main';
@@ -15,17 +21,31 @@ export const metadata: Metadata = {
 export default function DeliveryPage() {
   return (
     <Main>
-      <Container className='mb-36' isHero>
+      <AppearingContainer className='mb-36' isHero>
         <Heading
           className='mb-6 mt-24 md:mb-12'
           as='h1'
           hasUnderline
         >
-          Какие способы
-          {' '}
-          <GradientText>доставки</GradientText>
-          {' '}
-          есть?
+          <AppearingText>
+            <AppearingAnimationText>
+              <AppearingAnimationTextPart>
+                Какие способы
+              </AppearingAnimationTextPart>
+              <br />
+              <AppearingAnimationTextPart>
+                <GradientText>доставки</GradientText>
+                &nbsp;есть?
+              </AppearingAnimationTextPart>
+            </AppearingAnimationText>
+            <AppearingContentText>
+              Какие способы
+              {' '}
+              <GradientText>доставки</GradientText>
+              {' '}
+              есть?
+            </AppearingContentText>
+          </AppearingText>
         </Heading>
         <Tabs
           className='mb-12 grid gap-x-24 gap-y-9 md:mb-24 lg:grid-cols-[min-content_auto]'
@@ -56,15 +76,15 @@ export default function DeliveryPage() {
             </TabsContent>
           ))}
         </Tabs>
-      </Container>
-      <Container>
-        <Heading className='mb-12' as='h2' hasUnderline>
+      </AppearingContainer>
+      <AppearingContainer>
+        <Heading className='mb-12 before:slide-in-from-left-0' as='h2' hasUnderline>
           Как с нами
           {' '}
           <GradientText>связаться?</GradientText>
         </Heading>
         <Contacts />
-      </Container>
+      </AppearingContainer>
     </Main>
   );
 }

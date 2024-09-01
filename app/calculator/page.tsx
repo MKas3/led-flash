@@ -5,7 +5,11 @@ import React from 'react';
 import { CalculatorForm } from '@/app/calculator/_components/calculator-form';
 import { CalculatorProvider } from '@/app/calculator/_components/calculator-provider';
 import { AnchorLink } from '@/components/ui/anchor-link';
-import { Container } from '@/components/ui/container';
+import { AppearingContainer } from '@/components/ui/appearing-container';
+import { AppearingAnimationText } from '@/components/ui/appearing-text/appearing-animation-text';
+import { AppearingAnimationTextPart } from '@/components/ui/appearing-text/appearing-animation-text-part';
+import { AppearingContentText } from '@/components/ui/appearing-text/appearing-content-text';
+import { AppearingText } from '@/components/ui/appearing-text/appearing-text';
 import { GradientText } from '@/components/ui/gradient-text';
 import { Heading } from '@/components/ui/heading';
 import Icon from '@/components/ui/icon';
@@ -18,28 +22,49 @@ export const metadata: Metadata = {
 export default function CalculatorPage() {
   return (
     <Main>
-      <Container
+      <AppearingContainer
         className='mb-0 flex flex-col gap-y-20 text-center md:mb-20 lg:mb-24 xl:mb-36'
         isHero
       >
         <Heading className='mt-24' as='h1'>
-          Рассчитайте стоимость
-          {' '}
-          <GradientText>неоновой вывески</GradientText>
+          <AppearingText>
+            <AppearingAnimationText>
+              <AppearingAnimationTextPart>
+                Рассчитайте
+              </AppearingAnimationTextPart>
+              <br />
+              <AppearingAnimationTextPart>
+                стоимость&nbsp;
+                <GradientText>неоновой</GradientText>
+              </AppearingAnimationTextPart>
+              <br />
+              <AppearingAnimationTextPart>
+                <GradientText>вывески</GradientText>
+              </AppearingAnimationTextPart>
+            </AppearingAnimationText>
+            <AppearingContentText>
+              Рассчитайте
+              <br />
+              стоимость&nbsp;
+              <GradientText>неоновой</GradientText>
+              <br />
+              <GradientText>вывески</GradientText>
+            </AppearingContentText>
+          </AppearingText>
         </Heading>
         <AnchorLink className='mx-auto hidden w-fit flex-col items-center justify-center gap-y-3 opacity-100 delay-500 duration-1000 animate-in fade-in-0 fill-mode-both md:flex' href={600}>
           <Icon.MouseScroll className='h-10 w-7' />
           <span className='font-poppins text-sm font-semibold'>Scroll</span>
         </AnchorLink>
-      </Container>
-      <Container>
+      </AppearingContainer>
+      <AppearingContainer>
         <Heading className='sr-only' as='h2'>
           Калькулятор
         </Heading>
         <CalculatorProvider>
           <CalculatorForm />
         </CalculatorProvider>
-      </Container>
+      </AppearingContainer>
     </Main>
   );
 }

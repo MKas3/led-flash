@@ -396,7 +396,7 @@ const CarouselDotsSnaps = ({ className, children }: { children?: React.ReactNode
 
   return (
     <>
-      {(scrollSnaps.length <= 2 ? [0, 0, 0] : scrollSnaps).map((_, index) => (
+      {scrollSnaps.map((_, index) => (
         <CarouselDotButton
           key={index}
           className={className}

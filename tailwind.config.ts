@@ -15,6 +15,8 @@ const config = {
   plugins: [tailwindcssAnimate],
   prefix: '',
   safelist: [
+    '!text-[length:inherit]',
+    '!font-normal',
     '-inset-x-2',
     'md:left-0',
     'md:right-auto',
@@ -46,6 +48,7 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'blinker': 'blinker 10s linear infinite alternate',
         'hero-overlay': 'hero-overlay 5s ease-in-out infinite alternate',
         'hero-overlay-mobile':
           'hero-overlay-mobile 5s ease-in-out infinite alternate',
@@ -111,6 +114,21 @@ const config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' }
         },
+        'blinker': {
+          '0%': { opacity: '1' },
+          '47%': { opacity: '1' },
+
+          '47.5%': { opacity: '0' },
+          '48%': { opacity: '1' },
+          '77%': { opacity: '1' },
+
+          '77.5%': { opacity: '0' },
+          '78%': { opacity: '1' },
+          '80%': { opacity: '1' },
+
+          '80.5%': { opacity: '0' },
+          '81%': { opacity: '1' }
+        },
         'hero-overlay': {
           from: { transform: 'translateX(-20vw) rotate(-30deg)' },
           to: { transform: 'translateX(80vw) rotate(-30deg)' }
@@ -167,6 +185,10 @@ const config = {
         '3xl': '2000px'
       },
       transitionDelay: {
+        1500: '1500ms',
+        2000: '2000ms'
+      },
+      transitionDuration: {
         1500: '1500ms',
         2000: '2000ms'
       }

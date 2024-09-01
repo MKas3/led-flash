@@ -65,7 +65,7 @@ export default function HomePage() {
         >
           <Carousel className='relative z-10 -mx-container-sm md:hidden' opts={{ skipSnaps: true }}>
             <CarouselContent className='ml-0'>
-              {cases.left.flatMap((leftCase) => leftCase.images).map((leftCase) => (
+              {cases.left.map((leftCase) => leftCase.images[0]).reverse().map((leftCase) => (
                 <CarouselItem key={leftCase.src} className='pl-0'>
                   <Image className='aspect-[4/3] w-full overflow-hidden object-cover' alt={leftCase.alt} height={leftCase.height} src={leftCase.src} width={leftCase.width} />
                 </CarouselItem>

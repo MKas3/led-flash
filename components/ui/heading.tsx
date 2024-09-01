@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 type HeadingProps = HTMLAttributes<HTMLHeadingElement> &
   VariantProps<typeof headingVariants>;
 
-const headingVariants = cva('', {
+const headingVariants = cva('relative', {
   defaultVariants: {
     as: 'h1',
     hasUnderline: false,
@@ -23,7 +23,7 @@ const headingVariants = cva('', {
     },
     hasUnderline: {
       false: '',
-      true: `border-b border-white pb-6 md:pb-9 lg:pb-12 [&_~_*]:mt-6 md:[&_~_*]:mt-9 lg:[&_~_*]:mt-12`
+      true: `overflow-hidden pb-6 before:pointer-events-none before:absolute before:inset-0 before:block before:border-b before:border-white before:delay-1000 before:duration-1500 before:ease-out before:animate-in before:slide-in-from-left before:fill-mode-both md:pb-9 lg:pb-12 [&_~_*]:mt-6 md:[&_~_*]:mt-9 lg:[&_~_*]:mt-12`
     },
     padding: {
       container:

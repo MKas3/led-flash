@@ -1,3 +1,4 @@
+import { OrderModalTrigger } from '@/app/_components/order-modal/order-modal-trigger';
 import Link from '@/components/ui/link';
 
 export const prices = [
@@ -38,7 +39,7 @@ export const prices = [
       <>
         Мы изготавливаем
         {' '}
-        <Link.Cases className='text-gradient-second' hasUnderline>уникальные работы</Link.Cases>
+        <Link.Cases className='!text-[length:inherit] !font-normal text-gradient-second' hasUnderline>уникальные работы</Link.Cases>
         , которые зацепят внимание каждого вашего клиента, поэтому наши работы стоит воспринимать как инвестиция в повышенное внимание клиентов к вашему бизнесу
       </>
     )
@@ -48,7 +49,7 @@ export const prices = [
       <>
         Чем больше заказ, тем большую скидку мы вам предлагаем. Для запроса персональных условий сотрудничества можете
         {' '}
-        <Link.Email className='text-gradient-second' hasUnderline>написать нам лично</Link.Email>
+        <OrderModalTrigger className='inline p-0 !text-[length:inherit] !font-normal text-gradient-second' size='none' variant='ghost'>написать нам лично</OrderModalTrigger>
         , мы найдем выгодное решение для вашей проблемы.
       </>
     )

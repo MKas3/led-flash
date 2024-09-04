@@ -30,8 +30,8 @@ import {
   substrateTypesNamings
 } from '@/config/calculator/calculator';
 import { neonTypes, neonTypesNamings } from '@/config/home/constructor';
+import { useCalculatorQuery } from '@/hooks/use-calculator-query';
 import { useZodForm } from '@/hooks/use-zod-form';
-import { toast } from 'sonner';
 
 import { cn } from '@/lib/utils';
 
@@ -44,14 +44,16 @@ export const CalculatorForm = ({
   className,
   ...props
 }: CalculatorFormProps) => {
+  const [, setQuery] = useCalculatorQuery();
+
   const triggerRef = useRef<React.ElementRef<typeof OrderModalTrigger>>(null);
 
   const form = useZodForm(calculatorFormSchema);
   const formData = useWatch(form);
 
-  const handleSubmit = (data: CalculatorFormSchema) => {
+  const handleSubmit = async (data: CalculatorFormSchema) => {
     triggerRef.current?.click();
-    toast.success(`Complete: ${JSON.stringify(data)}`);
+    await setQuery(data);
   };
 
   return (

@@ -2,19 +2,11 @@ import type { NextRequest } from 'next/server';
 
 import { Buffer } from 'node:buffer';
 
+import { feedbackBodySchema } from '@/config/email';
 import * as nodemailer from 'nodemailer';
-import { z, ZodError } from 'zod';
-import { zfd } from 'zod-form-data';
+import { ZodError } from 'zod';
 
 import { env } from '@/lib/env';
-
-export const feedbackBodySchema = zfd.formData({
-  feedback: zfd.text(z.string().min(1)),
-  fullName: zfd.text(z.string().min(1)),
-  images: z.union([zfd.file().array(), zfd.file()]).optional(),
-  phone: zfd.text(z.string().min(1).regex(/^\d{11}$/g)),
-  rating: zfd.numeric(z.number().min(1).max(5))
-});
 
 export const POST = async (request: NextRequest) => {
   try {
@@ -101,6 +93,7 @@ export const POST = async (request: NextRequest) => {
           <body>
               <img class="logo" alt="Logo" src="${env.EMAIL_LOGO_IMAGE}" />
               <h1>Новый отзыв</h1>
+              <br />
               <p><strong>ФИО:</strong> ${body.fullName}</p>
               <p><strong>Телефон:</strong> +${body.phone}</p>
               <p><strong>Рейтинг:</strong> ${body.rating} из 5</p>

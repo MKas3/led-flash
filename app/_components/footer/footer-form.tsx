@@ -1,12 +1,13 @@
 'use client';
 
+import type { CalculatorFormSchema } from '@/config/calculator/calculator';
 import type {
   FooterFormSchema
 } from '@/config/footer';
 
 import React from 'react';
 
-import { sendOrder } from '@/actions/email.action';
+import { sendOrder, sendPricedOrder } from '@/actions/email.action';
 import { Button } from '@/components/ui/button';
 import { FormMessage } from '@/components/ui/form';
 import { Form } from '@/components/ui/form/form';
@@ -25,6 +26,7 @@ import {
   contactWaysNamings,
   footerFormSchema
 } from '@/config/footer';
+import { useCalculatorQuery } from '@/hooks/use-calculator-query';
 import { useZodForm } from '@/hooks/use-zod-form';
 import { toast } from 'sonner';
 
@@ -36,19 +38,43 @@ type FooterFormProps = Omit<
 > & {
   size?: 'default' | 'sm';
   variant?: 'default' | 'muted';
+  onSubmit?: () => void;
 };
 
 export const FooterForm = ({
   className,
   size = 'default',
   variant = 'default',
+  onSubmit,
   ...props
 }: FooterFormProps) => {
+  const [query] = useCalculatorQuery();
+
   const form = useZodForm(footerFormSchema);
 
   const handleSubmit = async (data: FooterFormSchema) => {
-    await sendOrder(data);
+    let success;
+
+    if (
+      query
+      && query.length !== null
+      && query.place !== null
+      && query.neonType !== null
+      && query.substrateType !== null
+      && query.count !== null
+      && query.height !== null
+      && query.width !== null
+    )
+      success = (await sendPricedOrder(data, query as CalculatorFormSchema)).success;
+    else
+      success = (await sendOrder(data)).success;
+
+    if (!success) return toast.error('Ошибка отправки');
+
+    form.reset();
+    form.clearErrors();
     toast.success('Заявка отправлена!');
+    onSubmit?.();
   };
 
   return (

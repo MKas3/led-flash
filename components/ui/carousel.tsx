@@ -351,7 +351,7 @@ const CarouselDotButton = React.forwardRef<
   return (
     <CarouselItem
       ref={ref}
-      className={cn('flex size-4 basis-1/3 group scale-0 items-center justify-center pl-0 opacity-0 transition duration-700 data-[in-view=true]:scale-100 data-[is-edge=true]:scale-50 data-[in-view=true]:opacity-100 lg:size-6', className)}
+      className={cn('flex size-4 group scale-0 items-center justify-center pl-0 opacity-0 transition duration-700 data-[in-view=true]:scale-100 data-[is-edge=true]:scale-50 data-[in-view=true]:opacity-100 lg:size-6', scrollSnaps.length === 1 ? 'basis-full' : scrollSnaps.length === 2 ? 'basis-1/2' : 'basis-1/3', className)}
       data-active={selectedIndex === index}
       data-in-view={
         (selectedIndex === 0 && index <= 2)
@@ -428,7 +428,7 @@ const CarouselDots = React.forwardRef<
     <carouselDotsContext.Provider value={contextValue}>
       <Carousel
         ref={ref}
-        className={cn('pointer-events-none mx-auto mt-5 flex h-fit w-16 items-center justify-center p-1.5 lg:w-24', className)}
+        className={cn('pointer-events-none mx-auto mt-5 flex h-fit items-center justify-center p-1.5 max-w-16 lg:max-w-24', className)}
         opts={{
           align: 'center',
           containScroll: 'keepSnaps'

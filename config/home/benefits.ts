@@ -3,7 +3,7 @@ export const heroBenefits = [
   'Бесплатный\nдизайн макет в день заказа'
 ];
 
-export const heroBenefitsDelay = 1750;
+export const heroBenefitsDelay = 1200;
 
 export const heroBenefitsInterval = 10000;
 

@@ -16,6 +16,8 @@ import { CommentContent } from '@/app/(home)/_components/comments/comment-conten
 import { CommentImage } from '@/app/(home)/_components/comments/comment-image';
 import { CommentNaming } from '@/app/(home)/_components/comments/comment-naming';
 import { Comments } from '@/app/(home)/_components/comments/comments';
+import { CommentsAddModal } from '@/app/(home)/_components/comments/comments-add-modal';
+import { CommentsAddModalTrigger } from '@/app/(home)/_components/comments/comments-add-modal-trigger';
 import { CommentsCarousel } from '@/app/(home)/_components/comments/comments-carousel';
 import { CommentsHeader } from '@/app/(home)/_components/comments/comments-header';
 import { CommentsStars } from '@/app/(home)/_components/comments/comments-stars';
@@ -67,7 +69,7 @@ export default function HomePage() {
             <CarouselContent className='ml-0'>
               {cases.left.map((leftCase) => leftCase.images[0]).reverse().map((leftCase) => (
                 <CarouselItem key={leftCase.src} className='pl-0'>
-                  <Image className='aspect-[4/3] w-full overflow-hidden object-cover' alt={leftCase.alt} height={leftCase.height} src={leftCase.src} width={leftCase.width} />
+                  <Image className='aspect-[4/3] w-full overflow-hidden object-cover' alt={leftCase.alt} height={leftCase.height} sizes='100vw' src={leftCase.src} width={leftCase.width} />
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -81,12 +83,27 @@ export default function HomePage() {
                 </AppearingAnimationTextPart>
                 <br />
                 <AppearingAnimationTextPart>
-                  вывески на
+                  вывески
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  на
                 </AppearingAnimationTextPart>
                 <br />
                 <AppearingAnimationTextPart>
-                  заказ&nbsp;
-                  <GradientText>за 3 дня</GradientText>
+                  заказ
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  <GradientText className='to-[300%]'>за</GradientText>
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  <GradientText className='from-[-100%] to-[200%]'>3</GradientText>
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  <GradientText className='from-[-200%]'>дня</GradientText>
                 </AppearingAnimationTextPart>
               </AppearingAnimationText>
               <AppearingContentText>
@@ -104,20 +121,20 @@ export default function HomePage() {
               </AppearingContentText>
             </AppearingText>
           </Heading>
-          <div className='flex flex-wrap justify-start gap-x-5 gap-y-12 overflow-hidden md:flex-nowrap md:gap-x-10 lg:ml-[10vw]'>
+          <div className='flex flex-wrap justify-start gap-x-5 gap-y-12 overflow-hidden pt-3 md:flex-nowrap md:gap-x-10 lg:ml-[10vw]'>
             <span className='order-1 w-full transition-opacity hover:opacity-90 md:order-none md:w-auto'>
               <OrderModalTrigger
                 className={cn(
                   buttonVariants({ variant: 'gradient' }),
-                  `w-full delay-1500 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both md:w-auto`
+                  `w-full delay-1000 duration-700 animate-in slide-in-from-bottom-full fill-mode-both md:w-auto`
                 )}
               >
                 Оформить заявку
               </OrderModalTrigger>
             </span>
-            <div className='overflow-hidden'>
+            <div>
               <Separator
-                className='z-10 h-full w-0.5 bg-background delay-2000 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both'
+                className='z-10 h-full w-0.5 bg-background delay-1500 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both'
                 orientation='vertical'
               />
             </div>
@@ -130,10 +147,7 @@ export default function HomePage() {
           <div className='pointer-events-none absolute top-0 h-[200vh] w-[30vw] animate-hero-overlay-mobile bg-foreground mix-blend-overlay md:w-[13vw] md:animate-hero-overlay' />
         </AppearingContainer>
       </ScrollBlurContainer>
-      <ScrollBlurContainer
-        padding='none'
-        scrollOptions={{ offset: ['80% start', 'end start'] }}
-      >
+      <ScrollBlurContainer padding='none'>
         <div className='space-y-16 bg-background'>
           <AppearingContainer
             className='gap-y-6 pt-10'
@@ -141,9 +155,46 @@ export default function HomePage() {
             transition={{ staggerChildren: 0.2 }}
           >
             <Heading className='-mb-4' as='h2' padding='container'>
-              Хватит быть в тени закажи вывеску из
-              {' '}
-              <GradientText>неона</GradientText>
+              <AppearingText>
+                <AppearingAnimationText animate={false} viewport={{ once: true }} whileInView='animate-appearing'>
+                  <AppearingAnimationTextPart>
+                    Хватит
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    быть
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    в
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    тени
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    закажи
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    вывеску
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    из
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    <GradientText>неона</GradientText>
+                  </AppearingAnimationTextPart>
+                </AppearingAnimationText>
+                <AppearingContentText>
+                  Хватит быть в тени закажи вывеску из
+                  {' '}
+                  <GradientText>неона</GradientText>
+                </AppearingContentText>
+              </AppearingText>
             </Heading>
             <Benefits>
               <BenefitsContent>
@@ -217,17 +268,34 @@ export default function HomePage() {
             </Benefits>
           </AppearingContainer>
           <AppearingContainer
-            className='overflow-visible lg:py-36'
+            className='overflow-visible lg:pb-8 lg:pt-36'
             gradient='none'
             padding='none'
           >
             <div className='flex flex-col items-center overflow-hidden px-container-sm md:px-container-md lg:px-container-lg xl:px-container'>
               <Heading className='mb-12 self-start' as='h2'>
-                Самые
-                {' '}
-                <GradientText>сочные</GradientText>
-                {' '}
-                работы
+                <AppearingText>
+                  <AppearingAnimationText animate={false} viewport={{ once: true }} whileInView='animate-appearing'>
+                    <AppearingAnimationTextPart>
+                      Самые
+                    </AppearingAnimationTextPart>
+                    {' '}
+                    <AppearingAnimationTextPart>
+                      <GradientText>сочные</GradientText>
+                    </AppearingAnimationTextPart>
+                    {' '}
+                    <AppearingAnimationTextPart>
+                      работы
+                    </AppearingAnimationTextPart>
+                  </AppearingAnimationText>
+                  <AppearingContentText>
+                    Самые
+                    {' '}
+                    <GradientText>сочные</GradientText>
+                    {' '}
+                    работы
+                  </AppearingContentText>
+                </AppearingText>
               </Heading>
               <AppearingContainer
                 className='bg-transparent pt-10'
@@ -244,11 +312,40 @@ export default function HomePage() {
             transition={{ delayChildren: 0.3 }}
           >
             <Heading className='mb-8' as='h2'>
-              Какие
-              {' '}
-              <GradientText>цвета неона</GradientText>
-              {' '}
-              у нас есть
+              <AppearingText>
+                <AppearingAnimationText animate={false} viewport={{ once: true }} whileInView='animate-appearing'>
+                  <AppearingAnimationTextPart>
+                    Какие
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    <GradientText className='to-[200%]'>цвета</GradientText>
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    <GradientText className='from-[-100%]'>неона</GradientText>
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    у
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    нас
+                  </AppearingAnimationTextPart>
+                  {' '}
+                  <AppearingAnimationTextPart>
+                    есть
+                  </AppearingAnimationTextPart>
+                </AppearingAnimationText>
+                <AppearingContentText>
+                  Какие
+                  {' '}
+                  <GradientText>цвета неона</GradientText>
+                  {' '}
+                  у нас есть
+                </AppearingContentText>
+              </AppearingText>
             </Heading>
             <span className='mb-16 text-base md:text-xl lg:text-2xl'>
               Создайте неоновую ленту на свой вкус, опробуйте основные функции
@@ -258,15 +355,33 @@ export default function HomePage() {
           </AppearingContainer>
         </div>
       </ScrollBlurContainer>
-      <ScrollBlurContainer
-        scrollOptions={{ offset: ['80% start', 'end start'] }}
-        isAlternate
-      >
+      <ScrollBlurContainer isAlternate>
         <PricesMotionWrapper className='md:mt-12'>
           <Heading className='mb-12' as='h2'>
-            Сколько стоит
-            {' '}
-            <GradientText>неоновая вывеска?</GradientText>
+            <AppearingText>
+              <AppearingAnimationText animate={false} viewport={{ once: true }} whileInView='animate-appearing'>
+                <AppearingAnimationTextPart>
+                  Сколько
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  стоит
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  <GradientText className='to-[200%]'>неоновая</GradientText>
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  <GradientText className='from-[-100%]'>вывеска?</GradientText>
+                </AppearingAnimationTextPart>
+              </AppearingAnimationText>
+              <AppearingContentText>
+                Сколько стоит
+                {' '}
+                <GradientText>неоновая вывеска?</GradientText>
+              </AppearingContentText>
+            </AppearingText>
           </Heading>
           <AppearingContainer
             className='grid grow-0 grid-rows-[minmax(0,1fr)_min-content] gap-x-20 gap-y-6 bg-transparent lg:grid-cols-2 2xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]'
@@ -315,19 +430,38 @@ export default function HomePage() {
           isAlternate
         >
           <Heading className='mb-12' as='h2'>
-            Отзывы
-            {' '}
-            <GradientText>наших клиентов</GradientText>
+            <AppearingText>
+              <AppearingAnimationText animate={false} viewport={{ once: true }} whileInView='animate-appearing'>
+                <AppearingAnimationTextPart>
+                  Отзывы
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  <GradientText className='to-[200%]'>наших</GradientText>
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  <GradientText className='from-[-100%]'>клиентов</GradientText>
+                </AppearingAnimationTextPart>
+              </AppearingAnimationText>
+              <AppearingContentText>
+                Отзывы
+                {' '}
+                <GradientText>наших клиентов</GradientText>
+              </AppearingContentText>
+            </AppearingText>
           </Heading>
           <Comments>
             <CommentsHeader>
               <span className='self-end'>Средний рейтинг:</span>
-              <OrderModalTrigger
-                className='order-1 row-span-2 w-full justify-self-end md:order-none md:w-fit'
-                variant='gradient'
-              >
-                Оставить отзыв
-              </OrderModalTrigger>
+              <CommentsAddModal>
+                <CommentsAddModalTrigger
+                  className='order-1 row-span-2 w-full justify-self-end md:order-none md:w-fit'
+                  variant='gradient'
+                >
+                  Оставить отзыв
+                </CommentsAddModalTrigger>
+              </CommentsAddModal>
               <div className='-mt-1 flex items-center gap-x-6 self-start md:mt-0'>
                 {commentsAverageRating}
                 {' '}
@@ -351,6 +485,7 @@ export default function HomePage() {
                       <CommentImage
                         alt={item.commentNaming}
                         height={item.commentImageHeight}
+                        sizes='(max-width: 768px) 15vw, 10vw'
                         src={item.commentImageSrc}
                         width={item.commentImageWidth}
                       />
@@ -368,9 +503,30 @@ export default function HomePage() {
           transition={{ delayChildren: 0.3, staggerChildren: 0.3 }}
         >
           <Heading className='mb-12' as='h2'>
-            Вопросы от
-            {' '}
-            <GradientText>наших клиентов</GradientText>
+            <AppearingText>
+              <AppearingAnimationText animate={false} viewport={{ once: true }} whileInView='animate-appearing'>
+                <AppearingAnimationTextPart>
+                  Вопросы
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  от
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  <GradientText className='to-[200%]'>наших</GradientText>
+                </AppearingAnimationTextPart>
+                {' '}
+                <AppearingAnimationTextPart>
+                  <GradientText className='from-[-100%]'>клиентов</GradientText>
+                </AppearingAnimationTextPart>
+              </AppearingAnimationText>
+              <AppearingContentText>
+                Вопросы от
+                {' '}
+                <GradientText>наших клиентов</GradientText>
+              </AppearingContentText>
+            </AppearingText>
           </Heading>
           <Accordion
             className='grid grid-cols-1 gap-x-20 gap-y-12'
@@ -388,7 +544,7 @@ export default function HomePage() {
                   <AccordionTrigger className='text-start text-xl'>
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent>{item.answer}</AccordionContent>
+                  <AccordionContent className='whitespace-pre-wrap'>{item.answer}</AccordionContent>
                 </AccordionItem>
               </AppearingContainer>
             ))}

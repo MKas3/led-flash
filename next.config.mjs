@@ -18,12 +18,10 @@ const nextConfig = {
     remotePatterns: [
       {
         hostname: 'led-flash.ru',
-        port: '',
         protocol: 'https'
       },
       {
         hostname: 'led-flash.ru',
-        port: '',
         protocol: 'http'
       },
       {
@@ -35,6 +33,7 @@ const nextConfig = {
   },
   output: 'standalone',
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  swcMinify: true,
   typescript: {
     ignoreBuildErrors: true
   }

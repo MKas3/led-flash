@@ -186,11 +186,15 @@ const config = {
       },
       transitionDelay: {
         1500: '1500ms',
-        2000: '2000ms'
+        2000: '2000ms',
+        800: '800ms'
       },
       transitionDuration: {
         1500: '1500ms',
         2000: '2000ms'
+      },
+      transitionTimingFunction: {
+        'back-out': 'cubic-bezier(0.33, 1.53, 0.69, 0.99)'
       }
     },
     screens: {

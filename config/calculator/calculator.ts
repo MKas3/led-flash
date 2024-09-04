@@ -14,21 +14,21 @@ export const calculatorFormSchema = z.object({
     errorMap: () => ({
       message: 'Напишите приблизительное количество отдельных элементов неона'
     })
-  }),
+  }).min(1).int(),
   height: z.number({
     errorMap: () => ({ message: 'Напишите приблизительную высоту подложки' })
-  }),
+  }).min(0),
   length: z.number({
     errorMap: () => ({
       message: 'Напишите приблизительную длину гибкого неона'
     })
-  }),
+  }).min(0),
   neonType: z.enum(neonTypes),
   place: z.enum(places),
   substrateType: z.enum(substrateTypes),
   width: z.number({
     errorMap: () => ({ message: 'Напишите приблизительную ширину подложки' })
-  })
+  }).min(0)
 });
 
 export type CalculatorFormSchema = z.infer<typeof calculatorFormSchema>;

@@ -60,7 +60,12 @@ export const CommentsAddForm = ({ className, onSubmit, ...props }: CommentsAddFo
     formData.append('phone', data.phone);
     formData.append('rating', data.rating.toString());
 
-    await sendFeedback(formData);
+    const success = await sendFeedback(formData);
+
+    if (!success) return toast.error('Ошибка отправки');
+
+    form.reset();
+    form.clearErrors();
     toast.success('Отзыв отправлен!');
     onSubmit?.();
   };

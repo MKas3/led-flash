@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 
 import { FooterForm } from '@/app/_components/footer/footer-form';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
@@ -12,8 +14,10 @@ export const OrderModal = ({
   children,
   ...props
 }: OrderModalProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Dialog {...props}>
+    <Dialog open={isOpen} onOpenChange={setIsOpen} {...props}>
       {children}
       <DialogContent className='p-6 md:p-9'>
         <Heading
@@ -27,7 +31,7 @@ export const OrderModal = ({
           {' '}
           вывеску
         </Heading>
-        <FooterForm size='sm' variant='muted' />
+        <FooterForm size='sm' variant='muted' onSubmit={() => setIsOpen(false)} />
       </DialogContent>
     </Dialog>
   );

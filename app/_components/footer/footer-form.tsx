@@ -6,6 +6,7 @@ import type {
 
 import React from 'react';
 
+import { sendOrder } from '@/actions/email.action';
 import { Button } from '@/components/ui/button';
 import { FormMessage } from '@/components/ui/form';
 import { Form } from '@/components/ui/form/form';
@@ -45,8 +46,9 @@ export const FooterForm = ({
 }: FooterFormProps) => {
   const form = useZodForm(footerFormSchema);
 
-  const handleSubmit = (data: FooterFormSchema) => {
-    toast.success(`Complete: ${JSON.stringify(data)}`);
+  const handleSubmit = async (data: FooterFormSchema) => {
+    await sendOrder(data);
+    toast.success('Заявка отправлена!');
   };
 
   return (

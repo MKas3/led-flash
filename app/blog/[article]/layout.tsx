@@ -16,7 +16,7 @@ export default function ArticlesLayout({
     <Main className='w-auto'>
       <Container className='grid grid-cols-1 gap-y-6 !pt-0 lg:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)] lg:gap-x-16' isHero>
         {children}
-        <Collapsible className='group sticky top-[calc(var(--header-height)+2rem)] col-start-2 h-fit'>
+        <Collapsible className='group sticky top-[calc(var(--header-height)+2rem)] col-start-2 hidden h-fit lg:flex'>
           <div className='flex flex-col items-center justify-center gap-y-6 group-data-[state=open]:hidden'>
             <span className='text-center text-2xl font-bold uppercase'>
               Готовы создать красоту для

@@ -30,12 +30,19 @@ export default function DeliveryPage() {
           <AppearingText>
             <AppearingAnimationText>
               <AppearingAnimationTextPart>
-                Какие способы
+                Какие
               </AppearingAnimationTextPart>
-              <br />
+              {' '}
+              <AppearingAnimationTextPart>
+                способы
+              </AppearingAnimationTextPart>
+              {' '}
               <AppearingAnimationTextPart>
                 <GradientText>доставки</GradientText>
-                &nbsp;есть?
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                есть?
               </AppearingAnimationTextPart>
             </AppearingAnimationText>
             <AppearingContentText>
@@ -79,9 +86,30 @@ export default function DeliveryPage() {
       </AppearingContainer>
       <AppearingContainer>
         <Heading className='mb-12 before:slide-in-from-left-0' as='h2' hasUnderline>
-          Как с нами
-          {' '}
-          <GradientText>связаться?</GradientText>
+          <AppearingText>
+            <AppearingAnimationText animate={false} viewport={{ once: true }} whileInView='animate-appearing'>
+              <AppearingAnimationTextPart>
+                Как
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                с
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                нами
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                <GradientText>связаться?</GradientText>
+              </AppearingAnimationTextPart>
+            </AppearingAnimationText>
+            <AppearingContentText>
+              Как с нами
+              {' '}
+              <GradientText>связаться?</GradientText>
+            </AppearingContentText>
+          </AppearingText>
         </Heading>
         <Contacts />
       </AppearingContainer>

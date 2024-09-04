@@ -7,6 +7,7 @@ import { ArticleCardBadge } from '@/app/blog/_components/article-card-badge';
 import { ArticleCardImage } from '@/app/blog/_components/article-card-image';
 import { ArticleCardTitle } from '@/app/blog/_components/article-card-title';
 import { ArticleCardViews } from '@/app/blog/_components/article-card-views';
+import { ArticleCardWrapper } from '@/app/blog/_components/article-card-wrapper';
 import { AppearingContainer } from '@/components/ui/appearing-container';
 import { AppearingAnimationText } from '@/components/ui/appearing-text/appearing-animation-text';
 import { AppearingAnimationTextPart } from '@/components/ui/appearing-text/appearing-animation-text-part';
@@ -29,12 +30,23 @@ export default async function BlogPage() {
           <AppearingText>
             <AppearingAnimationText>
               <AppearingAnimationTextPart>
-                Узнайте больше о
+                Узнайте
               </AppearingAnimationTextPart>
-              <br />
+              {' '}
+              <AppearingAnimationTextPart>
+                больше
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                о
+              </AppearingAnimationTextPart>
+              {' '}
               <AppearingAnimationTextPart>
                 <GradientText>неоновых</GradientText>
-                &nbsp;вывесках
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                вывесках
               </AppearingAnimationTextPart>
             </AppearingAnimationText>
             <AppearingContentText>
@@ -49,18 +61,20 @@ export default async function BlogPage() {
         </Heading>
         <AppearingContainer className='mb-24 grid gap-7 md:grid-cols-2 xl:grid-cols-3' padding='none'>
           {articlesMetadata.map((item, index) => (
-            <ArticleCard key={index} href={item.urlNaming}>
-              <div className='relative'>
-                <ArticleCardImage alt={item.naming} src={item.previewSrc} />
-                {item.tag && <ArticleCardBadge>{item.tag}</ArticleCardBadge>}
-              </div>
-              <ArticleCardTitle>{item.naming}</ArticleCardTitle>
-              <ArticleCardViews>
-                {item.views}
-                {' '}
-                просмотров
-              </ArticleCardViews>
-            </ArticleCard>
+            <ArticleCardWrapper key={index}>
+              <ArticleCard href={item.urlNaming}>
+                <div className='relative'>
+                  <ArticleCardImage alt={item.naming} src={item.previewSrc} />
+                  {item.tag && <ArticleCardBadge>{item.tag}</ArticleCardBadge>}
+                </div>
+                <ArticleCardTitle>{item.naming}</ArticleCardTitle>
+                <ArticleCardViews>
+                  {item.views}
+                  {' '}
+                  просмотров
+                </ArticleCardViews>
+              </ArticleCard>
+            </ArticleCardWrapper>
           ))}
         </AppearingContainer>
       </AppearingContainer>

@@ -14,6 +14,7 @@ export const ArticleCardImage = ({
     <Image
       className={cn('size-full object-cover', className)}
       height={220}
+      sizes='100vw'
       width={392}
       {...props}
     />

@@ -1,6 +1,10 @@
 import React from 'react';
 
 import { FooterForm } from '@/app/_components/footer/footer-form';
+import { AppearingAnimationText } from '@/components/ui/appearing-text/appearing-animation-text';
+import { AppearingAnimationTextPart } from '@/components/ui/appearing-text/appearing-animation-text-part';
+import { AppearingContentText } from '@/components/ui/appearing-text/appearing-content-text';
+import { AppearingText } from '@/components/ui/appearing-text/appearing-text';
 import { GradientText } from '@/components/ui/gradient-text';
 import { Heading } from '@/components/ui/heading';
 import Link from '@/components/ui/link';
@@ -22,12 +26,41 @@ export const Footer = ({ className, ...props }: FooterProps) => {
         {...props}
       >
         <Heading as='h2'>
-          Готовы создать красоту
-          {' '}
-          <br className='hidden md:block' />
-          для
-          {' '}
-          <GradientText>вашего бизнеса?</GradientText>
+          <AppearingText>
+            <AppearingAnimationText animate={false} viewport={{ once: true }} whileInView='animate-appearing'>
+              <AppearingAnimationTextPart>
+                Готовы
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                создать
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                красоту
+              </AppearingAnimationTextPart>
+              <br className='hidden md:block' />
+              <AppearingAnimationTextPart>
+                для
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                <GradientText className='to-[200%]'>вашего</GradientText>
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                <GradientText className='from-[-100%]'>бизнеса?</GradientText>
+              </AppearingAnimationTextPart>
+            </AppearingAnimationText>
+            <AppearingContentText>
+              Готовы создать красоту
+              {' '}
+              <br className='hidden md:block' />
+              для
+              {' '}
+              <GradientText>вашего бизнеса?</GradientText>
+            </AppearingContentText>
+          </AppearingText>
         </Heading>
         <FooterForm className='mt-16' />
         <div className='mt-20 flex flex-wrap items-center justify-center gap-4 whitespace-nowrap px-10 text-xl font-bold md:gap-8 md:text-3xl lg:gap-12 lg:text-5xl'>

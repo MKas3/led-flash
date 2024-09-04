@@ -60,7 +60,7 @@ const ScrollBlurContainer = forwardRef<
 
     const { scrollYProgress } = useScroll({
       layoutEffect: true,
-      offset: ['start start', 'end start'],
+      offset: ['end end', 'end start'],
       target: targetRef,
       ...scrollOptions
     });

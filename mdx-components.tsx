@@ -83,7 +83,7 @@ export const customMDXComponents: MDXComponents = {
     </div>
   ),
   p: ({ ...props }) => (
-    <p className='mb-[2em] font-poppins text-base leading-[1.8] md:text-xl md:leading-[1.8] xl:text-2xl xl:leading-[1.8] [&_+_h2]:mt-[2.5em]' {...props} />
+    <p className='mb-[2em] font-poppins text-base leading-[1.8] md:text-lg md:leading-[1.8] xl:text-xl xl:leading-[1.8] [&_+_h2]:mt-[2.5em]' {...props} />
   )
 };
 

@@ -19,19 +19,20 @@ type CasesProps = React.ComponentPropsWithoutRef<'div'> & {
 export const Cases = ({ className, disableMouse, ...props }: CasesProps) => {
   return (
     <div className={cn('group grid gap-y-20 grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-20 xl:gap-x-24 2xl:gap-x-28', className)} {...props}>
-      <CasesMouseFollowerProvider>
+      <CasesMouseFollowerProvider disableMouse={disableMouse}>
         {
           !disableMouse && <CasesMouseFollower />
         }
         <CasesLeft>
           {cases.left.map((leftCase) => (
             <Case key={leftCase.title}>
-              <CaseImages>
+              <CaseImages opts={disableMouse ? { active: true } : {}}>
                 {leftCase.images.map((image) => (
                   <CaseImage
                     key={image.src}
                     alt={image.alt}
                     height={image.height}
+                    sizes='(max-width: 768px) 100vw, 50vw'
                     src={image.src}
                     variant='lg'
                     width={image.width}
@@ -45,14 +46,16 @@ export const Cases = ({ className, disableMouse, ...props }: CasesProps) => {
         <CasesRight>
           {cases.right.map((rightCase) => (
             <Case key={rightCase.title}>
-              <CaseImages>
+              <CaseImages opts={disableMouse ? { active: true } : {}}>
                 {rightCase.images.map((image) => (
                   <CaseImage
                     key={image.src}
                     alt={image.alt}
+                    height={image.height}
+                    sizes='(max-width: 768px) 100vw, 50vw'
                     src={image.src}
                     variant='sm'
-                    fill
+                    width={image.width}
                   />
                 ))}
               </CaseImages>

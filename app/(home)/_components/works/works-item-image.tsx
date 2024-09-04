@@ -17,6 +17,7 @@ export const WorksItemImage = ({
         className
       )}
       height={760}
+      sizes='100vw'
       width={406}
       {...props}
     />

@@ -24,13 +24,26 @@ export default async function AboutPage() {
           <AppearingText>
             <AppearingAnimationText>
               <AppearingAnimationTextPart>
-                Больше информации
+                Больше
               </AppearingAnimationTextPart>
-              <br />
+              {' '}
               <AppearingAnimationTextPart>
-                о&nbsp;
-                <GradientText>
-                  нашей команде
+                информации
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                о
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                <GradientText className='to-[200%]'>
+                  нашей
+                </GradientText>
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                <GradientText className='from-[-100%]'>
+                  команде
                 </GradientText>
               </AppearingAnimationTextPart>
             </AppearingAnimationText>
@@ -71,9 +84,30 @@ export default async function AboutPage() {
       </AppearingContainer>
       <AppearingContainer>
         <Heading className='mb-12 before:slide-in-from-left-0' as='h2' hasUnderline>
-          Как с нами
-          {' '}
-          <GradientText>связаться?</GradientText>
+          <AppearingText>
+            <AppearingAnimationText animate={false} viewport={{ once: true }} whileInView='animate-appearing'>
+              <AppearingAnimationTextPart>
+                Как
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                с
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                нами
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                <GradientText>связаться?</GradientText>
+              </AppearingAnimationTextPart>
+            </AppearingAnimationText>
+            <AppearingContentText>
+              Как с нами
+              {' '}
+              <GradientText>связаться?</GradientText>
+            </AppearingContentText>
+          </AppearingText>
         </Heading>
         <Contacts />
       </AppearingContainer>

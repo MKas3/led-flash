@@ -13,12 +13,14 @@ const DialogTrigger = DialogPrimitive.Trigger;
 
 const DialogPortal = DialogPrimitive.Portal;
 
+const DialogCloseTrigger = DialogPrimitive.Close;
+
 const DialogClose = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Close>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close>
+  React.ElementRef<typeof DialogCloseTrigger>,
+  React.ComponentPropsWithoutRef<typeof DialogCloseTrigger>
 >(({ className, ...props }, ref) => {
   return (
-    <DialogPrimitive.Close
+    <DialogCloseTrigger
       ref={ref}
       className={cn(
         `absolute inset-x-0 -bottom-20 mx-auto flex size-16 items-center justify-center rounded-full bg-transparent text-foreground ring-offset-background transition-opacity disabled:pointer-events-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:-right-4 md:-top-4 md:left-auto`,
@@ -28,7 +30,7 @@ const DialogClose = React.forwardRef<
     >
       <X className='size-16 rounded-full bg-muted p-4 md:size-12 md:p-2' />
       <span className='sr-only'>Close</span>
-    </DialogPrimitive.Close>
+    </DialogCloseTrigger>
   );
 });
 DialogClose.displayName = DialogPrimitive.Close.displayName;
@@ -138,6 +140,7 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 export {
   Dialog,
   DialogClose,
+  DialogCloseTrigger,
   DialogContent,
   DialogDescription,
   DialogFooter,

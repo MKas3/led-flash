@@ -23,11 +23,13 @@ export const useCasesMouseFollower = () => {
   return useContext(casesMouseFollowerContext);
 };
 
-export const CasesMouseFollowerProvider = ({ children }: { children?: React.ReactNode }) => {
+export const CasesMouseFollowerProvider = ({ disableMouse, children }: { children?: React.ReactNode; disableMouse?: boolean }) => {
   const [activeCase, setActiveCase] = useState<CarouselApi>();
   const [state, setState] = useState<State>('idle');
 
   const onMouseMove = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
+    if (disableMouse) return;
+
     const { left, width } = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - left;
     const index = Math.round((x / width) * 2);
@@ -35,10 +37,10 @@ export const CasesMouseFollowerProvider = ({ children }: { children?: React.Reac
     if (index === 0) setState('left');
     else if (index === 2) setState('right');
     else setState('idle');
-  }, []);
+  }, [disableMouse]);
 
   const onClick = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-    if (state === 'idle' || !activeCase) return;
+    if (state === 'idle' || !activeCase || disableMouse) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -60,7 +62,7 @@ export const CasesMouseFollowerProvider = ({ children }: { children?: React.Reac
       const next = engine.index.add(1).get();
       scrollTo(next, -1);
     }
-  }, [activeCase, state]);
+  }, [activeCase, disableMouse, state]);
 
   const contextValue = useMemo(() => ({
     activeCase,

@@ -28,9 +28,13 @@ export default function CasesPage() {
           <AppearingText>
             <AppearingAnimationText>
               <AppearingAnimationTextPart>
-                Наши любимые
+                Наши
               </AppearingAnimationTextPart>
-              <br />
+              {' '}
+              <AppearingAnimationTextPart>
+                любимые
+              </AppearingAnimationTextPart>
+              {' '}
               <AppearingAnimationTextPart>
                 <GradientText>работы</GradientText>
               </AppearingAnimationTextPart>

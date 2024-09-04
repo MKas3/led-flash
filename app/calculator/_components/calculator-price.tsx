@@ -117,6 +117,7 @@ export const CalculatorPrice = ({
       </div>
       <Button
         className='col-span-2 md:col-span-1'
+        size='medium'
         type='submit'
         variant='gradient'
       >

@@ -4,16 +4,30 @@ import ProcessEnv = NodeJS.ProcessEnv;
 
 const environmentSchema = z.object({
   ANALYZE: z.coerce.boolean().optional(),
+  API_URL: z.string().url(),
+  EMAIL_HOST: z.string(),
+  EMAIL_LOGO_IMAGE: z.string().url(),
+  EMAIL_PASS: z.string(),
+  EMAIL_PORT: z.coerce.number(),
+  EMAIL_RECEIVER: z.string().email(),
+  EMAIL_USER: z.string(),
   YMAP_API_KEY: z.string()
 });
 
 // eslint-disable-next-line node/prefer-global/process
-const { ANALYZE, YMAP_API_KEY } = process.env;
+const { ANALYZE, API_URL, EMAIL_HOST, EMAIL_LOGO_IMAGE, EMAIL_PASS, EMAIL_PORT, EMAIL_RECEIVER, EMAIL_USER, YMAP_API_KEY } = process.env;
 
 type Environment = z.infer<typeof environmentSchema>;
 
 export const env = environmentSchema.parse({
   ANALYZE,
+  API_URL,
+  EMAIL_HOST,
+  EMAIL_LOGO_IMAGE,
+  EMAIL_PASS,
+  EMAIL_PORT,
+  EMAIL_RECEIVER,
+  EMAIL_USER,
   YMAP_API_KEY
 }) as Environment & ProcessEnv;
 

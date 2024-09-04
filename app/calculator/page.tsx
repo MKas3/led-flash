@@ -32,23 +32,22 @@ export default function CalculatorPage() {
               <AppearingAnimationTextPart>
                 Рассчитайте
               </AppearingAnimationTextPart>
-              <br />
+              {' '}
               <AppearingAnimationTextPart>
-                стоимость&nbsp;
-                <GradientText>неоновой</GradientText>
+                стоимость
               </AppearingAnimationTextPart>
-              <br />
+              {' '}
               <AppearingAnimationTextPart>
-                <GradientText>вывески</GradientText>
+                <GradientText className='to-[200%]'>неоновой</GradientText>
+              </AppearingAnimationTextPart>
+              {' '}
+              <AppearingAnimationTextPart>
+                <GradientText className='from-[-100%]'>вывески</GradientText>
               </AppearingAnimationTextPart>
             </AppearingAnimationText>
             <AppearingContentText>
-              Рассчитайте
-              <br />
-              стоимость&nbsp;
-              <GradientText>неоновой</GradientText>
-              <br />
-              <GradientText>вывески</GradientText>
+              Рассчитайте стоимость
+              <GradientText>неоновой вывески</GradientText>
             </AppearingContentText>
           </AppearingText>
         </Heading>

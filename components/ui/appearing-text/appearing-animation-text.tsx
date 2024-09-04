@@ -29,7 +29,7 @@ export const AppearingAnimationText = ({
       className={cn('', className)}
       animate='animate-appearing'
       initial='initial-appearing'
-      transition={{ staggerChildren: 0.3 }}
+      transition={{ staggerChildren: 0.1 }}
       {...props}
     >
       {children}

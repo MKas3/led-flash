@@ -7,7 +7,7 @@ export const appearingContainer = {
 };
 
 export const scrollBlurContainer = {
-  maxBlur: 15,
+  maxBlur: 10,
   minScale: 0.85
 };
 

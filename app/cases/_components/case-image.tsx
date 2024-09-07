@@ -34,6 +34,11 @@ export const CaseImage = ({ className, variant, ...props }: CaseImageProps) => {
       <CarouselItem className={cn('size-full pl-0 h-auto', className)}>
         <CaseImageTrigger>
           <Image className={cn(caseImageVariants({ variant }), 'size-full !relative object-cover')} {...props} />
+          <span className='sr-only'>
+            На полный экран:
+            {' '}
+            {props.alt}
+          </span>
         </CaseImageTrigger>
         <DialogPortal>
           <DialogOverlay />

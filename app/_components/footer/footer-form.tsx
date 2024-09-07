@@ -5,7 +5,7 @@ import type {
   FooterFormSchema
 } from '@/config/footer';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { sendOrder, sendPricedOrder } from '@/actions/email.action';
 import { Button } from '@/components/ui/button';
@@ -48,9 +48,13 @@ export const FooterForm = ({
   onSubmit,
   ...props
 }: FooterFormProps) => {
+  const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
+
   const [query] = useCalculatorQuery();
 
-  const form = useZodForm(footerFormSchema);
+  const form = useZodForm(footerFormSchema, {
+    mode: 'onSubmit'
+  });
 
   const handleSubmit = async (data: FooterFormSchema) => {
     let success;
@@ -71,11 +75,18 @@ export const FooterForm = ({
 
     if (!success) return toast.error('Ошибка отправки');
 
+    setIsSubmitSuccessful(true);
     form.reset();
-    form.clearErrors();
     toast.success('Заявка отправлена!');
     onSubmit?.();
   };
+
+  useEffect(() => {
+    form.clearErrors();
+    if (isSubmitSuccessful) {
+      setIsSubmitSuccessful(false);
+    }
+  }, [isSubmitSuccessful]);
 
   return (
     <Form

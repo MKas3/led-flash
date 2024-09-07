@@ -58,7 +58,7 @@ export default function HomePage() {
   return (
     <Main>
       <ScrollBlurContainer
-        className='h-screen justify-center overflow-hidden'
+        className='h-dvh justify-center overflow-hidden'
         isAlternate
         isHero
       >
@@ -66,7 +66,7 @@ export default function HomePage() {
           className='flex flex-col justify-center gap-y-12 bg-transparent'
           padding='none'
         >
-          <Carousel className='relative z-10 -mx-container-sm md:hidden' opts={{ skipSnaps: true }}>
+          <Carousel className='relative z-10 -mx-container-sm md:hidden' opts={{ breakpoints: { '(min-width: 768px)': { active: false } }, skipSnaps: true }}>
             <CarouselContent className='ml-0'>
               {cases.left.map((leftCase) => leftCase.images[0]).reverse().map((leftCase) => (
                 <CarouselItem key={leftCase.src} className='pl-0'>

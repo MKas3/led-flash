@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Image from 'next/image';
+
 import { FooterForm } from '@/app/_components/footer/footer-form';
 import { AppearingAnimationText } from '@/components/ui/appearing-text/appearing-animation-text';
 import { AppearingAnimationTextPart } from '@/components/ui/appearing-text/appearing-animation-text-part';
@@ -76,11 +78,17 @@ export const Footer = ({ className, ...props }: FooterProps) => {
         </div>
       </footer>
       <div
-        className='relative z-10 flex h-screen w-full items-center justify-center bg-[length:100%_100%]'
-        style={{
-          backgroundImage: `url(${resourcesHrefs.footerBackgroundGradient})`
-        }}
+        className='relative z-10 flex h-screen w-full items-center justify-center'
       >
+        <Image
+          className='absolute inset-0 size-full object-cover'
+          alt='Фон'
+          height={893}
+          quality={90}
+          sizes='100vw'
+          src={resourcesHrefs.footerBackgroundGradient}
+          width={1920}
+        />
         <Link.Xerase />
       </div>
     </>

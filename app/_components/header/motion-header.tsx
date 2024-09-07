@@ -13,7 +13,7 @@ import {
   useVelocity
 } from 'framer-motion';
 
-const InternalMotionHeader = motion(Header);
+const InternalMotionHeader = motion.create(Header);
 
 type MotionHeaderProps = React.ComponentPropsWithoutRef<typeof InternalMotionHeader>;
 
@@ -35,7 +35,7 @@ export const MotionHeader = ({ ...props }: MotionHeaderProps) => {
     if (latestValue < 0 || scrollY.get() < height * 5)
       rawTranslateY.set(0);
     else if (latestValue !== 0)
-      rawTranslateY.set(-100);
+      rawTranslateY.set(-110);
   });
 
   useLayoutEffect(() => {

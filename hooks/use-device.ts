@@ -13,14 +13,22 @@ export const useDevice = () => {
   const is2Xl = useMinWidth('2xl');
 
   const screenMatches = useMemo(
-    () => ({ '2xl': is2Xl, 'lg': isLg, 'md': isMd, 'sm': isSm, 'xl': isXl, 'xs': isXs }),
+    () => ([
+      { xs: isXs },
+      { sm: isSm },
+      { md: isMd },
+      { lg: isLg },
+      { xl: isXl },
+      { '2xl': is2Xl }
+    ]),
     [isXs, isSm, isMd, isLg, isXl, is2Xl]
   );
+
   return useMemo(
     () =>
-      Object.entries(screenMatches)
-        .findLast((item) => item[1])
-        ?.at(0) as keyof typeof screens | undefined,
+      Object.keys(screenMatches
+        .findLast((item) => Object.values(item).some((value) => value)) ?? {})
+        .at(0) as keyof typeof screens | undefined,
     [screenMatches]
   );
 };

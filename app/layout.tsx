@@ -1,13 +1,12 @@
 import type { Metadata, Viewport } from 'next';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { Footer } from '@/app/_components/footer/footer';
 import { MotionHeader } from '@/app/_components/header/motion-header';
+import { ScreenIndicator } from '@/app/_components/indicators/screen-indicator';
 import { LenisProvider } from '@/app/_components/lenis-provider';
 import { PathnameBody } from '@/app/_components/pathname-body';
-import { ScreenIndicator } from '@/app/_components/screen-indicator';
-import { SplashScreenWrapper } from '@/app/_components/splash-screen-wrapper';
 import { YandexMapProvider } from '@/components/shared/yandex-map-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { api } from '@/config/api';
@@ -15,6 +14,10 @@ import { siteConfig } from '@/config/site';
 import { Poppins, Unbounded } from 'next/font/google';
 
 import { cn } from '@/lib/utils';
+
+import { FPSIndicator } from './_components/indicators/fps-indicator';
+import { MemoryIndicator } from './_components/indicators/memory-indicator';
+import Loading from './loading';
 
 import './globals.css';
 
@@ -80,27 +83,31 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <PathnameBody
-        className={cn(
-          'min-h-screen group/loading w-screen overflow-x-hidden text-foreground antialiased [&[data-scroll-locked]]:!overflow-y-auto',
-          unbounded.variable,
-          poppins.variable,
-          unbounded.className
-        )}
-      >
-        <LenisProvider root>
+      <LenisProvider root>
+        <PathnameBody
+          className={cn(
+            'min-h-screen w-screen overflow-x-hidden text-foreground antialiased',
+            unbounded.variable,
+            poppins.variable,
+            unbounded.className
+          )}
+        >
           <YandexMapProvider apiUrl={api.yMapsApiUrl}>
-            <SplashScreenWrapper>
+            {/* <SplashScreenWrapper> */}
+            <Suspense fallback={<Loading />}>
               <MotionHeader />
               {children}
               <Footer />
-            </SplashScreenWrapper>
+            </Suspense>
+            {/* </SplashScreenWrapper> */}
           </YandexMapProvider>
           <Toaster />
           {/* <MouseFollower /> */}
           <ScreenIndicator />
-        </LenisProvider>
-      </PathnameBody>
+          <FPSIndicator />
+          <MemoryIndicator />
+        </PathnameBody>
+      </LenisProvider>
     </html>
   );
 }

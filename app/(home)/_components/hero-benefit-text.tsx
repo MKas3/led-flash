@@ -50,8 +50,8 @@ export const HeroBenefitText = ({
         `z-10 my-auto h-[2.5em] !leading-[1.25em] whitespace-pre font-bold 2xl:text-3xl lg:text-xl`,
         className
       )}
-      charCount={1}
-      interval={30}
+      charCount={2}
+      interval={35}
       reverseCharCount={1}
       reverseInterval={20}
       {...props}

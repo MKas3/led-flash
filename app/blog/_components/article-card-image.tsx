@@ -12,7 +12,7 @@ export const ArticleCardImage = ({
 }: ArticleCardImageProps) => {
   return (
     <Image
-      className={cn('size-full object-cover', className)}
+      className={cn('size-full aspect-video object-cover', className)}
       height={220}
       sizes='100vw'
       width={392}

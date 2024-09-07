@@ -21,9 +21,11 @@ import { ZodError } from 'zod';
 import { env } from '@/lib/env';
 
 const bodySchema = footerFormSchema.and(calculatorFormSchema);
+let priceCounter = 0;
 
 export const POST = async (request: NextRequest) => {
   try {
+    priceCounter++;
     const body = bodySchema.parse(await request.json());
 
     const intermediatePrice = substrateTypePrices[body.substrateType]
@@ -72,8 +74,6 @@ export const POST = async (request: NextRequest) => {
               <title>Заявка</title>
               <style>
                 body {
-                    background: black;
-                    color: #FFF;
                     font-family: Arial, sans-serif;
                     line-height: 1.6;
                     padding: 20px;
@@ -122,13 +122,13 @@ export const POST = async (request: NextRequest) => {
             </style>
           </head>
           <body>
-              <img class="logo" alt="Logo" src="${env.EMAIL_LOGO_IMAGE}" />
-              <h1>Заявка</h1>
+              <h1>Заявка №${priceCounter}</h1>
               <br />
               <p><strong>ФИО:</strong> ${body.fullName}</p>
               <p><strong>Email:</strong> ${body.email}</p>
               <p><strong>Телефон:</strong> +${body.phone}</p>
               <p><strong>Способ контакта:</strong> ${{ phone: 'Телефон', telegram: 'Telegram', whatsapp: 'Whatsapp' }[body.contactWay]}</p>
+              <p><strong>Номер заявки:</strong> ${priceCounter}</p>
               <br />
               <br />
               <p><strong>Тип подложки:</strong> ${substrateTypesNamings[body.substrateType === 'transparent' ? 0 : 1]}</p>
@@ -146,7 +146,7 @@ export const POST = async (request: NextRequest) => {
           </body>
           </html>
         `,
-      subject: 'Заявка на Led Flash',
+      subject: `Заявка на Led Flash - Заявка №${priceCounter}`,
       to: env.EMAIL_RECEIVER
     });
 

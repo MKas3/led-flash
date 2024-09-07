@@ -17,8 +17,7 @@ import React, {
 import { containerVariants } from '@/components/ui/container';
 import { scrollBlurContainer } from '@/config/animation';
 import {
-  motion
-  ,
+  motion,
   useMotionTemplate,
   useScroll,
   useTransform
@@ -59,18 +58,15 @@ const ScrollBlurContainer = forwardRef<
     const [heightInitialized, setHeightInitialized] = useState(false);
 
     const { scrollYProgress } = useScroll({
-      layoutEffect: true,
       offset: ['end end', 'end start'],
       target: targetRef,
       ...scrollOptions
     });
-    const blur = useTransform(
-      scrollYProgress,
-      [0, 1],
-      [0, scrollBlurContainer.maxBlur]
-    );
 
-    const filter = useMotionTemplate`blur(${blur}px)`;
+    const translateY = useTransform(scrollYProgress, [0, 0.25, 1], [0, 0, 250]);
+    const scale = useTransform(scrollYProgress, [0, 0.25, 1], [1, 1, scrollBlurContainer.minScale]);
+
+    const transform = useMotionTemplate`matrix(${scale}, 0, 0, ${scale}, 0, ${translateY})`;
 
     useImperativeHandle(ref, () => targetRef.current as HTMLDivElement);
 
@@ -115,6 +111,7 @@ const ScrollBlurContainer = forwardRef<
           <motion.div
             ref={contentRef}
             className={cn(
+              'origin-bottom',
               containerVariants({
                 className,
                 gradient,
@@ -123,7 +120,7 @@ const ScrollBlurContainer = forwardRef<
                 padding
               })
             )}
-            style={{ filter }}
+            style={{ transform }}
             {...props}
           />
         </div>

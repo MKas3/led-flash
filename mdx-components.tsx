@@ -44,6 +44,13 @@ export const customMDXComponents: MDXComponents = {
       {...props}
     />
   ),
+  h3: ({ ...props }) => (
+    <Heading
+      className='mb-6 text-base font-semibold normal-case !leading-snug md:text-lg lg:text-xl 2xl:text-2xl'
+      as='h3'
+      {...props}
+    />
+  ),
   HeroImage: ({ ...props }) => (
     <div className='relative col-span-2 row-start-1 -mx-container flex aspect-[13/7] items-center overflow-hidden lg:aspect-[5/1]'>
       <Image
@@ -65,6 +72,9 @@ export const customMDXComponents: MDXComponents = {
       {props.alt && <span className='pl-container-sm text-sm text-muted-foreground md:pl-0 md:text-base lg:text-lg xl:text-xl'>{props.alt}</span>}
     </div>
   ),
+  li: ({ ...props }) => (
+    <li className='mb-2 font-poppins text-base leading-[1.8] md:text-lg md:leading-[1.8] xl:text-xl xl:leading-[1.8]' {...props} />
+  ),
   Meta: ({ date, views, ...props }) => (
     <div className='mb-5 flex items-center gap-x-6 md:mb-6'>
       <span
@@ -81,6 +91,9 @@ export const customMDXComponents: MDXComponents = {
         {views}
       </span>
     </div>
+  ),
+  ol: ({ ...props }) => (
+    <ol className='mb-6 list-decimal pl-[1.5em] [&_ol]:ml-[-1.5em]' {...props} />
   ),
   p: ({ ...props }) => (
     <p className='mb-[2em] font-poppins text-base leading-[1.8] md:text-lg md:leading-[1.8] xl:text-xl xl:leading-[1.8] [&_+_h2]:mt-[2.5em]' {...props} />

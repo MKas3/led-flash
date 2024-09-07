@@ -5,7 +5,7 @@ import { forwardRef } from 'react';
 import { Container } from '@/components/ui/container';
 import { motion } from 'framer-motion';
 
-const InnerMotionContainer = motion(Container);
+const InnerMotionContainer = motion.create(Container);
 
 const MotionContainer = forwardRef<
   React.ElementRef<typeof InnerMotionContainer>,

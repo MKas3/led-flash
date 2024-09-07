@@ -1,7 +1,5 @@
 import type { Metadata } from 'next';
 
-import React from 'react';
-
 import { Contacts } from '@/components/shared/contacts';
 import { AppearingContainer } from '@/components/ui/appearing-container';
 import { AppearingAnimationText } from '@/components/ui/appearing-text/appearing-animation-text';

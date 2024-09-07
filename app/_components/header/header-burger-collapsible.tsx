@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 
 import { FooterForm } from '@/app/_components/footer/footer-form';

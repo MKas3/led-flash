@@ -12,13 +12,27 @@ type CaseMouseFollowerHandlerProps = React.ComponentPropsWithoutRef<typeof motio
 
 export const CaseMouseFollowerHandler = ({ className, ...props }: CaseMouseFollowerHandlerProps) => {
   const { api } = useCarousel();
-  const { setActiveCase, onMouseMove } = useCasesMouseFollower();
+  const { disable, setActiveCase, onMouseMove } = useCasesMouseFollower();
 
   useEffect(() => {
+    if (disable) return;
+
     return () => {
       setActiveCase();
     };
-  }, [setActiveCase]);
+  }, [disable, setActiveCase]);
+
+  const onHoverStart = () => {
+    if (disable) return;
+
+    setActiveCase(api);
+  };
+
+  const onHoverEnd = () => {
+    if (disable) return;
+
+    setActiveCase();
+  };
 
   return (
     <motion.div
@@ -26,8 +40,8 @@ export const CaseMouseFollowerHandler = ({ className, ...props }: CaseMouseFollo
         `pointer-events-auto`,
         className
       )}
-      onHoverEnd={() => setActiveCase()}
-      onHoverStart={() => setActiveCase(api)}
+      onHoverEnd={onHoverEnd}
+      onHoverStart={onHoverStart}
       onMouseMove={onMouseMove}
       {...props}
     />

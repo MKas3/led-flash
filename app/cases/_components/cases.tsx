@@ -16,7 +16,7 @@ type CasesProps = React.ComponentPropsWithoutRef<'div'> & {
   disableMouse?: boolean;
 };
 
-export const Cases = ({ className, disableMouse, ...props }: CasesProps) => {
+export const Cases = async ({ className, disableMouse, ...props }: CasesProps) => {
   return (
     <div className={cn('group grid gap-y-20 grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-20 xl:gap-x-24 2xl:gap-x-28', className)} {...props}>
       <CasesMouseFollowerProvider disableMouse={disableMouse}>
@@ -26,7 +26,12 @@ export const Cases = ({ className, disableMouse, ...props }: CasesProps) => {
         <CasesLeft>
           {cases.left.map((leftCase) => (
             <Case key={leftCase.title}>
-              <CaseImages opts={disableMouse ? { active: true } : {}}>
+              <CaseImages opts={disableMouse
+                ? { active: true }
+                : { breakpoints: { '(max-width: 768px)': {
+                    active: true
+                  } } }}
+              >
                 {leftCase.images.map((image) => (
                   <CaseImage
                     key={image.src}

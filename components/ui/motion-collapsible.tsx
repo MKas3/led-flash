@@ -56,7 +56,7 @@ const MotionCollapsibleTriggerContent = React.forwardRef<
 });
 MotionCollapsibleTriggerContent.displayName = 'CollapsibleTriggerContent';
 
-const InnerMotionCollapsibleContent = motion(CollapsiblePrimitive.CollapsibleContent);
+const InnerMotionCollapsibleContent = motion.create(CollapsiblePrimitive.CollapsibleContent);
 
 const MotionCollapsibleContent = React.forwardRef<
   React.ElementRef<typeof InnerMotionCollapsibleContent>,

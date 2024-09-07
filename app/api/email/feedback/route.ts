@@ -8,8 +8,11 @@ import { ZodError } from 'zod';
 
 import { env } from '@/lib/env';
 
+let requestCounter = 0;
+
 export const POST = async (request: NextRequest) => {
   try {
+    requestCounter++;
     const body = feedbackBodySchema.parse(await request.formData());
 
     const transporter = nodemailer.createTransport({
@@ -41,8 +44,6 @@ export const POST = async (request: NextRequest) => {
               <title>Новый отзыв</title>
               <style>
                 body {
-                    background: black;
-                    color: #FFF;
                     font-family: Arial, sans-serif;
                     line-height: 1.6;
                     padding: 20px;
@@ -91,13 +92,13 @@ export const POST = async (request: NextRequest) => {
             </style>
           </head>
           <body>
-              <img class="logo" alt="Logo" src="${env.EMAIL_LOGO_IMAGE}" />
-              <h1>Новый отзыв</h1>
+              <h1>Новый отзыв №${requestCounter}</h1>
               <br />
               <p><strong>ФИО:</strong> ${body.fullName}</p>
               <p><strong>Телефон:</strong> +${body.phone}</p>
               <p><strong>Рейтинг:</strong> ${body.rating} из 5</p>
               <p><strong>Отзыв:</strong> ${body.feedback}</p>
+              <p><strong>Номер отзыва:</strong> ${requestCounter}</p>
               <p>
               ${body.images
     ? `
@@ -109,7 +110,7 @@ export const POST = async (request: NextRequest) => {
           </body>
           </html>
         `,
-      subject: 'Новый отзыв на Led Flash',
+      subject: `Новый отзыв на Led Flash - Отзыв №${requestCounter}`,
       to: env.EMAIL_RECEIVER
     });
 

@@ -24,9 +24,9 @@ export const AppearingAnimationTextPart = ({
   ...props
 }: AppearingAnimationTextPartProps) => {
   return (
-    <span className='inline-flex w-fit overflow-hidden'>
+    <span className='inline-flex overflow-hidden'>
       <motion.span
-        className={cn('inline-flex', className)}
+        className={cn('inline-block', className)}
         transition={{ duration: 0.3, ease: 'backOut' }}
         variants={textPartVariants}
         {...props}

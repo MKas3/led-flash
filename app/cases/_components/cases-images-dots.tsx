@@ -10,6 +10,6 @@ type CasesImagesDotsProps = React.ComponentPropsWithoutRef<'div'>;
 
 export const CasesImagesDots = ({ className, ...props }: CasesImagesDotsProps) => {
   return (
-    <CarouselDots className={cn('opacity-0 transition-opacity group-hover/case:opacity-100 absolute bottom-2 inset-x-0', className)} {...props} />
+    <CarouselDots className={cn('opacity-0 transition-opacity group-hover/case:opacity-100 group-[&.scale-105]/case:opacity-100 absolute bottom-2 inset-x-0', className)} {...props} />
   );
 };

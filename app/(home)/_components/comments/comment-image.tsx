@@ -15,12 +15,12 @@ export const CommentImage = ({ className, sizes, ...props }: CommentImageProps) 
     <Dialog>
       <CarouselItem className={cn('size-full pl-0 h-auto', className)}>
         <CaseImageTrigger>
-          <Image className={cn('rounded-lg', className)} sizes={sizes} {...props} />
+          <Image className={cn('rounded-lg max-h-[10vh] w-fit', className)} sizes={sizes} {...props} />
         </CaseImageTrigger>
         <DialogPortal>
           <DialogOverlay />
-          <DialogInnerContent className='size-fit p-0 max-md:w-full md:h-[60vh]'>
-            <Image className='size-full rounded-sm object-cover' sizes='80vw' {...props} />
+          <DialogInnerContent className='size-fit p-0 max-md:w-full md:max-h-[60vh]'>
+            <Image className='size-full max-h-[60vh] w-fit rounded-sm object-cover' sizes='80vw' {...props} />
             <DialogClose className='md:inset-x-0 md:top-auto md:mx-auto' />
           </DialogInnerContent>
         </DialogPortal>

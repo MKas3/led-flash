@@ -14,7 +14,6 @@ import { CommentAuthorAvatar } from '@/app/(home)/_components/comments/comment-a
 import { CommentAuthorDate } from '@/app/(home)/_components/comments/comment-author-date';
 import { CommentContent } from '@/app/(home)/_components/comments/comment-content';
 import { CommentImage } from '@/app/(home)/_components/comments/comment-image';
-import { CommentNaming } from '@/app/(home)/_components/comments/comment-naming';
 import { Comments } from '@/app/(home)/_components/comments/comments';
 import { CommentsAddModal } from '@/app/(home)/_components/comments/comments-add-modal';
 import { CommentsAddModalTrigger } from '@/app/(home)/_components/comments/comments-add-modal-trigger';
@@ -52,6 +51,8 @@ import { faqQuestions } from '@/config/home/faq';
 import { prices } from '@/config/home/prices';
 
 import { cn } from '@/lib/utils';
+
+import { CommentText } from './_components/comments/comment-text';
 
 export default function HomePage() {
   return (
@@ -479,11 +480,10 @@ export default function HomePage() {
                     {item.author}
                   </CommentAuthor>
                   <CommentContent>
-                    <CommentNaming>{item.commentNaming}</CommentNaming>
-                    {item.comment}
+                    <CommentText>{item.comment}</CommentText>
                     {item.commentImageSrc && (
                       <CommentImage
-                        alt={item.commentNaming}
+                        alt='Картинка отзыва'
                         height={item.commentImageHeight}
                         sizes='(max-width: 768px) 15vw, 10vw'
                         src={item.commentImageSrc}

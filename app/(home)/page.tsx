@@ -1,6 +1,6 @@
-import React from 'react';
+import type { Metadata } from 'next';
 
-import Image from 'next/image';
+import React from 'react';
 
 import { OrderModalTrigger } from '@/app/_components/order-modal/order-modal-trigger';
 import { Benefit } from '@/app/(home)/_components/benefits/benefit';
@@ -29,6 +29,7 @@ import { PriceCardNumber } from '@/app/(home)/_components/price/price-card-numbe
 import { PriceCardText } from '@/app/(home)/_components/price/price-card-text';
 import { PricesMotionWrapper } from '@/app/(home)/_components/price/prices-motion-wrapper';
 import { Cases } from '@/app/cases/_components/cases';
+import { Contact } from '@/components/shared/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { AnchorLink } from '@/components/ui/anchor-link';
 import { AppearingContainer } from '@/components/ui/appearing-container';
@@ -37,7 +38,6 @@ import { AppearingAnimationTextPart } from '@/components/ui/appearing-text/appea
 import { AppearingContentText } from '@/components/ui/appearing-text/appearing-content-text';
 import { AppearingText } from '@/components/ui/appearing-text/appearing-text';
 import { buttonVariants } from '@/components/ui/button';
-import { Carousel, CarouselContent, CarouselDots, CarouselItem } from '@/components/ui/carousel';
 import { GradientText } from '@/components/ui/gradient-text';
 import { Heading } from '@/components/ui/heading';
 import Icon from '@/components/ui/icon';
@@ -45,7 +45,6 @@ import Link from '@/components/ui/link';
 import { Main } from '@/components/ui/main';
 import { ScrollBlurContainer } from '@/components/ui/scroll-blur-container';
 import { Separator } from '@/components/ui/separator';
-import { cases } from '@/config/cases/cases';
 import { comments, commentsAverageRating } from '@/config/home/comments';
 import { faqQuestions } from '@/config/home/faq';
 import { prices } from '@/config/home/prices';
@@ -54,11 +53,15 @@ import { cn } from '@/lib/utils';
 
 import { CommentText } from './_components/comments/comment-text';
 
+export const metadata: Metadata = {
+  title: 'Неоновые вывески на заказ'
+};
+
 export default function HomePage() {
   return (
     <Main>
       <ScrollBlurContainer
-        className='h-dvh justify-center overflow-hidden'
+        className='h-screen justify-center overflow-hidden'
         isAlternate
         isHero
       >
@@ -66,16 +69,6 @@ export default function HomePage() {
           className='flex flex-col justify-center gap-y-12 bg-transparent'
           padding='none'
         >
-          <Carousel className='relative z-10 -mx-container-sm md:hidden' opts={{ breakpoints: { '(min-width: 768px)': { active: false } }, skipSnaps: true }}>
-            <CarouselContent className='ml-0'>
-              {cases.left.map((leftCase) => leftCase.images[0]).reverse().map((leftCase) => (
-                <CarouselItem key={leftCase.src} className='pl-0'>
-                  <Image className='aspect-[4/3] w-full overflow-hidden object-cover' alt={leftCase.alt} height={leftCase.height} sizes='100vw' src={leftCase.src} width={leftCase.width} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselDots className='absolute inset-x-0 bottom-0' />
-          </Carousel>
           <Heading className='md:mt-24' as='h1'>
             <AppearingText>
               <AppearingAnimationText>
@@ -127,13 +120,13 @@ export default function HomePage() {
               <OrderModalTrigger
                 className={cn(
                   buttonVariants({ variant: 'gradient' }),
-                  `w-full delay-1000 duration-700 animate-in slide-in-from-bottom-full fill-mode-both md:w-auto`
+                  `w-full delay-1000 duration-700 animate-in slide-in-from-bottom-[105%] fill-mode-both md:w-auto`
                 )}
               >
                 Оформить заявку
               </OrderModalTrigger>
             </span>
-            <div>
+            <div className='overflow-hidden'>
               <Separator
                 className='z-10 h-full w-0.5 bg-background delay-1500 duration-1000 animate-in slide-in-from-bottom-full fill-mode-both'
                 orientation='vertical'
@@ -269,7 +262,7 @@ export default function HomePage() {
             </Benefits>
           </AppearingContainer>
           <AppearingContainer
-            className='overflow-visible lg:pb-8 lg:pt-36'
+            className='overflow-visible lg:pt-36'
             gradient='none'
             padding='none'
           >
@@ -309,7 +302,7 @@ export default function HomePage() {
             </div>
           </AppearingContainer>
           <AppearingContainer
-            className='pb-48 pt-8'
+            className='pb-48 pt-8 md:pt-0'
             transition={{ delayChildren: 0.3 }}
           >
             <Heading className='mb-8' as='h2'>
@@ -551,6 +544,7 @@ export default function HomePage() {
           </Accordion>
         </AppearingContainer>
       </div>
+      <Contact />
     </Main>
   );
 }

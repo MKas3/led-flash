@@ -144,11 +144,11 @@ export const CommentsAddForm = ({ className, onSubmit, ...props }: CommentsAddFo
       <span className='-mb-2 mt-1.5 text-center font-poppins text-5xs md:mt-3'>
         Нажимая на кнопку, я соглашаюсь с
         <br />
-        <Link.Link href='/'>
+        <Link.Policy>
           <GradientText hasUnderline>
             политикой обработки персональных данных
           </GradientText>
-        </Link.Link>
+        </Link.Policy>
       </span>
       <Button size='medium' variant='gradient'>Отправить отзыв</Button>
     </Form>

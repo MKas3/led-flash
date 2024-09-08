@@ -143,7 +143,7 @@ export const cases = {
           width: 4000
         },
         {
-          alt: '',
+          alt: 'Поцелуй - неоновая вывеска',
           height: 3000,
           src: '/cases/kiss/4.webp',
           width: 4000

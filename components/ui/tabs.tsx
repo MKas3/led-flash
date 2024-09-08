@@ -22,7 +22,7 @@ const tabsListVariants = cva(
       size: {
         default:
           `text-xs *:px-5 *:py-1 sm:text-base md:*:px-8 md:*:py-1.5 lg:*:px-4 xl:text-xl`,
-        lg: `lg:text-md text-xs *:px-4 *:py-2 sm:text-base md:*:px-5 md:*:py-1.5 lg:*:px-6 xl:text-lg xl:*:py-2 2xl:text-xl`,
+        lg: `text-xs *:px-4 *:py-2 sm:text-base md:*:px-5 md:*:py-1.5 lg:text-base lg:*:px-6 xl:text-lg xl:*:py-2 2xl:text-xl`,
         sm: `text-xs *:px-2.5 *:py-1 md:text-lg md:*:py-1.5 xl:text-xl xl:*:px-3 2xl:*:px-4`
       },
       variant: {

@@ -26,7 +26,7 @@ export const Case = ({ className, ...props }: CaseProps) => {
       {
         root: null,
         rootMargin: '-17.5%',
-        threshold: 0.5
+        threshold: [0.1, 0.5, 0.9]
       }
     );
 
@@ -52,7 +52,7 @@ export const Case = ({ className, ...props }: CaseProps) => {
         ref={caseRef}
         className={cn(
           'case group/case flex w-full md:group-has-[.case:hover]:opacity-60 md:hover:!opacity-100 transition-all md:hover:scale-105 duration-500 flex-col gap-y-4',
-          isCentered ? 'opacity-100 scale-105' : 'opacity-60',
+          device !== 'xs' && device !== 'sm' ? '' : isCentered ? 'opacity-100 scale-105' : 'opacity-60',
           className
         )}
         {...props}

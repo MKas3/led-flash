@@ -7,7 +7,7 @@ import { Main } from '@/components/ui/main';
 const ErrorPage = () => {
   return (
     <Main className='flex size-full flex-col items-center justify-between gap-10'>
-      <div className='flex min-h-dvh flex-col items-center justify-center gap-6'>
+      <div className='flex min-h-screen flex-col items-center justify-center gap-6'>
         <span className='text-6xl font-bold lg:text-8xl'>404</span>
         <span className='text-4xl font-bold lg:text-5xl'>Страница не найдена</span>
         <span className='text-xl lg:text-2xl'>

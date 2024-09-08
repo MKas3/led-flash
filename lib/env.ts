@@ -11,11 +11,12 @@ const environmentSchema = z.object({
   EMAIL_PORT: z.coerce.number(),
   EMAIL_RECEIVER: z.string().email(),
   EMAIL_USER: z.string(),
+  NODE_ENV: z.string(),
   YMAP_API_KEY: z.string()
 });
 
 // eslint-disable-next-line node/prefer-global/process
-const { ANALYZE, API_URL, EMAIL_HOST, EMAIL_LOGO_IMAGE, EMAIL_PASS, EMAIL_PORT, EMAIL_RECEIVER, EMAIL_USER, YMAP_API_KEY } = process.env;
+const { ANALYZE, API_URL, EMAIL_HOST, EMAIL_LOGO_IMAGE, EMAIL_PASS, EMAIL_PORT, EMAIL_RECEIVER, EMAIL_USER, NODE_ENV, YMAP_API_KEY } = process.env;
 
 type Environment = z.infer<typeof environmentSchema>;
 
@@ -28,6 +29,7 @@ export const env = environmentSchema.parse({
   EMAIL_PORT,
   EMAIL_RECEIVER,
   EMAIL_USER,
+  NODE_ENV,
   YMAP_API_KEY
 }) as Environment & ProcessEnv;
 

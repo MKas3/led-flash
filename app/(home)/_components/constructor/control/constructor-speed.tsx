@@ -33,6 +33,7 @@ export const ConstructorSpeed = ({
           {defaultSpeedModifiers.map((item, index) => (
             <TabsTrigger
               key={index}
+              className='!w-full md:!text-[1vw]'
               aria-controls={undefined}
               disabled={isSpeedModifierAnimating ? true : undefined}
               value={item.toString()}

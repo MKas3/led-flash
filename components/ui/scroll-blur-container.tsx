@@ -70,10 +70,9 @@ const ScrollBlurContainer = forwardRef<
 
     useImperativeHandle(ref, () => targetRef.current as HTMLDivElement);
 
-    const setHeight = useCallback(() => {
+    const setHeight = useCallback((height: number) => {
       if (!contentRef.current || !targetRef.current) return;
 
-      const height = contentRef.current.clientHeight;
       targetRef.current.style.setProperty('--height', `${height}px`);
       setHeightInitialized(true);
     }, []);
@@ -83,7 +82,9 @@ const ScrollBlurContainer = forwardRef<
 
       const observeElement = contentRef.current;
 
-      const observer = new ResizeObserver(() => setHeight());
+      const observer = new ResizeObserver(([entry]) => {
+        setHeight(entry.borderBoxSize[0].blockSize);
+      });
       observer.observe(observeElement);
 
       return () => {

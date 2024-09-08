@@ -4,5 +4,5 @@ export const screens = {
   'md': '768px',
   'sm': '640px',
   'xl': '1280px',
-  'xs': '400px'
+  'xs': '0px'
 };

@@ -34,5 +34,10 @@ export const navigationHrefs = {
     altNaming: 'Главная',
     href: '/',
     naming: 'home'
+  },
+  policy: {
+    altNaming: 'Политика обработки персональных данных',
+    href: '/policy',
+    naming: 'policy'
   }
 } as const;

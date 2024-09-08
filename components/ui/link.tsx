@@ -96,6 +96,7 @@ const Delivery = TemplateLink(navigationHrefs.delivery);
 const Calculator = TemplateLink(navigationHrefs.calculator);
 const Blog = TemplateLink(navigationHrefs.blog);
 const About = TemplateLink(navigationHrefs.about);
+const Policy = TemplateLink(navigationHrefs.policy);
 
 const Phone = forwardRef<
   React.ElementRef<typeof Link>,
@@ -170,5 +171,6 @@ export default {
   Home,
   Link,
   Phone,
+  Policy,
   Xerase
 };

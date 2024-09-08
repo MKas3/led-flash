@@ -223,13 +223,13 @@ export const FooterForm = ({
         >
           Нажимая на кнопку , я соглашаюсь
           {' '}
-          <Link.Link href='/'>
+          <Link.Policy>
             <GradientText hasUnderline>с политикой</GradientText>
             <br />
             <GradientText hasUnderline>
               обработки персональных данных
             </GradientText>
-          </Link.Link>
+          </Link.Policy>
         </span>
       </div>
       <Button

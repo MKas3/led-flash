@@ -19,7 +19,7 @@ import { Main } from '@/components/ui/main';
 import { articlesMetadata } from '@/config/blog/articles';
 
 export const metadata: Metadata = {
-  title: 'Блог'
+  title: 'Расскажем о неоновых вывесках'
 };
 
 export default async function BlogPage() {

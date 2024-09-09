@@ -51,10 +51,14 @@ import { prices } from '@/config/home/prices';
 
 import { cn } from '@/lib/utils';
 
+import { defaultOpenGraph, defaultTwitter } from '../layout';
+
 import { CommentText } from './_components/comments/comment-text';
 
 export const metadata: Metadata = {
-  title: 'Неоновые вывески на заказ'
+  openGraph: { ...defaultOpenGraph, title: 'Led Flash - Неоновые вывески для бизнеса от 1490 руб.' },
+  title: 'Неоновые вывески для бизнеса от 1490 руб.',
+  twitter: { ...defaultTwitter, title: 'Led Flash - Неоновые вывески для бизнеса от 1490 руб.' }
 };
 
 export default function HomePage() {

@@ -51,7 +51,12 @@ export const Cases = async ({ className, disableMouse, ...props }: CasesProps) =
         <CasesRight>
           {cases.right.map((rightCase) => (
             <Case key={rightCase.title}>
-              <CaseImages opts={disableMouse ? { active: true } : {}}>
+              <CaseImages opts={disableMouse
+                ? { active: true }
+                : { breakpoints: { '(max-width: 768px)': {
+                    active: true
+                  } } }}
+              >
                 {rightCase.images.map((image) => (
                   <CaseImage
                     key={image.src}

@@ -22,12 +22,6 @@ import { CommentsHeader } from '@/app/(home)/_components/comments/comments-heade
 import { CommentsStars } from '@/app/(home)/_components/comments/comments-stars';
 import { Constructor } from '@/app/(home)/_components/constructor/constructor';
 import { HeroBenefitText } from '@/app/(home)/_components/hero-benefit-text';
-import { Price } from '@/app/(home)/_components/price/price';
-import { PriceCard } from '@/app/(home)/_components/price/price-card';
-import { PriceCardDots } from '@/app/(home)/_components/price/price-card-dots';
-import { PriceCardNumber } from '@/app/(home)/_components/price/price-card-number';
-import { PriceCardText } from '@/app/(home)/_components/price/price-card-text';
-import { PricesMotionWrapper } from '@/app/(home)/_components/price/prices-motion-wrapper';
 import { Cases } from '@/app/cases/_components/cases';
 import { Contact } from '@/components/shared/contact';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -41,20 +35,22 @@ import { buttonVariants } from '@/components/ui/button';
 import { GradientText } from '@/components/ui/gradient-text';
 import { Heading } from '@/components/ui/heading';
 import Icon from '@/components/ui/icon';
-import Link from '@/components/ui/link';
 import { Main } from '@/components/ui/main';
 import { ScrollBlurContainer } from '@/components/ui/scroll-blur-container';
 import { Separator } from '@/components/ui/separator';
 import { comments, commentsAverageRating } from '@/config/home/comments';
 import { faqQuestions } from '@/config/home/faq';
-import { prices } from '@/config/home/prices';
 
 import { cn } from '@/lib/utils';
+
+import { defaultOpenGraph, defaultTwitter } from '../layout';
 
 import { CommentText } from './_components/comments/comment-text';
 
 export const metadata: Metadata = {
-  title: 'Неоновые вывески на заказ'
+  openGraph: { ...defaultOpenGraph, title: 'Led Flash - Неоновые вывески для бизнеса от 1490 руб.' },
+  title: 'Неоновые вывески для бизнеса от 1490 руб.',
+  twitter: { ...defaultTwitter, title: 'Led Flash - Неоновые вывески для бизнеса от 1490 руб.' }
 };
 
 export default function HomePage() {
@@ -350,76 +346,8 @@ export default function HomePage() {
         </div>
       </ScrollBlurContainer>
       <ScrollBlurContainer isAlternate>
-        <PricesMotionWrapper className='md:mt-12'>
-          <Heading className='mb-12' as='h2'>
-            <AppearingText>
-              <AppearingAnimationText animate={false} viewport={{ once: true }} whileInView='animate-appearing'>
-                <AppearingAnimationTextPart>
-                  Сколько
-                </AppearingAnimationTextPart>
-                {' '}
-                <AppearingAnimationTextPart>
-                  стоит
-                </AppearingAnimationTextPart>
-                {' '}
-                <AppearingAnimationTextPart>
-                  <GradientText className='to-[200%]'>неоновая</GradientText>
-                </AppearingAnimationTextPart>
-                {' '}
-                <AppearingAnimationTextPart>
-                  <GradientText className='from-[-100%]'>вывеска?</GradientText>
-                </AppearingAnimationTextPart>
-              </AppearingAnimationText>
-              <AppearingContentText>
-                Сколько стоит
-                {' '}
-                <GradientText>неоновая вывеска?</GradientText>
-              </AppearingContentText>
-            </AppearingText>
-          </Heading>
-          <AppearingContainer
-            className='grid grow-0 grid-rows-[minmax(0,1fr)_min-content] gap-x-20 gap-y-6 bg-transparent lg:grid-cols-2 2xl:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]'
-            padding='none'
-            transition={{ delay: 0.3, delayChildren: 0.3 }}
-          >
-            <AppearingContainer
-              className='relative bg-transparent [perspective:1000px]'
-              padding='none'
-              variant='child'
-            >
-              {prices.map((item, index) => (
-                <PriceCard key={index} index={index} maxCount={prices.length}>
-                  <PriceCardNumber>
-                    0
-                    {index + 1}
-                  </PriceCardNumber>
-                  <PriceCardDots index={index} maxCount={prices.length} />
-                  <PriceCardText>{item.text}</PriceCardText>
-                </PriceCard>
-              ))}
-            </AppearingContainer>
-            <AppearingContainer
-              className='flex flex-col justify-start gap-y-6 bg-transparent md:justify-center md:gap-y-8 lg:items-center lg:gap-y-12'
-              padding='none'
-              variant='child'
-            >
-              <Price
-                discountedPrices={[12600, 14600, 16600, 18600]}
-                prices={[18000, 20000, 22000, 24000]}
-              />
-              <Link.Calculator
-                className={cn(
-                  buttonVariants({ variant: 'gradient' }),
-                  `w-full lg:w-fit`
-                )}
-              >
-                Рассчитать стоимость
-              </Link.Calculator>
-            </AppearingContainer>
-          </AppearingContainer>
-        </PricesMotionWrapper>
         <AppearingContainer
-          className='flex flex-col justify-center pb-96 pt-0'
+          className='flex flex-col justify-center pb-48 pt-12'
           padding='none'
           isAlternate
         >

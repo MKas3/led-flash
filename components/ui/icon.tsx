@@ -25,7 +25,7 @@ const Logo = ({ ...props }: IconProps) => {
           y1='81.218'
           y2='71.0335'
         >
-          <stop stopColor='#DA22FF' />
+          <stop offset='0' stopColor='#DA22FF' />
           <stop offset='1' stopColor='#FF005C' />
         </linearGradient>
       </defs>

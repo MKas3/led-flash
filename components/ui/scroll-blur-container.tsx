@@ -105,7 +105,7 @@ const ScrollBlurContainer = forwardRef<
         <div
           className={cn(
             'sticky',
-            heightInitialized && `-top-[calc(var(--height)-100vh)] h-0`,
+            heightInitialized ? `-top-[calc(var(--height)-100vh)]` : 'top-0 min-h-screen',
             stickyClassName
           )}
         >

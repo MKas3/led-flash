@@ -16,7 +16,7 @@ import Icon from '@/components/ui/icon';
 import { Main } from '@/components/ui/main';
 
 export const metadata: Metadata = {
-  title: 'Калькулятор'
+  title: 'Стоимость неоновой вывески онлайн'
 };
 
 export default function CalculatorPage() {

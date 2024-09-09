@@ -1,5 +1,5 @@
 export const Loading = () => {
-  return <div />;
+  return <div className='min-h-screen' />;
 };
 
 export default Loading;

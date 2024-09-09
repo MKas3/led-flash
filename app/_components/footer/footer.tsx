@@ -78,7 +78,7 @@ export const Footer = ({ className, ...props }: FooterProps) => {
         </div>
       </footer>
       <div
-        className='relative z-10 flex h-screen w-full items-center justify-center'
+        className='relative z-10 flex aspect-video w-full items-center justify-center md:h-screen'
       >
         <Image
           className='absolute inset-0 size-full object-cover'

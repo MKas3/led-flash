@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { deliveryQuestions } from '@/config/delivery/delivery';
 
 export const metadata: Metadata = {
-  title: 'Доставка'
+  title: 'Доставка неоновой вывески по всей России за 3 дня'
 };
 
 export default function DeliveryPage() {

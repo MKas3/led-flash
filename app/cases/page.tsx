@@ -13,7 +13,7 @@ import { Heading } from '@/components/ui/heading';
 import { Main } from '@/components/ui/main';
 
 export const metadata: Metadata = {
-  title: 'Кейсы'
+  title: 'Наши лучшие Неоновые вывески'
 };
 
 export default function CasesPage() {

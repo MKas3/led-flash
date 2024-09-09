@@ -11,7 +11,8 @@ import { Heading } from '@/components/ui/heading';
 import { Main } from '@/components/ui/main';
 
 export const metadata: Metadata = {
-  title: 'О нас'
+  description: 'Офис Led-Flash находится по адресу: 📍г.Санкт-Петербург, Софийская ул., 4Д ☎️ +7 (991) 008-00-32 (Telegram). 📥 led.flash@mail.ru',
+  title: 'Информация о компании'
 };
 
 export default async function AboutPage() {

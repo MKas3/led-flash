@@ -221,7 +221,7 @@ export const FooterForm = ({
               : `mt-1.5 md:mt-3`
           )}
         >
-          Нажимая на кнопку , я соглашаюсь
+          Нажимая на кнопку, вы соглашаетесь
           {' '}
           <Link.Policy>
             <GradientText hasUnderline>с политикой</GradientText>

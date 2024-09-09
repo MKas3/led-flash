@@ -1,4 +1,4 @@
-export const xeraseHref = 'https://form.xerase.ru';
+export const xeraseHref = 'https://xerase.ru';
 
 export const navigationHrefs = {
   about: {

@@ -139,7 +139,7 @@ const Xerase = forwardRef<
   <Link
     ref={ref}
     className={cn(
-      'group relative overflow-hidden p-0 text-xl font-semibold',
+      'group relative overflow-hidden p-0 md:text-lg text-base lg:text-xl font-semibold',
       className
     )}
     href={href ?? xeraseHref}
@@ -148,13 +148,13 @@ const Xerase = forwardRef<
     <span
       className={cn(
         buttonVariants({ variant: 'foreground' }),
-        `absolute inset-0 flex size-full -translate-y-[150%] flex-col items-center justify-center !p-0 text-lg transition-transform group-hover:translate-y-0 lg:text-2xl md:text-xl xl:text-2xl`
+        `absolute inset-0 flex size-full -translate-y-[150%] flex-col items-center justify-center !p-0 text-base md:text-lg transition-transform group-hover:translate-y-0 lg:text-xl xl:text-2xl`
       )}
     >
       Перейти
     </span>
     <span className='flex items-center gap-x-6 transition-transform group-hover:translate-y-full'>
-      <Icon.XeraseLogo className='size-[3em]' />
+      <Icon.XeraseLogo className='size-[2.5em]' />
       Made in Xerase
     </span>
   </Link>

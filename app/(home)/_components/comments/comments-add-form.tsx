@@ -142,7 +142,7 @@ export const CommentsAddForm = ({ className, onSubmit, ...props }: CommentsAddFo
         </FormFieldItem>
       </div>
       <span className='-mb-2 mt-1.5 text-center font-poppins text-5xs md:mt-3'>
-        Нажимая на кнопку, я соглашаюсь с
+        Нажимая на кнопку, вы соглашаетесь с
         <br />
         <Link.Policy>
           <GradientText hasUnderline>
